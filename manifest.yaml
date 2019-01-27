@@ -1,0 +1,89 @@
+jellyfin-manifest:
+  server-packages:
+    - docker
+    - debian-amd64 # Generic .deb/.dsc
+    - fedora-amd64 # Generic .rpm
+    - linux-portable-amd64
+    - macos-portable-amd64
+    - windows-portable-amd64
+    - windows-portable-i386
+  projects:
+    - name: jellyfin
+      type: server
+      description:
+    - name: jellyfin-web
+      type: server
+      description:
+    - name: jellyfin-android
+      type: client
+      description:
+    - name: jellyfin-androidtv
+      type: client
+      description:
+    - name: jellyfin-plugin-anime
+      type: plugin
+      description:
+    - name: jellyfin-plugin-trakt
+      type: plugin
+      description:
+    - name: jellyfin-plugin-reports
+      type: plugin
+      description:
+    - name: jellyfin-plugin-channels
+      type: plugin
+      description:
+    - name: jellyfin-plugin-emailnotifications
+      type: plugin
+      description:
+    - name: jellyfin-plugin-iptv
+      type: plugin
+      description:
+    - name: jellyfin-plugin-tvheadend
+      type: plugin
+      description:
+    - name: jellyfin-plugin-autoorganize
+      type: plugin
+      description:
+    - name: jellyfin-plugin-rottentomatoes
+      type: plugin
+      description:
+    - name: jellyfin-plugin-onedrive
+      type: plugin
+      description:
+    - name: jellyfin-plugin-bookshelf
+      type: plugin
+      description:
+    - name: jellyfin-plugin-tunein
+      type: plugin
+      description:
+    - name: jellyfin-plugin-toutv
+      type: plugin
+      description:
+    - name: jellyfin-plugin-rokubif
+      type: plugin
+      description:
+    - name: jellyfin-plugin-pushover
+      type: plugin
+      description:
+    - name: jellyfin-plugin-pushbullet
+      type: plugin
+      description:
+    - name: jellyfin-plugin-pushalot
+      type: plugin
+      description:
+    - name: jellyfin-plugin-prowl
+      type: plugin
+      description:
+    - name: jellyfin-plugin-notifymyandroid
+      type: plugin
+      description:
+    - name: jellyfin-plugin-nextpvr
+      type: plugin
+      description:
+    - name: jellyfin-plugin-gamebrowser
+      type: plugin
+      description:
+    - name: jellyfin-plugin-tvmaze
+      type: plugin
+      description:
+
