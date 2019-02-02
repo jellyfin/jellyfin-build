@@ -2,9 +2,10 @@
 
 # build.py: Collect components of Jellyfin and build them.
 
-import os, sys, argparse, yaml, re
+import os, sys, argparse, yaml, json
 
 import manifest
+import build_plugin
 
 # Parse the arguments
 parser = argparse.ArgumentParser()
@@ -96,51 +97,8 @@ for project in jellyfin_projects:
 if args.clone_only:
     sys.exit(0)
 
-def build_project(project):
-    # Schema:
-    # build_type: dotnet|docker|script
-    # dotnet_runtime: the runtime for dotnet builds
-    # dotnet_configuration: the configuration for dotnet builds
-    # dotnet_framework: the framework for dotnet builds
-    # docker_file: the Dockerfile for docker builds
-    # script_path: the path for script builds
-
-    # Extract our name and type
-    project_name = project['name']
-    project_type = project['type']
-    # Set out the directories
-    type_dir = "./projects/{}".format(project_type)
-    project_dir = "./projects/{}/{}".format(project_type, project_name)
-    # Check if a build configuration exists and load it
-    manifest_file = project_dir + '/build.yaml'
-    if not os.path.exists(manifest_file):
-        print("ERROR: Project {} does not contain a valid 'build.yaml' file.".format(project['name']))
-        sys.exit(1)
-    with open(manifest_file, 'r') as ymlfile:
-        build_cfg = yaml.load(ymlfile)
-
-    # move into the project directory
-    revdir = os.getcwd()
-    os.chdir(project_dir)
-
-    if build_cfg['build_type'] == 'dotnet':
-        build_command = "dotnet publish --self-contained --runtime {} --configuration {} --framework {} --output ../bin/".format(
-            build_cfg['dotnet_runtime'],
-            build_cfg['dotnet_configuration'],
-            build_cfg['dotnet_framework']
-        )
-        os.system(build_command)
-
-    # Move back to the previous directory
-    os.chdir(revdir)
-    
-    # Collect artifacts
-    src_dir = "{}/bin".format(project_dir)
-    target_dir = "./bin/{}/".format(project_name)
-    # Make the type dir if it doesn't exist
-    if not os.path.isdir(target_dir):
-        os.makedirs(target_dir)
-    os.system("mv {}/{} {}/".format(src_dir, build_cfg['artifacts'], target_dir))
+# Check if we built any plugins to update final manifest
+updated_plugin = False
 
 # Attempt to perform a build for each specified project
 for project in jellyfin_projects:
@@ -149,6 +107,25 @@ for project in jellyfin_projects:
         continue
 
     # Build the project
-    build_project(project)
+    if project['type'] == 'plugin':
+        success = build_plugin.build_plugin(project)
+        if success:
+            updated_plugin = True
 
+if updated_plugin:
+    plugin_manifest_list = list()
+    for project in jellyfin_projects:
+        if project['type'] == 'plugin':
+            # Read in the fragment
+            project_manifest_fragment_file = "./bin/{name}/{name}.manifest.json".format(name=project['name'])
+            if not os.path.exists(project_manifest_fragment_file):
+                continue
 
+            with open(project_manifest_fragment_file) as project_manifest_fragment:
+                project_manifest_fragment = json.load(project_manifest_fragment)
+            plugin_manifest_list.append(project_manifest_fragment)
+
+    output_manifest_file_name = "./bin/plugin_manifest.json"
+    with open(output_manifest_file_name, 'w') as output_manifest_file:
+        json.dump(plugin_manifest_list, output_manifest_file, sort_keys=True, indent=4)
+    print("Wrote updated combined plugin manifest to {}".format(output_manifest_file_name))

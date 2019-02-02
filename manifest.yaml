@@ -11,79 +11,214 @@ jellyfin-manifest:
     - name: jellyfin
       type: server
       description:
+      
     - name: jellyfin-web
       type: server
       description:
+
     - name: jellyfin-android
       type: client
       description:
+
     - name: jellyfin-androidtv
       type: client
       description:
+
     - name: jellyfin-plugin-anime
       type: plugin
-      description:
+      description: "Manage your Anime in Jellyfin"
+      plugin_id: 0
+      plugin_nicename: "Anime"
+      plugin_overview: "Manage your Anime in Jellyfin"
+      plugin_category: "General"
+      plugin_guid: "a4df60c5-6ab4-412a-8f79-2cab93fb2bc5"
+
     - name: jellyfin-plugin-trakt
       type: plugin
-      description:
+      description: "Record your watched media with Trakt"
+      plugin_id: 1
+      plugin_nicename: "Trakt"
+      plugin_overview: "Record your watched media with Trakt"
+      plugin_category: "General"
+      plugin_guid: "4fe3201e-d6ae-4f2e-8917-e12bda571281"
+
     - name: jellyfin-plugin-reports
       type: plugin
-      description:
+      description: "Generate reports of your media library"
+      plugin_id: 2
+      plugin_nicename: "Reports"
+      plugin_overview: "Generate reports of your media library"
+      plugin_category: "General"
+      plugin_guid: "d4312cd9-5c90-4f38-82e8-51da566790e8"
+
     - name: jellyfin-plugin-channels
       type: plugin
-      description:
+      description: "Configure media channels"
+      plugin_id: 3
+      plugin_nicename: "Channels"
+      plugin_overview: "Configure media channels"
+      plugin_category: "General"
+      plugin_guid: "96cacf9f-2525-42ae-b80e-87fea5112881"
+
     - name: jellyfin-plugin-emailnotifications
       type: plugin
-      description:
+      description: "Send SMTP email notifications"
+      plugin_id: 4
+      plugin_nicename: "Email Notifications"
+      plugin_overview: "Send SMTP email notifications"
+      plugin_category: "General"
+      plugin_guid: "cfa0f7f4-4155-4d71-849b-d6598dc4c5bb"
+
+    - name: jellyfin-plugin-kodisyncqueue
+      type: plugin
+      description: "Sync queues to Kodi"
+      plugin_id: 5
+      plugin_nicename: "Kodi Sync Queue"
+      plugin_overview: "Sync queues to Kodi"
+      plugin_category: "General"
+      plugin_guid: "771e19d6-5385-4caf-b35c-28a0e865cf63"
+
     - name: jellyfin-plugin-iptv
       type: plugin
-      description:
+      description: "Enable IPTV support in Jellyfin"
+      plugin_id: 6
+      plugin_nicename: "IPTV"
+      plugin_overview: "Enable IPTV support in Jellyfin"
+      plugin_category: "General"
+      plugin_guid: "a59b5c4b-05a8-488f-bfa8-7a63fffc7639"
+
     - name: jellyfin-plugin-tvheadend
       type: plugin
-      description:
+      description: "Manage TVHeadend from Jellyfin"
+      plugin_id: 7
+      plugin_nicename: "TVHeadend"
+      plugin_overview: "Manage TVHeadend from Jellyfin"
+      plugin_category: "General"
+      plugin_guid: "3fd018e5-5e78-4e58-b280-a0c068febee0"
+
     - name: jellyfin-plugin-autoorganize
       type: plugin
-      description:
+      description: "Auto-organize your media"
+      plugin_id: 8
+      plugin_nicename: "Auto-Organize"
+      plugin_overview: "Auto-organize your media"
+      plugin_category: "General"
+      plugin_guid: "70b7b43b-471b-4159-b4be-56750c795499"
+
     - name: jellyfin-plugin-rottentomatoes
       type: plugin
-      description:
+      description: "Sync reviews from RottenTomatoes"
+      plugin_id: 9
+      plugin_nicename: "RottenTomatoes"
+      plugin_overview: "Sync reviews from RottenTomatoes"
+      plugin_category: "General"
+      plugin_guid: "6a289fe2-d2b0-4478-b056-8f7e97bade55"
+
     - name: jellyfin-plugin-onedrive
       type: plugin
-      description:
+      description: "Import media from OneDrive"
+      plugin_id: 10
+      plugin_nicename: "OneDrive"
+      plugin_overview: "Import media from OneDrive"
+      plugin_category: "General"
+      plugin_guid: "2d95f22b-0748-4bc9-8891-d1be430617f2"
+
     - name: jellyfin-plugin-bookshelf
       type: plugin
-      description:
+      description: "Import data from BookShelf"
+      plugin_id: 11
+      plugin_nicename: "BookShelf"
+      plugin_overview: "Import data from BookShelf"
+      plugin_category: "General"
+      plugin_guid: "bdf0e700-9386-4e96-9250-45749cebe23f"
+
     - name: jellyfin-plugin-tunein
       type: plugin
-      description:
+      description: "TuneIn"
+      plugin_id: 12
+      plugin_nicename: "TuneIn"
+      plugin_overview: "TuneIn"
+      plugin_category: "General"
+      plugin_guid: "bff8106e-4c18-4c54-8645-1a52dc09cb14"
+
     - name: jellyfin-plugin-toutv
       type: plugin
-      description:
+      description: "TouTV"
+      plugin_id: 13
+      plugin_nicename: "TouTV"
+      plugin_overview: "TouTV"
+      plugin_category: "General"
+      plugin_guid: "9aedbb95-c4e9-4d4f-815c-94bcd1fd8870"
+
     - name: jellyfin-plugin-rokubif
       type: plugin
-      description:
+      description: "RokuBif"
+      plugin_id: 14
+      plugin_nicename: "RokuBif"
+      plugin_overview: "RokuBif"
+      plugin_category: "General"
+      plugin_guid: "1696d12d-0951-4e7e-b756-80a70c2b1f83"
+
     - name: jellyfin-plugin-pushover
       type: plugin
-      description:
+      description: "PushOver"
+      plugin_id: 15
+      plugin_nicename: "PushOver"
+      plugin_overview: "PushOver"
+      plugin_category: "General"
+      plugin_guid: "a14ec83c-de3b-458e-87c5-a52bb0c4446e"
+
     - name: jellyfin-plugin-pushbullet
       type: plugin
-      description:
+      description: "PushBullet"
+      plugin_id: 16
+      plugin_nicename: "PushBullet"
+      plugin_overview: "PushBullet"
+      plugin_category: "General"
+      plugin_guid: "b7852c6c-43a6-4186-9046-19aed8ab6404"
+
     - name: jellyfin-plugin-pushalot
       type: plugin
-      description:
+      description: "PushALot"
+      plugin_id: 17
+      plugin_nicename: "PushALot"
+      plugin_overview: "PushALot"
+      plugin_category: "General"
+      plugin_guid: "4b5db328-81f4-463a-85c5-a19045e23d02"
+
     - name: jellyfin-plugin-prowl
       type: plugin
-      description:
+      description: "Prowl"
+      plugin_id: 18
+      plugin_nicename: "Prowl"
+      plugin_overview: "Prowl"
+      plugin_category: "General"
+      plugin_guid: "0a9b3bad-ac5b-43bf-9b1d-4c4f178b29bd"
+
     - name: jellyfin-plugin-notifymyandroid
       type: plugin
-      description:
+      description: "NotifyMyAndroid"
+      plugin_id: 19
+      plugin_nicename: "NotifyMyAndroid"
+      plugin_overview: "NotifyMyAndroid"
+      plugin_category: "General"
+      plugin_guid: "6ea4b9b1-8985-44e9-a1ca-e0b2ffb42ba6"
+
     - name: jellyfin-plugin-nextpvr
       type: plugin
-      description:
-    - name: jellyfin-plugin-gamebrowser
-      type: plugin
-      description:
+      description: "NextPVR"
+      plugin_id: 20
+      plugin_nicename: "NextPVR"
+      plugin_overview: "NextPVR"
+      plugin_category: "General"
+      plugin_guid: "398d5eaa-4ed2-4923-b9d6-b43fff21a796"
+
     - name: jellyfin-plugin-tvmaze
       type: plugin
-      description:
+      description: "TVMaze"
+      plugin_id: 21
+      plugin_nicename: "TVMaze"
+      plugin_overview: "TVMaze"
+      plugin_category: "General"
+      plugin_guid: "6a12464b-f14d-41d0-966e-1ded085971c4"
 

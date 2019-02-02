@@ -1,5 +1,6 @@
 ---
 name: "jellyfin-plugin-anime"
+version: "1.0.0"
 artifacts: "MediaBrowser.Plugins.Anime.dll"
 build_type: "dotnet"
 dotnet_runtime: "linux-x64"
