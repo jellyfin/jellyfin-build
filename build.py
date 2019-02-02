@@ -125,7 +125,7 @@ if updated_plugin:
                 project_manifest_fragment = json.load(project_manifest_fragment)
             plugin_manifest_list.append(project_manifest_fragment)
 
-    output_manifest_file_name = "./bin/plugin_manifest.json"
+    output_manifest_file_name = "./bin/jellyfin-plugin_manifest.json"
     with open(output_manifest_file_name, 'w') as output_manifest_file:
         json.dump(plugin_manifest_list, output_manifest_file, sort_keys=True, indent=4)
     print("Wrote updated combined plugin manifest to {}".format(output_manifest_file_name))
