@@ -2,6 +2,10 @@
 
 import os, sys, yaml, json, subprocess, datetime
 
+import manifest
+
+cwd = os.getcwd()
+
 def run_os_command(command, environment=None):
     command_output = subprocess.run(
         command.split(),
@@ -24,15 +28,14 @@ def build_plugin(project):
     project_name = project['name']
     project_type = project['type']
     # Set out the directories
-    type_dir = "./projects/{}".format(project_type)
-    project_dir = "./projects/{}/{}".format(project_type, project_name)
+    type_dir = "{}/projects/{}".format(cwd, project_type)
+    project_dir = "{}/projects/{}/{}".format(cwd, project_type, project_name)
     # Check if a build configuration exists and load it
-    manifest_file = project_dir + '/build.yaml'
+    manifest_file = '{}/build.yaml'.format(project_dir)
     if not os.path.exists(manifest_file):
         print("ERROR: Project {} does not contain a valid 'build.yaml' file.".format(project['name']))
         return False
-    with open(manifest_file, 'r') as ymlfile:
-        build_cfg = yaml.load(ymlfile)
+    build_cfg = manifest.load_manifest(manifest_file)
 
     project_version = build_cfg['version']
 
@@ -97,7 +100,7 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
         "thumbImage": "",
         "previewImage": "",
         "type": "UserInstalled",
-        "targetFilename": "{}_{}.dll".format(project_name, project_version),
+        "targetFilename": "{0}_{1}.dll".format(project_name, project_version),
         "owner": "jellyfin",
         "category": project_plugin_category,
         "titleColor": "#FFFFFF",
@@ -119,8 +122,8 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
                 "classification": "Release",
                 "description": "Release",
                 "requiredVersionStr": "10.1.0",
-                "sourceUrl": "https://repo.jellyfin.org/releases/plugin/{}_{}.dll".format(project_name, project_version),
-                "targetFilename": "{}_{}.dll".format(project_name, project_version),
+                "sourceUrl": "https://repo.jellyfin.org/releases/plugin/{0}/{0}_{1}.dll".format(project_name, project_version),
+                "targetFilename": "{0}_{1}.dll".format(project_name, project_version),
                 "checksum": bin_md5sum,
                 "packageId": project_plugin_id,
                 "timestamp": build_date,

@@ -2,16 +2,18 @@
 
 # build.py: Collect components of Jellyfin and build them.
 
-import os, sys, argparse, yaml, json
+import os, sys, argparse, json
 
 import manifest
 import build_plugin
+
+cwd = os.getcwd()
 
 # Parse the arguments
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "project",
-    help="Jellyfin project(s) to fetch. Must be 'all', a project type, or an individual project defined in 'manifest.yaml'.",
+    help="Jellyfin project(s) to fetch. Must be 'all', a project type, or an individual project defined in 'projects_manifest.yaml'.",
     nargs='?'
 )
 parser.add_argument(
@@ -33,7 +35,9 @@ parser.add_argument(
 args = parser.parse_args()
 
 # Parse out the manifest sections
-server_packages, jellyfin_projects = manifest.load_manifest()
+cfg = manifest.load_manifest('{}/projects_manifest.yaml'.format(cwd))
+jellyfin_projects = cfg['jellyfin-manifest']['projects']
+server_packages = cfg['jellyfin-manifest']['server-packages']
 
 full_projects_list = list()
 full_types_list = list()
@@ -68,56 +72,81 @@ if not projects_list:
     print("ERROR: Project or type '{}' is not in the manifest.")
     sys.exit(1)
 
-# Ensure all the chosen projects are cloned
-for project in jellyfin_projects:
-    # Continue if project is not chosen
-    if not project['name'] in projects_list:
-        continue
+# Check if we built any plugins to update final manifest
+updated_plugin = False
+
+def clone_project(project):
+    """
+    Clone a project from its Git URL.
+    """
     # Extract our name and type
     project_name = project['name']
     project_type = project['type']
-    print("Cloning project '{}':".format(project_name))
+    project_url = project['url']
+    print("-> Cloning project '{}':".format(project_name))
     # Set out the directories
-    type_dir = "./projects/{}".format(project_type)
-    project_dir = "./projects/{}/{}".format(project_type, project_name)
+    type_dir = "{}/projects/{}".format(cwd, project_type)
+    project_dir = "{}/projects/{}/{}".format(cwd, project_type, project_name)
     # Determine our clone command
     if args.method == 'ssh':
-        clone_cmd = "git clone git@github.com:jellyfin/{}.git {}".format(project_name, project_dir)
+        clone_cmd = "git clone git@{} {}".format(project_url, project_dir)
     else:
-        clone_cmd = "git clone https://github.com/jellyfin/{}.git {}".format(project_name, project_dir)
+        clone_cmd = "git clone https://{} {}".format(project_url, project_dir)
     # Make the type dir if it doesn't exist
     if not os.path.isdir(type_dir):
         os.makedirs(type_dir)
     # Clone the project if it doesn't exist
     if not os.path.isdir(project_dir):
-        os.system(clone_cmd)
+        try:
+            os.system(clone_cmd)
+        except Exception as e:
+            print("*> ERROR: Failed to clone project {}: {}".format(project_name, e))
+            return False
     else:
-        print("Project is already cloned.")
+        print("-> Project is already cloned.")
 
-if args.clone_only:
-    sys.exit(0)
+    return True
 
-# Check if we built any plugins to update final manifest
-updated_plugin = False
+def build_project(project):
+    global updated_plugin
+    # Extract our name and type
+    project_name = project['name']
+    project_type = project['type']
+    print("-> Building project '{}':".format(project_name))
+    # Build the project
+    if project['type'] == 'plugin':
+        result = build_plugin.build_plugin(project)
+        if result:
+            updated_plugin = True
+    elif project['type'] == 'client':
+        pass
+    elif project['type'] == 'server':
+        pass
+    else:
+        print("*> ERROR: Invalid project type.")
 
-# Attempt to perform a build for each specified project
+# Clone and build each project in turn
 for project in jellyfin_projects:
     # Continue if project is not chosen
     if not project['name'] in projects_list:
         continue
-
+    # Clone the project
+    result = clone_project(project)
+    if not result or args.clone_only:
+        continue
     # Build the project
-    if project['type'] == 'plugin':
-        success = build_plugin.build_plugin(project)
-        if success:
-            updated_plugin = True
+    result = build_project(project)
+    if not result:
+        continue
+    print("Successfully processed project {}".format(project['name']))
 
+# Update the plugin manifest
 if updated_plugin:
     plugin_manifest_list = list()
     for project in jellyfin_projects:
         if project['type'] == 'plugin':
             # Read in the fragment
-            project_manifest_fragment_file = "./bin/{name}/{name}.manifest.json".format(name=project['name'])
+            project_manifest_fragment_file = "{cwd}/bin/{name}/{name}.manifest.json".format(cwd=cwd, name=project['name'])
             if not os.path.exists(project_manifest_fragment_file):
                 continue
 
@@ -125,7 +154,7 @@ if updated_plugin:
                 project_manifest_fragment = json.load(project_manifest_fragment)
             plugin_manifest_list.append(project_manifest_fragment)
 
-    output_manifest_file_name = "./bin/jellyfin-plugin_manifest.json"
+    output_manifest_file_name = "{}/bin/jellyfin-plugin_manifest.json".format(cwd)
     with open(output_manifest_file_name, 'w') as output_manifest_file:
         json.dump(plugin_manifest_list, output_manifest_file, sort_keys=True, indent=4)
     print("Wrote updated combined plugin manifest to {}".format(output_manifest_file_name))
