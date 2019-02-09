@@ -7,13 +7,18 @@ import manifest
 cwd = os.getcwd()
 
 def run_os_command(command, environment=None):
-    command_output = subprocess.run(
-        command.split(),
-        env=environment,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
-    return command_output.stdout.decode('utf8'), command_output.returncode
+    try:
+        command_output = subprocess.run(
+            command.split(),
+            env=environment,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+    except Exception as e:
+        print(e)
+        print(command_output)
+
+    return command_output.stdout.decode('utf8'), command_output.stderr.decode('utf8'), command_output.returncode
 
 def build_plugin(project):
     # Schema:
@@ -66,8 +71,9 @@ def build_plugin(project):
     if not os.path.isdir(target_dir):
         os.makedirs(target_dir)
 
-    stdout, retcode = run_os_command("mv {}/{} {}/{}".format(src_dir, build_cfg['artifacts'], target_dir, new_name))
+    stdout, stderr, retcode = run_os_command("mv {}/{} {}/{}".format(src_dir, build_cfg['artifacts'], target_dir, new_name))
     if retcode:
+        print('Could not move artifact.')
         return False
 
     bin_md5sum = run_os_command("md5sum {}/{}".format(target_dir, new_name))[0].split()[0]
@@ -80,12 +86,12 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
     # Extract our name, type, and plugin_id
     project_name = project['name']
     project_type = project['type']
-    project_description = project['description']
-    project_plugin_nicename = project['plugin_nicename']
-    project_plugin_overview = project['plugin_overview']
     project_plugin_id = project['plugin_id']
-    project_plugin_category = project['plugin_category']
-    project_plugin_guid = project['plugin_guid']
+    project_plugin_guid = build_cfg['guid']
+    project_plugin_nicename = build_cfg['nicename']
+    project_plugin_overview = build_cfg['overview']
+    project_plugin_description = build_cfg['description']
+    project_plugin_category = build_cfg['category']
     project_version = build_cfg['version']
 
     build_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -93,7 +99,7 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
     plugin_manifest_fragment = {
         "id": project_plugin_id,
         "name": project_plugin_nicename,
-        "shortDescription": project_description,
+        "shortDescription": project_plugin_description,
         "overview": project_plugin_overview,
         "isPremium": False,
         "richDescUrl": "",
