@@ -39,48 +39,49 @@ jellyfin-manifest:
       url: "github.com/jellyfin/jellyfin-plugin-reports.git"
       plugin_id: 2
 
+    - name: jellyfin-plugin-emailnotifications
+      type: plugin
+      url: "github.com/jellyfin/jellyfin-plugin-emailnotifications.git"
+      plugin_id: 3
+
+    - name: jellyfin-plugin-kodisyncqueue
+      type: plugin
+      url: "github.com/jellyfin/jellyfin-plugin-kodisyncqueue.git"
+      plugin_id: 4
+
+    - name: jellyfin-plugin-iptv
+      type: plugin
+      url: "github.com/jellyfin/jellyfin-plugin-iptv.git"
+      plugin_id: 5
+
+    - name: jellyfin-plugin-tvheadend
+      type: plugin
+      url: "github.com/jellyfin/jellyfin-plugin-tvheadend.git"
+      plugin_id: 6
+
+    - name: jellyfin-plugin-autoorganize
+      type: plugin
+      url: "github.com/jellyfin/jellyfin-plugin-autoorganize.git"
+      plugin_id: 7
+
+    - name: jellyfin-plugin-tmdbboxsets
+      type: plugin
+      url: "github.com/cvium/jellyfin-plugin-tmdbboxsets.git"
+      plugin_id: 8
+
 #    - name: jellyfin-plugin-channels
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-channels.git"
-#      plugin_id: 3
+#      plugin_id: ?
 #      plugin_nicename: "Channels"
 #      plugin_overview: "Configure media channels"
 #      plugin_category: "General"
 #      plugin_guid: "96cacf9f-2525-42ae-b80e-87fea5112881"
 
-    - name: jellyfin-plugin-emailnotifications
-      type: plugin
-      url: "github.com/jellyfin/jellyfin-plugin-emailnotifications.git"
-      plugin_id: 4
-
-    - name: jellyfin-plugin-kodisyncqueue
-      type: plugin
-      url: "github.com/jellyfin/jellyfin-plugin-kodisyncqueue.git"
-      plugin_id: 5
-
-    - name: jellyfin-plugin-iptv
-      type: plugin
-      url: "github.com/jellyfin/jellyfin-plugin-iptv.git"
-      plugin_id: 6
-
-    - name: jellyfin-plugin-tvheadend
-      type: plugin
-      url: "github.com/jellyfin/jellyfin-plugin-tvheadend.git"
-      plugin_id: 7
-
-#    - name: jellyfin-plugin-autoorganize
-#      type: plugin
-#      url: "github.com/jellyfin/jellyfin-plugin-autoorganize.git"
-#      plugin_id: 8
-#      plugin_nicename: "Auto-Organize"
-#      plugin_overview: "Auto-organize your media"
-#      plugin_category: "General"
-#      plugin_guid: "70b7b43b-471b-4159-b4be-56750c795499"
-
 #    - name: jellyfin-plugin-rottentomatoes
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-rottentomatoes.git"
-#      plugin_id: 9
+#      plugin_id: ?
 #      plugin_nicename: "RottenTomatoes"
 #      plugin_overview: "Sync reviews from RottenTomatoes"
 #      plugin_category: "General"
@@ -89,7 +90,7 @@ jellyfin-manifest:
 #    - name: jellyfin-plugin-onedrive
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-onedrive.git"
-#      plugin_id: 10
+#      plugin_id: ?
 #      plugin_nicename: "OneDrive"
 #      plugin_overview: "Import media from OneDrive"
 #      plugin_category: "General"
@@ -98,7 +99,7 @@ jellyfin-manifest:
 #    - name: jellyfin-plugin-bookshelf
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-bookshelf.git"
-#      plugin_id: 11
+#      plugin_id: ?
 #      plugin_nicename: "BookShelf"
 #      plugin_overview: "Import data from BookShelf"
 #      plugin_category: "General"
@@ -107,7 +108,7 @@ jellyfin-manifest:
 #    - name: jellyfin-plugin-tunein
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-tunein.git"
-#      plugin_id: 12
+#      plugin_id: ?
 #      plugin_nicename: "TuneIn"
 #      plugin_overview: "TuneIn"
 #      plugin_category: "General"
@@ -116,7 +117,7 @@ jellyfin-manifest:
 #    - name: jellyfin-plugin-toutv
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-toutv.git"
-#      plugin_id: 13
+#      plugin_id: ?
 #      plugin_nicename: "TouTV"
 #      plugin_overview: "TouTV"
 #      plugin_category: "General"
@@ -125,7 +126,7 @@ jellyfin-manifest:
 #    - name: jellyfin-plugin-rokubif
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-rokubif.git"
-#      plugin_id: 14
+#      plugin_id: ?
 #      plugin_nicename: "RokuBif"
 #      plugin_overview: "RokuBif"
 #      plugin_category: "General"
@@ -134,7 +135,7 @@ jellyfin-manifest:
 #    - name: jellyfin-plugin-pushover
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-pushover.git"
-#      plugin_id: 15
+#      plugin_id: ?
 #      plugin_nicename: "PushOver"
 #      plugin_overview: "PushOver"
 #      plugin_category: "General"
@@ -143,7 +144,7 @@ jellyfin-manifest:
 #    - name: jellyfin-plugin-pushbullet
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-pushbullet.git"
-#      plugin_id: 16
+#      plugin_id: ?
 #      plugin_nicename: "PushBullet"
 #      plugin_overview: "PushBullet"
 #      plugin_category: "General"
@@ -152,7 +153,7 @@ jellyfin-manifest:
 #    - name: jellyfin-plugin-pushalot
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-pushalot.git"
-#      plugin_id: 17
+#      plugin_id: ?
 #      plugin_nicename: "PushALot"
 #      plugin_overview: "PushALot"
 #      plugin_category: "General"
@@ -161,7 +162,7 @@ jellyfin-manifest:
 #    - name: jellyfin-plugin-prowl
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-prowl.git"
-#      plugin_id: 18
+#      plugin_id: ?
 #      plugin_nicename: "Prowl"
 #      plugin_overview: "Prowl"
 #      plugin_category: "General"
@@ -170,7 +171,7 @@ jellyfin-manifest:
 #    - name: jellyfin-plugin-notifymyandroid
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-notifymyandroid.git"
-#      plugin_id: 19
+#      plugin_id: ?
 #      plugin_nicename: "NotifyMyAndroid"
 #      plugin_overview: "NotifyMyAndroid"
 #      plugin_category: "General"
@@ -179,7 +180,7 @@ jellyfin-manifest:
 #    - name: jellyfin-plugin-nextpvr
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-nextpvr.git"
-#      plugin_id: 20
+#      plugin_id: ?
 #      plugin_nicename: "NextPVR"
 #      plugin_overview: "NextPVR"
 #      plugin_category: "General"
@@ -188,7 +189,7 @@ jellyfin-manifest:
 #    - name: jellyfin-plugin-tvmaze
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-tvmaze.git"
-#      plugin_id: 21
+#      plugin_id: ?
 #      plugin_nicename: "TVMaze"
 #      plugin_overview: "TVMaze"
 #      plugin_category: "General"
