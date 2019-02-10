@@ -59,6 +59,20 @@ def build_plugin(project):
         print("ERROR: Unsupported build type.")
         return False
 
+    raw_bin_dir = "{}/bin".format(project_dir)
+    os.chdir(raw_bin_dir)
+
+    # Get a sensible name
+    new_name = "{}_{}.zip".format(project_name, project_version)
+    # Move out the artifacts
+    artifacts_list = list()
+    for artifact in build_cfg['artifacts']:
+        artifacts_list.append("{}".format(artifact))
+    stdout, stderr, retcode = run_os_command("zip {} {}".format(new_name, ' '.join(artifacts_list)))
+    if retcode:
+        print('Could not archive artifacts: {}'.format(stderr))
+        return False
+
     # Move back to the previous directory
     os.chdir(revdir)
     
@@ -69,15 +83,9 @@ def build_plugin(project):
     if not os.path.isdir(target_dir):
         os.makedirs(target_dir)
 
-    # Get a sensible name
-    new_name = "{}_{}.zip".format(project_name, project_version)
-    # Move out the artifacts
-    artifacts_list = list()
-    for artifact in build_cfg['artifacts']:
-        artifacts_list.append("{}/{}".format(src_dir, artifact))
-    stdout, stderr, retcode = run_os_command("zip {}/{} {}".format(target_dir, new_name, ' '.join(artifacts_list)))
+    stdout, stderr, retcode = run_os_command("mv {}/{} {}/".format(src_dir, new_name, target_dir))
     if retcode:
-        print('Could not move artifact: {}'.format(stderr))
+        print('Could not move archive: {}'.format(stderr))
         return False
 
     # Remove build junk
