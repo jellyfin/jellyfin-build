@@ -65,16 +65,23 @@ def build_plugin(project):
     # Collect artifacts
     src_dir = "{}/bin".format(project_dir)
     target_dir = "./bin/{}".format(project_name)
-    # Get a sensible name
-    new_name = "{}_{}.dll".format(project_name, project_version)
     # Make the type dir if it doesn't exist
     if not os.path.isdir(target_dir):
         os.makedirs(target_dir)
 
-    stdout, stderr, retcode = run_os_command("mv {}/{} {}/{}".format(src_dir, build_cfg['artifacts'], target_dir, new_name))
+    # Get a sensible name
+    new_name = "{}_{}.zip".format(project_name, project_version)
+    # Move out the artifacts
+    artifacts_list = list()
+    for artifact in build_cfg['artifacts']:
+        artifacts_list.append("{}/{}".format(src_dir, artifact))
+    stdout, stderr, retcode = run_os_command("zip {}/{} {}".format(target_dir, new_name, ' '.join(artifacts_list)))
     if retcode:
-        print('Could not move artifact.')
+        print('Could not move artifact: {}'.format(stderr))
         return False
+
+    # Remove build junk
+    run_os_command("rm -rf {}".format(src_dir))
 
     bin_md5sum = run_os_command("md5sum {}/{}".format(target_dir, new_name))[0].split()[0]
 
@@ -106,7 +113,7 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
         "thumbImage": "",
         "previewImage": "",
         "type": "UserInstalled",
-        "targetFilename": "{0}_{1}.dll".format(project_name, project_version),
+        "targetFilename": "{0}_{1}.zip".format(project_name, project_version),
         "owner": "jellyfin",
         "category": project_plugin_category,
         "titleColor": "#FFFFFF",
@@ -128,8 +135,8 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
                 "classification": "Release",
                 "description": "Release",
                 "requiredVersionStr": "10.1.0",
-                "sourceUrl": "https://repo.jellyfin.org/releases/plugin/{0}/{0}_{1}.dll".format(project_name, project_version),
-                "targetFilename": "{0}_{1}.dll".format(project_name, project_version),
+                "sourceUrl": "https://repo.jellyfin.org/releases/plugin/{0}/{0}_{1}.zip".format(project_name, project_version),
+                "targetFilename": "{0}_{1}.zip".format(project_name, project_version),
                 "checksum": bin_md5sum,
                 "packageId": project_plugin_id,
                 "timestamp": build_date,

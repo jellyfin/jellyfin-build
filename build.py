@@ -83,7 +83,7 @@ def clone_project(project):
     project_name = project['name']
     project_type = project['type']
     project_url = project['url']
-    print("-> Cloning project '{}':".format(project_name))
+    print("-> Cloning project '{}'".format(project_name))
     # Set out the directories
     type_dir = "{}/projects/{}".format(cwd, project_type)
     project_dir = "{}/projects/{}/{}".format(cwd, project_type, project_name)
@@ -100,10 +100,10 @@ def clone_project(project):
         try:
             os.system(clone_cmd)
         except Exception as e:
-            print("*> ERROR: Failed to clone project {}: {}".format(project_name, e))
+            print("ERROR: Failed to clone project {}: {}".format(project_name, e))
             return False
     else:
-        print("-> Project is already cloned.")
+        print("Project is already cloned.")
 
     return True
 
@@ -112,7 +112,7 @@ def build_project(project):
     # Extract our name and type
     project_name = project['name']
     project_type = project['type']
-    print("-> Building project '{}':".format(project_name))
+    print("-> Building project '{}'".format(project_name))
     # Build the project
     if project['type'] == 'plugin':
         result = build_plugin.build_plugin(project)
@@ -123,7 +123,7 @@ def build_project(project):
     elif project['type'] == 'server':
         pass
     else:
-        print("*> ERROR: Invalid project type.")
+        print("ERROR: Invalid project type.")
 
 # Clone and build each project in turn
 for project in jellyfin_projects:
