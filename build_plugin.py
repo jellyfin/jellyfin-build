@@ -49,8 +49,7 @@ def build_plugin(project):
     os.chdir(project_dir)
 
     if build_cfg['build_type'] == 'dotnet':
-        build_command = "dotnet publish --self-contained --runtime {} --configuration {} --framework {} --output ../bin/".format(
-            build_cfg['dotnet_runtime'],
+        build_command = "dotnet publish --configuration {} --framework {} --output ../bin/".format(
             build_cfg['dotnet_configuration'],
             build_cfg['dotnet_framework']
         )
