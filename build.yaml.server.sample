@@ -1,0 +1,18 @@
+---
+# We just wrap `build` so this is really it
+name: "jellyfin"
+version: "10.2.2"
+packages:
+  - docker
+  - portable
+  - debian-package-amd64
+  - debian-package-armhf
+  - ubuntu-package-amd64
+  - ubuntu-package-armhf
+  - fedora-package-amd64
+  - centos-package-amd64
+  - linux-archive-amd64
+  - linux-archive-armhf
+  - macos-archive-amd64
+  - windows-archive-x64
+  - windows-archive-x86

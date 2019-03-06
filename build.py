@@ -7,7 +7,6 @@ import os, sys, argparse, json
 import manifest
 import build_plugin
 import build_server
-import build_client
 
 cwd = os.getcwd()
 

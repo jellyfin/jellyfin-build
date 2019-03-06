@@ -56,29 +56,34 @@ def build_server(project, package):
 
     # move into the project directory
     revdir = os.getcwd()
-    os.chdir(project_dir)
-
     # Build each package type
     for package in packages_list:
+        os.chdir(project_dir)
+
         # We wrap `build` so we expect it to be sane and like what we send it
         subprocess.call('./build -k -b local {} all'.format(package), shell=True)
 
-    # Move back to the previous directory
-    os.chdir(revdir)
+        # Move back to the previous directory
+        os.chdir(revdir)
     
-    # Collect artifacts
-    src_dir = "{}/bin/{}".format(type_dir, package)
-    target_dir = "./bin/{}".format(project_name)
-    # Make the type dir if it doesn't exist
-    if not os.path.isdir(target_dir):
-        os.makedirs(target_dir)
+        # Collect artifacts
+        src_dir = "{}/bin/{}".format(type_dir, package)
+        target_dir = "./bin/{}".format(project_name)
+        # Make the type dir if it doesn't exist
+        if not os.path.isdir(target_dir):
+            os.makedirs(target_dir)
+        # Clean out the old target dir
+        stdout, stderr, retcode = run_os_command("rm -rf {}/{}".format(target_dir, package))
+        if retcode:
+            print('Could not remove old archive: {}'.format(stderr))
+            return False
+        # Move the artifacts
+        stdout, stderr, retcode = run_os_command("mv {} {}/".format(src_dir, target_dir))
+        if retcode:
+            print('Could not move archive: {}'.format(stderr))
+            return False
 
-    stdout, stderr, retcode = run_os_command("mv {} {}/".format(src_dir, target_dir))
-    if retcode:
-        print('Could not move archive: {}'.format(stderr))
-        return False
-
-    # Remove build junk
-    run_os_command("rm -rf {}".format(src_dir))
+        # Remove build junk
+        run_os_command("rm -rf {}".format(src_dir))
 
     return True

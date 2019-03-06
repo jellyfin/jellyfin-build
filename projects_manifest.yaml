@@ -1,73 +1,81 @@
 jellyfin-manifest:
-  server-packages:
-    - docker
-    - debian-amd64 # Generic .deb/.dsc
-    - fedora-amd64 # Generic .rpm
-    - linux-portable-amd64
-    - macos-portable-amd64
-    - windows-portable-amd64
-    - windows-portable-i386
-  projects:
-    - name: jellyfin
-      type: server
-      url: "github.com/jellyfin/jellyfin.git"
-      
-    - name: jellyfin-web
-      type: server
-      url: "github.com/jellyfin/jellyfin-web.git"
+  - name: jellyfin-web
+    type: server
+    url: "github.com/jellyfin/jellyfin-web.git"
 
-    - name: jellyfin-android
-      type: client
-      url: "github.com/jellyfin/jellyfin-android.git"
+  - name: jellyfin
+    type: server
+    url: "github.com/jellyfin/jellyfin.git"
+    
+  - name: jellyfin-ffmpeg
+    type: ffmpeg
+    url: "github.com/jellyfin/jellyfin-ffmpeg.git"
 
-    - name: jellyfin-androidtv
-      type: client
-      url: "github.com/jellyfin/jellyfin-androidtv.git"
+  - name: jellyfin-docs
+    type: meta
+    url: "github.com/jellyfin/jellyfin-docs.git"
 
-    - name: jellyfin-plugin-anime
-      type: plugin
-      url: "github.com/jellyfin/jellyfin-plugin-anime.git"
-      plugin_id: 0
+  - name: jellyfin-ux
+    type: meta
+    url: "github.com/jellyfin/jellyfin-ux.git"
 
-    - name: jellyfin-plugin-trakt
-      type: plugin
-      url: "github.com/jellyfin/jellyfin-plugin-trakt.git"
-      plugin_id: 1
+  - name: jellyfin-android
+    type: client
+    url: "github.com/jellyfin/jellyfin-android.git"
 
-    - name: jellyfin-plugin-reports
-      type: plugin
-      url: "github.com/jellyfin/jellyfin-plugin-reports.git"
-      plugin_id: 2
+  - name: jellyfin-androidtv
+    type: client
+    url: "github.com/jellyfin/jellyfin-androidtv.git"
 
-    - name: jellyfin-plugin-emailnotifications
-      type: plugin
-      url: "github.com/jellyfin/jellyfin-plugin-emailnotifications.git"
-      plugin_id: 3
+  - name: jellyfin-plugin-anime
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-anime.git"
+    plugin_id: 0
 
-    - name: jellyfin-plugin-kodisyncqueue
-      type: plugin
-      url: "github.com/jellyfin/jellyfin-plugin-kodisyncqueue.git"
-      plugin_id: 4
+  - name: jellyfin-plugin-trakt
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-trakt.git"
+    plugin_id: 1
 
-    - name: jellyfin-plugin-iptv
-      type: plugin
-      url: "github.com/jellyfin/jellyfin-plugin-iptv.git"
-      plugin_id: 5
+  - name: jellyfin-plugin-reports
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-reports.git"
+    plugin_id: 2
 
-    - name: jellyfin-plugin-tvheadend
-      type: plugin
-      url: "github.com/jellyfin/jellyfin-plugin-tvheadend.git"
-      plugin_id: 6
+  - name: jellyfin-plugin-emailnotifications
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-emailnotifications.git"
+    plugin_id: 3
 
-    - name: jellyfin-plugin-autoorganize
-      type: plugin
-      url: "github.com/jellyfin/jellyfin-plugin-autoorganize.git"
-      plugin_id: 7
+  - name: jellyfin-plugin-kodisyncqueue
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-kodisyncqueue.git"
+    plugin_id: 4
 
-    - name: jellyfin-plugin-tmdbboxsets
-      type: plugin
-      url: "github.com/cvium/jellyfin-plugin-tmdbboxsets.git"
-      plugin_id: 8
+  - name: jellyfin-plugin-iptv
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-iptv.git"
+    plugin_id: 5
+
+  - name: jellyfin-plugin-tvheadend
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-tvheadend.git"
+    plugin_id: 6
+
+  - name: jellyfin-plugin-autoorganize
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-autoorganize.git"
+    plugin_id: 7
+
+#    - name: jellyfin-plugin-tmdbboxsets
+#      type: plugin
+#      url: "github.com/cvium/jellyfin-plugin-tmdbboxsets.git"
+#      plugin_id: 8
+
+  - name: jellyfin-plugin-playbackreporting
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-playbackreporting.git"
+    plugin_id: 9
 
 #    - name: jellyfin-plugin-channels
 #      type: plugin
