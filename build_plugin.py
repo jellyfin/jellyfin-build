@@ -6,13 +6,19 @@ import manifest
 
 cwd = os.getcwd()
 
-def run_os_command(command, environment=None):
+def run_os_command(command, environment=None, shell=False):
+    if shell:
+        cmd = command
+    else:
+        cmd = command.split()
+
     try:
         command_output = subprocess.run(
-            command.split(),
+            cmd,
             env=environment,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
+            shell=shell
         )
     except Exception as e:
         print(e)

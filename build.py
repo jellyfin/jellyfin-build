@@ -7,6 +7,8 @@ import os, sys, argparse, json
 import manifest
 import build_plugin
 import build_server
+import build_ffmpeg
+import build_client
 
 cwd = os.getcwd()
 
@@ -117,6 +119,10 @@ def build_project(project):
     # Extract our name and type
     project_name = project['name']
     project_type = project['type']
+    if not args.package:
+        package = 'all'
+    else:
+        package = args.package
     print("-> Building project '{name}'".format(name=project_name))
     # Build the project
     if project['type'] == 'plugin':
@@ -124,11 +130,11 @@ def build_project(project):
         if result:
             updated_plugin = True
     elif project['type'] == 'client':
-        result = build_client.build_client(project)
+        result = build_client.build_client(project, package)
     elif project['type'] == 'server':
-        result = build_server.build_server(project, args.package)
+        result = build_server.build_server(project, package)
     elif project['type'] == 'ffmpeg':
-        result = build_ffmpeg.build_ffmpeg(project)
+        result = build_ffmpeg.build_ffmpeg(project, package)
     elif project['type'] == 'meta':
         # Meta projects have no build component
         pass

@@ -26,14 +26,10 @@ def run_os_command(command, environment=None, shell=False):
 
     return command_output.stdout.decode('utf8'), command_output.stderr.decode('utf8'), command_output.returncode
 
-def build_server(project, package):
+def build_ffmpeg(project, package):
     # Extract our name and type
     project_name = project['name']
     project_type = project['type']
-
-    # We don't (yet) do anything with jellyfin-web itself
-    if project_name == 'jellyfin-web':
-        return True
 
     # Set out the directories
     type_dir = "{}/projects/{}".format(cwd, project_type)
@@ -66,25 +62,23 @@ def build_server(project, package):
     for package in packages_list:
         os.chdir(project_dir)
 
+        # Get release and architecture
+        release, architecture = package.split('-')
+
         # We wrap `build` so we expect it to be sane and like what we send it
-        subprocess.call('./build -k -b local {} all'.format(package), shell=True)
+        subprocess.call('./build {} {}'.format(release, architecture), shell=True)
 
         # Move back to the previous directory
         os.chdir(revdir)
     
         # Collect artifacts
-        src_dir = "{}/bin/{}".format(type_dir, package)
+        src_dir = "{}/bin".format(type_dir)
         target_dir = "./bin/{}".format(project_name)
         # Make the type dir if it doesn't exist
         if not os.path.isdir(target_dir):
             os.makedirs(target_dir)
-        # Clean out the old target dir
-        stdout, stderr, retcode = run_os_command("rm -rf {}/{}".format(target_dir, package))
-        if retcode:
-            print('Could not remove old archive: {}'.format(stderr))
-            return False
         # Move the artifacts
-        stdout, stderr, retcode = run_os_command("mv {} {}/".format(src_dir, target_dir))
+        stdout, stderr, retcode = run_os_command("mv {}/* {}/".format(src_dir, target_dir), shell=True)
         if retcode:
             print('Could not move archive: {}'.format(stderr))
             return False
