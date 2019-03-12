@@ -112,6 +112,7 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
     project_plugin_overview = build_cfg['overview']
     project_plugin_description = build_cfg['description']
     project_plugin_category = build_cfg['category']
+    project_plugin_owner = build_cfg['owner']
     project_version = build_cfg['version']
 
     build_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -127,7 +128,7 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
         "previewImage": "",
         "type": "UserInstalled",
         "targetFilename": "{0}_{1}.zip".format(project_name, project_version),
-        "owner": "jellyfin",
+        "owner": project_plugin_owner,
         "category": project_plugin_category,
         "titleColor": "#FFFFFF",
         "featureId": project_plugin_nicename,
