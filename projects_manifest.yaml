@@ -27,6 +27,10 @@ jellyfin-manifest:
     type: client
     url: "github.com/jellyfin/jellyfin-androidtv.git"
 
+  - name: jellyfin-chromecast
+    type: client
+    url: "github.com/jellyfin/jellyfin-chromecast.git"
+
   - name: jellyfin-plugin-anime
     type: plugin
     url: "github.com/jellyfin/jellyfin-plugin-anime.git"
@@ -76,6 +80,11 @@ jellyfin-manifest:
     type: plugin
     url: "github.com/jellyfin/jellyfin-plugin-playbackreporting.git"
     plugin_id: 9
+
+  - name: jellyfin-plugin-ldap
+    type: plugin
+    url: "github.com/LogicalPhallacy/jellyfin-ldap-plugin.git"
+    plugin_id: 10
 
 #    - name: jellyfin-plugin-channels
 #      type: plugin
