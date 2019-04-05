@@ -60,6 +60,9 @@ def build_plugin(project):
             build_cfg['dotnet_framework']
         )
         run_os_command(build_command)
+    elif build_cfg['build_type'] == 'build.py':
+        build_command = "python3 build.py"
+        run_os_command(build_command)
     else:
         print("ERROR: Unsupported build type.")
         return False
@@ -115,10 +118,38 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
     project_plugin_owner = build_cfg['owner']
     project_version = build_cfg['version']
 
+    jellyfin_version = build_cfg['jellyfin_version']
+
     build_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    target_dir = "./bin/{}".format(project_name)
+    manifest_fragment_file_name = "{}/{}.manifest.json".format(target_dir, project_name)
+
+    plugin_manifest_versions = list()
+    plugin_manifest_existing_version_fragments = list()
+    if os.path.isfile(manifest_fragment_file_name):
+        with open(manifest_fragment_file_name, 'r') as manifest_fragment_file:
+            old_config = json.load(manifest_fragment_file)
+            for version in old_config['versions']:
+                if version['versionStr'] != project_version:
+                    plugin_manifest_existing_version_fragments.append(version)
+
+    plugin_manifest_new_version_fragment = [{
+        "versionStr": project_version,
+        "classification": "Release",
+        "description": "Release",
+        "requiredVersionStr": jellyfin_version,
+        "sourceUrl": "https://repo.jellyfin.org/releases/plugin/{0}/{0}_{1}.zip".format(project_name, project_version),
+        "targetFilename": "{0}_{1}.zip".format(project_name, project_version),
+        "checksum": bin_md5sum,
+        "timestamp": build_date,
+        "runtimes": "netframework,netcore"
+    }]
+    plugin_manifest_versions = plugin_manifest_new_version_fragment + plugin_manifest_existing_version_fragments
 
     plugin_manifest_fragment = {
         "id": project_plugin_id,
+        "packageId": project_plugin_id,
         "name": project_plugin_nicename,
         "shortDescription": project_plugin_description,
         "overview": project_plugin_overview,
@@ -127,7 +158,6 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
         "thumbImage": "",
         "previewImage": "",
         "type": "UserInstalled",
-        "targetFilename": "{0}_{1}.zip".format(project_name, project_version),
         "owner": project_plugin_owner,
         "category": project_plugin_category,
         "titleColor": "#FFFFFF",
@@ -142,24 +172,8 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
         "isRegistered": False,
         "expDate": None,
         "installs": 0,
-        "versions": [
-            {
-                "name": project_plugin_nicename,
-                "versionStr": project_version,
-                "classification": "Release",
-                "description": "Release",
-                "requiredVersionStr": "10.1.0",
-                "sourceUrl": "https://repo.jellyfin.org/releases/plugin/{0}/{0}_{1}.zip".format(project_name, project_version),
-                "targetFilename": "{0}_{1}.zip".format(project_name, project_version),
-                "checksum": bin_md5sum,
-                "packageId": project_plugin_id,
-                "timestamp": build_date,
-                "runtimes": "netframework,netcore"
-            }
-        ]
+        "versions": plugin_manifest_versions
     }
-    target_dir = "./bin/{}".format(project_name)
-    manifest_fragment_file_name = "{}/{}.manifest.json".format(target_dir, project_name)
     with open(manifest_fragment_file_name, 'w') as manifest_fragment_file:
         json.dump(plugin_manifest_fragment, manifest_fragment_file, sort_keys=True, indent=4)
     print("Wrote plugin manifest fragment to {}".format(manifest_fragment_file_name))
