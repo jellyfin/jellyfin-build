@@ -63,7 +63,7 @@ def build_client(project, package):
         os.chdir(project_dir)
 
         # We wrap `build` so we expect it to be sane and like what we send it
-        subprocess.call('./build -r {}'.format(package), shell=True)
+        subprocess.call('./build -r {} -b master'.format(package), shell=True)
 
         # Move back to the previous directory
         os.chdir(revdir)
