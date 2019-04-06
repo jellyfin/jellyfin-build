@@ -95,7 +95,7 @@ def clone_project(project):
     type_dir = "{cwd}/projects/{ptype}".format(cwd=cwd, ptype=project_type)
     project_dir = "{cwd}/projects/{ptype}/{name}".format(cwd=cwd, ptype=project_type, name=project_name)
     # Determine our clone command
-    if args.method == 'ssh':
+    if args.method[0] == 'ssh':
         clone_cmd = "git clone git@{url} {pdir}".format(url=project_url, pdir=project_dir)
     else:
         clone_cmd = "git clone https://{url} {pdir}".format(url=project_url, pdir=project_dir)
