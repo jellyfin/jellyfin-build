@@ -48,7 +48,7 @@ def build_plugin(project):
         return False
     build_cfg = manifest.load_manifest(manifest_file)
 
-    project_version = build_cfg['version']
+    project_version = build_cfg['version'] + ".0"
 
     # move into the project directory
     revdir = os.getcwd()
