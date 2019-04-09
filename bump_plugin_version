@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+# Bumps the plugin version
+
+if [[ ${@} =~ '-h' ]]; then
+    echo -e "Use this script to bump the plugin version."
+    echo -e ""
+    echo -e "Usage:"
+    echo -e " $ ./bump_version <plugin_name> [<new_version> [<jellyfin_min_version>]]"
+    echo -e ""
+    echo -e "If new_version is unspecified, increment the version by 1."
+    echo -e "If new_version is explicitly specified, the jellyfin_min_version may also be specified."
+    echo -e "The jellyfin_min_version sets the earliest Jellyfin version this plugin build is compatible with."
+    echo -e ""
+
+    exit 0
+fi
+
+PLUGIN_NAME="${1}"
+shift
+if [[ -z ${PLUGIN_NAME} ]]; then
+    echo "A plugin must be specified."
+    exit 1
+fi
+
+pushd projects/plugin/${PLUGIN_NAME}
+
+METADATA_FILE="build.yaml"
+CSPROJ_FILE="*/*.csproj"
+
+OLD_VERSION="$( grep '^version:' ${METADATA_FILE} | awk -F'"' '{ print $2 }' )"
+OLD_JF_VERSION="$( grep '^jellyfin_version:' ${METADATA_FILE} | awk -F'"' '{ print $2 }' )"
+NEW_VERSION="${1}"
+NEW_JF_VERSION="${2}"
+
+# With no new version arg, just increment by 1
+if [[ -z ${NEW_VERSION} ]]; then
+    NEW_VERSION=$(( ${OLD_VERSION} + 1 ))
+fi
+
+# Bump the plugin version
+sed -i "s/^version: \"${OLD_VERSION}\"/version: \"${NEW_VERSION}\"/g" ${METADATA_FILE}
+sed -i "s/<AssemblyVersion>${OLD_VERSION}\.[0-9]\.[0-9]/<AssemblyVersion>${NEW_VERSION}.0.0/g" ${CSPROJ_FILE}
+sed -i "s/<FileVersion>${OLD_VERSION}\.[0-9]\.[0-9]/<FileVersion>${NEW_VERSION}.0.0/g" ${CSPROJ_FILE}
+
+if [[ -n "${NEW_JF_VERSION}" ]]; then
+    # Bump the Jellyfin version
+    sed -i "s/^jellyfin_version: \"${OLD_JF_VERSION}\"/jellyfin_version: \"${NEW_JF_VERSION}\"/g" ${METADATA_FILE}
+fi
+
+git add ${METADATA_FILE} ${CSPROJ_FILE}
+git status -v
+echo
+echo "Press <Enter> to commit or ^C to cancel."
+read
+git commit -m "Bump version to ${NEW_VERSION}"
+
+popd
