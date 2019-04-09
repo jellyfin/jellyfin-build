@@ -85,9 +85,9 @@ jellyfin-manifest:
     url: "github.com/jellyfin/jellyfin-plugin-playbackreporting.git"
     plugin_id: 9
 
-  - name: jellyfin-plugin-ldap
+  - name: jellyfin-plugin-ldapauth
     type: plugin
-    url: "github.com/LogicalPhallacy/jellyfin-ldap-plugin.git"
+    url: "github.com/jellyfin/jellyfin-plugin-ldapauth.git"
     plugin_id: 10
 
 #    - name: jellyfin-plugin-channels
