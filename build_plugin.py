@@ -48,7 +48,7 @@ def build_plugin(project):
         return False
     build_cfg = manifest.load_manifest(manifest_file)
 
-    project_version = build_cfg['version'] + ".0"
+    project_version = "{}.0".format(build_cfg['version'])
 
     # move into the project directory
     revdir = os.getcwd()
@@ -116,7 +116,7 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
     project_plugin_description = build_cfg['description']
     project_plugin_category = build_cfg['category']
     project_plugin_owner = build_cfg['owner']
-    project_version = build_cfg['version']
+    project_version = "{}.0".format(build_cfg['version'])
 
     jellyfin_version = build_cfg['jellyfin_version']
 
@@ -135,6 +135,7 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
                     plugin_manifest_existing_version_fragments.append(version)
 
     plugin_manifest_new_version_fragment = [{
+        "name": project_plugin_nicename,
         "versionStr": project_version,
         "classification": "Release",
         "description": "Release",
