@@ -26,7 +26,7 @@ def run_os_command(command, environment=None, shell=False):
 
     return command_output.stdout.decode('utf8'), command_output.stderr.decode('utf8'), command_output.returncode
 
-def build_client(project, package):
+def build_client(project, package, web_target):
     # Extract our name and type
     project_name = project['name']
     project_type = project['type']
@@ -63,7 +63,7 @@ def build_client(project, package):
         os.chdir(project_dir)
 
         # We wrap `build` so we expect it to be sane and like what we send it
-        subprocess.call('./build -r {} -b master'.format(package), shell=True)
+        subprocess.call('./build -r {} -b {}'.format(package, web_target), shell=True)
 
         # Move back to the previous directory
         os.chdir(revdir)

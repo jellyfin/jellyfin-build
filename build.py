@@ -40,6 +40,11 @@ parser.add_argument(
     help="Clone the specified projects but don't attempt a build.",
     action='store_true'
 )
+parser.add_argument(
+    "--web-target",
+    help="For supported projects, the jellyfin-web branch/tag to use.",
+    default=['master'], nargs=1
+)
 args = parser.parse_args()
 
 # Parse out the manifest sections
@@ -130,7 +135,7 @@ def build_project(project):
         if result:
             updated_plugin = True
     elif project['type'] == 'client':
-        result = build_client.build_client(project, package)
+        result = build_client.build_client(project, package, args.web_target[0])
     elif project['type'] == 'server':
         result = build_server.build_server(project, package)
     elif project['type'] == 'ffmpeg':
