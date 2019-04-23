@@ -50,10 +50,10 @@ jellyfin-manifest:
     url: "github.com/jellyfin/jellyfin-plugin-reports.git"
     plugin_id: 2
 
-  - name: jellyfin-plugin-emailnotifications
-    type: plugin
-    url: "github.com/jellyfin/jellyfin-plugin-emailnotifications.git"
-    plugin_id: 3
+#  - name: jellyfin-plugin-emailnotifications
+#    type: plugin
+#    url: "github.com/jellyfin/jellyfin-plugin-emailnotifications.git"
+#    plugin_id: 3
 
   - name: jellyfin-plugin-kodisyncqueue
     type: plugin
@@ -89,6 +89,21 @@ jellyfin-manifest:
     type: plugin
     url: "github.com/jellyfin/jellyfin-plugin-ldapauth.git"
     plugin_id: 10
+
+  - name: jellyfin-plugin-opensubtitles
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-opensubtitles.git"
+    plugin_id: 11
+
+#  - name: jellyfin-plugin-gotify
+#    type: plugin
+#    url: "github.com/crobibero/Jellyfin.Plugins.Gotify.git"
+#    plugin_id: 12
+
+#  - name: jellyfin-plugin-serverwmc
+#    type: plugin
+#    url: ""
+#    plugin_id: 13
 
 #    - name: jellyfin-plugin-channels
 #      type: plugin
