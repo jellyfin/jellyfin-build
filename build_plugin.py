@@ -86,7 +86,7 @@ def build_plugin(project):
     
     # Collect artifacts
     src_dir = "{}/bin".format(project_dir)
-    target_dir = "./bin/{}".format(project_name)
+    target_dir = "./bin/plugin/{}".format(project_name)
     # Make the type dir if it doesn't exist
     if not os.path.isdir(target_dir):
         os.makedirs(target_dir)
@@ -122,7 +122,7 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
 
     build_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    target_dir = "./bin/{}".format(project_name)
+    target_dir = "./bin/plugin/{}".format(project_name)
     manifest_fragment_file_name = "{}/{}.manifest.json".format(target_dir, project_name)
 
     plugin_manifest_versions = list()
