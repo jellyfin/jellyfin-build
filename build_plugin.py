@@ -55,14 +55,18 @@ def build_plugin(project):
     os.chdir(project_dir)
 
     if build_cfg['build_type'] == 'dotnet':
-        build_command = "dotnet publish --configuration {} --framework {} --output ../bin/".format(
+        stdout, stderr, retcode = build_command = "dotnet publish --configuration {} --framework {} --output ../bin/".format(
             build_cfg['dotnet_configuration'],
             build_cfg['dotnet_framework']
         )
         run_os_command(build_command)
+        print(stdout)
+        print(stderr)
     elif build_cfg['build_type'] == 'build.py':
         build_command = "python3 build.py"
-        run_os_command(build_command)
+        stdout, stderr, retcode = run_os_command(build_command)
+        print(stdout)
+        print(stderr)
     else:
         print("ERROR: Unsupported build type.")
         return False
