@@ -167,7 +167,7 @@ if updated_plugin:
     for project in jellyfin_projects:
         if project['type'] == 'plugin':
             # Read in the fragment
-            project_manifest_fragment_file = "{cwd}/bin/{name}/{name}.manifest.json".format(cwd=cwd, name=project['name'])
+            project_manifest_fragment_file = "{cwd}/bin/plugin/{name}/{name}.manifest.json".format(cwd=cwd, name=project['name'])
             if not os.path.exists(project_manifest_fragment_file):
                 continue
 
@@ -175,7 +175,7 @@ if updated_plugin:
                 project_manifest_fragment = json.load(project_manifest_fragment)
             plugin_manifest_list.append(project_manifest_fragment)
 
-    output_manifest_file_name = "{cwd}/bin/jellyfin-plugin_manifest.json".format(cwd=cwd)
+    output_manifest_file_name = "{cwd}/bin/plugin/jellyfin-plugin_manifest.json".format(cwd=cwd)
     with open(output_manifest_file_name, 'w') as output_manifest_file:
         json.dump(plugin_manifest_list, output_manifest_file, sort_keys=True, indent=4)
     print("Wrote updated combined plugin manifest to {}".format(output_manifest_file_name))
