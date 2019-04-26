@@ -95,15 +95,15 @@ jellyfin-manifest:
     url: "github.com/jellyfin/jellyfin-plugin-opensubtitles.git"
     plugin_id: 11
 
-#  - name: jellyfin-plugin-gotify
-#    type: plugin
-#    url: "github.com/crobibero/Jellyfin.Plugins.Gotify.git"
-#    plugin_id: 12
+  - name: jellyfin-plugin-gotify
+    type: plugin
+    url: "github.com/crobibero/Jellyfin.Plugins.Gotify.git"
+    plugin_id: 12
 
-#  - name: jellyfin-plugin-serverwmc
-#    type: plugin
-#    url: ""
-#    plugin_id: 13
+  - name: jellyfin-plugin-serverwmc
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-serverwmc"
+    plugin_id: 13
 
 #    - name: jellyfin-plugin-channels
 #      type: plugin
