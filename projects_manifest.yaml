@@ -97,13 +97,23 @@ jellyfin-manifest:
 
   - name: jellyfin-plugin-gotify
     type: plugin
-    url: "github.com/crobibero/Jellyfin.Plugins.Gotify.git"
+    url: "github.com/jellyfin/jellyfin-plugin-gotify.git"
     plugin_id: 12
 
   - name: jellyfin-plugin-serverwmc
     type: plugin
-    url: "github.com/jellyfin/jellyfin-plugin-serverwmc"
+    url: "github.com/jellyfin/jellyfin-plugin-serverwmc.git"
     plugin_id: 13
+
+  - name: jellyfin-plugin-nextpvr
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-nextpvr.git"
+    plugin_id: 14
+
+  - name: jellyfin-plugin-pushbullet
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-pushbullet.git"
+    plugin_id: 15
 
 #    - name: jellyfin-plugin-channels
 #      type: plugin
@@ -177,15 +187,6 @@ jellyfin-manifest:
 #      plugin_category: "General"
 #      plugin_guid: "a14ec83c-de3b-458e-87c5-a52bb0c4446e"
 
-#    - name: jellyfin-plugin-pushbullet
-#      type: plugin
-#      url: "github.com/jellyfin/jellyfin-plugin-pushbullet.git"
-#      plugin_id: ?
-#      plugin_nicename: "PushBullet"
-#      plugin_overview: "PushBullet"
-#      plugin_category: "General"
-#      plugin_guid: "b7852c6c-43a6-4186-9046-19aed8ab6404"
-
 #    - name: jellyfin-plugin-pushalot
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-pushalot.git"
@@ -212,15 +213,6 @@ jellyfin-manifest:
 #      plugin_overview: "NotifyMyAndroid"
 #      plugin_category: "General"
 #      plugin_guid: "6ea4b9b1-8985-44e9-a1ca-e0b2ffb42ba6"
-
-#    - name: jellyfin-plugin-nextpvr
-#      type: plugin
-#      url: "github.com/jellyfin/jellyfin-plugin-nextpvr.git"
-#      plugin_id: ?
-#      plugin_nicename: "NextPVR"
-#      plugin_overview: "NextPVR"
-#      plugin_category: "General"
-#      plugin_guid: "398d5eaa-4ed2-4923-b9d6-b43fff21a796"
 
 #    - name: jellyfin-plugin-tvmaze
 #      type: plugin
