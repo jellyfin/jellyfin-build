@@ -50,10 +50,10 @@ jellyfin-manifest:
     url: "github.com/jellyfin/jellyfin-plugin-reports.git"
     plugin_id: 2
 
-#  - name: jellyfin-plugin-emailnotifications
-#    type: plugin
-#    url: "github.com/jellyfin/jellyfin-plugin-emailnotifications.git"
-#    plugin_id: 3
+  - name: jellyfin-plugin-emailnotifications
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-emailnotifications.git"
+    plugin_id: 3
 
   - name: jellyfin-plugin-kodisyncqueue
     type: plugin
