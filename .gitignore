@@ -11,3 +11,6 @@ deploy/
 .local/
 .nuget/
 .viminfo
+.docker/
+.joe_state
+.ssh/
