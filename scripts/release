@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo "Running /bin/bash /srv/webhooks/scripts/release.d/release ${1} ${2}"
-/bin/bash /srv/webhooks/scripts/release.d/release ${1} ${2} &>/dev/null &
+echo "Running /bin/bash /srv/jellyfin/scripts/release.d/release ${1} ${2}"
+/bin/bash /srv/jellyfin/scripts/release.d/release ${1} ${2} &>/dev/null &
 echo "Build launched successfully"

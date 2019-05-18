@@ -16,15 +16,15 @@ reponame="$( echo "${payload}" | jq -r '.repository.name' )"
 case ${reponame} in
   jellyfin)
     repotype="server"
-    buildcmd="/srv/webhooks/scripts/build.d/build-jellyfin ${tagname}"
+    buildcmd="/srv/jellyfin/scripts/build.d/build-jellyfin ${tagname}"
   ;;
   jellyfin-ffmpeg)
     repotype="ffmpeg"
-    buildcmd="/srv/webhooks/scripts/build.d/build-ffmpeg ${tagname}"
+    buildcmd="/srv/jellyfin/scripts/build.d/build-ffmpeg ${tagname}"
   ;;
   jellyfin-plugin-*)
     repotype="plugin"
-    buildcmd="/srv/webhooks/scripts/build.d/build-plugin ${reponame} ${tagname}"
+    buildcmd="/srv/jellyfin/scripts/build.d/build-plugin ${reponame} ${tagname}"
   ;;
   *)
     echo "ERROR: Invalid repository name ${reponame}"
@@ -46,7 +46,7 @@ if [[ ${action} != "published" ]]; then
 fi
 
 # Delay until there's no other release process building
-while [[ -n $( ps aux | grep "/bin/bash /srv/webhooks/scripts/release.d/[r]elease" | grep -v "${tempfile}" ) ]]; do
+while [[ -n $( ps aux | grep "/bin/bash /srv/jellyfin/scripts/release.d/[r]elease" | grep -v "${tempfile}" ) ]]; do
     sleep 10
 done
 

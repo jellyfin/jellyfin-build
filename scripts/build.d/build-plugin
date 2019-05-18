@@ -36,7 +36,7 @@ rsync -avz bin/plugin/ build@repo.jellyfin.org:/srv/releases/plugin/
 nice_tagname="$( sed 's/^v//g' <<<"${tagname}" )"
 for artifact in bin/plugin/${reponame}/*${nice_tagname}.0.zip; do
     if [[ -f ${artifact} ]]; then
-        /bin/bash /srv/webhooks/scripts/upload-artifact "${reponame}" "${tagname}" "${artifact}"
+        /bin/bash /srv/jellyfin/scripts/upload-artifact "${reponame}" "${tagname}" "${artifact}"
     fi
 done
 

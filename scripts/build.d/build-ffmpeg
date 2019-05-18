@@ -41,7 +41,7 @@ ssh build@repo.jellyfin.org "sudo /srv/collect-ffmpeg.sh /srv/incoming/${reponam
 # Upload artifacts to the GitHub release
 for artifact in bin/${reponame}/*.{deb,buildinfo}; do
     if [[ -f ${artifact} ]]; then
-        /bin/bash /srv/webhooks/scripts/upload-artifact "${reponame}" "${tagname}" "${artifact}"
+        /bin/bash /srv/jellyfin/scripts/upload-artifact "${reponame}" "${tagname}" "${artifact}"
     fi
 done
 
