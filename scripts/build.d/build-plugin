@@ -1,0 +1,45 @@
+#!/bin/bash
+
+set -o errexit
+set -o xtrace
+
+reponame="${1}"
+tagname="${2}"
+
+builddir="/srv/jellyfin"
+repotype="plugin"
+
+pushd ${builddir}
+
+# Grab the source and init
+./build ${reponame} --clone-only
+
+pushd projects/${repotype}/${reponame}
+
+# Check out the tag
+git tag -d tags/${tagname} || true
+git fetch --all
+git checkout tags/${tagname}
+
+# Initialize the submodule
+git submodule update --init
+
+popd
+
+# Build the packages
+./build ${reponame}
+
+# Copy the output to the repo server
+rsync -avz bin/plugin/ build@repo.jellyfin.org:/srv/releases/plugin/
+
+# Upload the artifact to the GitHub release
+nice_tagname="$( sed 's/^v//g' <<<"${tagname}" )"
+for artifact in bin/plugin/${reponame}/*${nice_tagname}.0.zip; do
+    if [[ -f ${artifact} ]]; then
+        /bin/bash /srv/webhooks/scripts/upload-artifact "${reponame}" "${tagname}" "${artifact}"
+    fi
+done
+
+# Clean up
+popd
+exit 0

@@ -1,0 +1,88 @@
+#!/bin/bash
+
+set -o errexit
+set -o xtrace
+
+export DOCKER_CLI_EXPERIMENTAL=enabled
+
+builddir="/srv/jellyfin"
+reponame="jellyfin-ffmpeg"
+repotype="ffmpeg"
+
+docker_image="jellyfin/jellyfin"
+
+pushd ${builddir}
+
+# Grab the source and init
+./build ${reponame} --clone-only
+
+pushd projects/${repotype}/${reponame}
+
+build_manifests="n"
+tagname="$( hub release -L1 )"
+
+for arg in ${@}; do
+case "${arg}" in
+    tag-name=*)
+        tagname_value="$( awk -F'=' '{ print $NF }' <<<"${arg}" )"
+        case "$tagname_value" in
+            # Specific version
+            v*)
+                tagname=${tagname_value}
+            ;;
+            # Latest, or junk data
+            *)
+                # This was set earlier
+                continue
+            ;;
+        esac
+    ;;
+    build-docker-manifests=yes)
+        build_manifests="y"
+    ;;
+    *)
+        continue
+    ;;
+esac
+done
+
+#####
+
+nice_tagname="$( sed 's/^v//g' <<<"${tagname}" )"
+
+# Check out the tag
+git tag -d tags/${tagname} || true
+git fetch --all
+git checkout tags/${tagname}
+
+# Initialize the submodule
+git submodule update --init
+
+# Set up qemu static
+docker run --rm --privileged multiarch/qemu-user-static:register || true
+
+# Build images (amd64)
+docker build --no-cache --pull \
+    -f docker/Dockerfile \
+    -t "${docker_image}":${nice_tagname}-amd64 \
+    --build-arg MAKEFLAGS="-j$(cat /proc/cpuinfo | grep processor | wc -l)" \
+    .
+
+# Push images (amd64)
+docker push "${docker_image}":${nice_tagname}-amd64
+
+if [[ ${build_manifests} == 'y' ]]; then
+# Create tagname manifest
+docker manifest create --amend "${docker_image}:${nice_tagname}" \
+	"${docker_image}:${nice_tagname}-amd64"
+docker manifest push --purge "${docker_image}:${nice_tagname}"
+
+# Create latest manifest
+docker manifest create --amend "${docker_image}:latest" \
+	"${docker_image}:${nice_tagname}-amd64"
+docker manifest push --purge "${docker_image}:latest"
+fi
+
+#####
+
+popd

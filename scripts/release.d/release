@@ -1,0 +1,66 @@
+#!/bin/bash
+
+exec &> >(tee -a "/srv/webhooks/logs/release.log")
+
+sleep 5
+
+builddir="/srv/jellyfin"
+
+tempfile="${1}"
+
+payload="$( cat ${tempfile} )"
+
+tagname="$( echo "${payload}" | jq -r '.release.tag_name' )"
+reponame="$( echo "${payload}" | jq -r '.repository.name' )"
+
+case ${reponame} in
+  jellyfin)
+    repotype="server"
+    buildcmd="/srv/webhooks/scripts/build.d/build-jellyfin ${tagname}"
+  ;;
+  jellyfin-ffmpeg)
+    repotype="ffmpeg"
+    buildcmd="/srv/webhooks/scripts/build.d/build-ffmpeg ${tagname}"
+  ;;
+  jellyfin-plugin-*)
+    repotype="plugin"
+    buildcmd="/srv/webhooks/scripts/build.d/build-plugin ${reponame} ${tagname}"
+  ;;
+  *)
+    echo "ERROR: Invalid repository name ${reponame}"
+    rm ${tempfile}
+    exit 1
+  ;;
+esac
+
+echo "------"
+echo "Building ${repotype} ${reponame} tag ${tagname} on $(date)"
+echo "------"
+
+time_start=$( date +%s )
+
+action="$( echo "${payload}" | jq -r '.action' )"
+if [[ ${action} != "published" ]]; then
+    echo "ERROR: Not building draft or already-published release ${tagname}."
+    exit 1
+fi
+
+# Delay until there's no other release process building
+while [[ -n $( ps aux | grep "/bin/bash /srv/webhooks/scripts/release.d/[r]elease" | grep -v "${tempfile}" ) ]]; do
+    sleep 10
+done
+
+pushd ${builddir}
+git pull
+popd
+
+/bin/bash ${buildcmd}
+
+rm ${tempfile}
+
+time_end=$( date +%s )
+time_running=$(( $time_end - $time_start ))
+echo "------"
+echo "Build complete for ${repotype} ${reponame} tag ${tagname} on $(date) - total time: ${time_running}s"
+echo "------"
+echo
