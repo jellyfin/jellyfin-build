@@ -24,10 +24,21 @@ git checkout tags/${tagname}
 # Initialize the submodule
 git submodule update --init
 
+# Check if there's a diff in the Docker image setup; don't rebuild that unless we *need* to
+tags=( $( hub release -L2 ) )
+docker_diff="$( git diff tags/${tags[0]} tags/${tags[1]} docker/ )"
+if [[ ${docker_diff} -gt 0 ]]; then
+    rebuild_docker="y"
+else
+    rebuild_docker="n"
+fi
+
 popd
 
 # Build Docker packages
-/bin/bash ${builddir}/scripts/build.d/build-ffmpeg-docker ${tagname} build-docker-manifests=yes
+if [[ ${rebuild_docker} == "y" ]]; then
+    /bin/bash ${builddir}/scripts/build.d/build-ffmpeg-docker ${tagname} build-docker-manifests=yes
+fi
 
 # Build the packages
 ./build ${reponame}
@@ -46,7 +57,9 @@ for artifact in bin/${reponame}/*.{deb,buildinfo}; do
 done
 
 # Rebuild the latest Jellyfin Docker packages to use new ffmpeg Docker packages
-/bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker latest build-docker-manifests=no
+if [[ ${rebuild_docker} == "y" ]]; then
+    /bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker latest build-docker-manifests=no
+fi
 
 # Clean up
 rm -r ${builddir}/bin/jellyfin-ffmpeg
