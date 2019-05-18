@@ -9,6 +9,8 @@ builddir="/srv/jellyfin"
 reponame="jellyfin-ffmpeg"
 repotype="ffmpeg"
 
+reposerver="repo1.jellyfin.org"
+
 pushd ${builddir}
 
 # Grab the source and init
@@ -44,10 +46,10 @@ fi
 ./build ${reponame}
 
 # Copy the output to the repo server
-rsync -avz bin/${reponame}/ build@repo.jellyfin.org:/srv/incoming/${reponame}_${tagname}
+rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagname}
 
 # Execute import job on repo server
-ssh build@repo.jellyfin.org "sudo /srv/collect-ffmpeg.sh /srv/incoming/${reponame}_${tagname}"
+ssh build@${reposerver} "sudo /srv/collect-ffmpeg.sh /srv/incoming/${reponame}_${tagname}"
 
 # Upload artifacts to the GitHub release
 for artifact in bin/${reponame}/*.{deb,buildinfo}; do
