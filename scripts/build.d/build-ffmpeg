@@ -27,7 +27,7 @@ git submodule update --init
 popd
 
 # Build Docker packages
-bash build-ffmpeg-docker ${tagname} build-docker-manifests=yes
+/bin/bash ${builddir}/scripts/build.d/build-ffmpeg-docker ${tagname} build-docker-manifests=yes
 
 # Build the packages
 ./build ${reponame}
@@ -41,12 +41,12 @@ ssh build@repo.jellyfin.org "sudo /srv/collect-ffmpeg.sh /srv/incoming/${reponam
 # Upload artifacts to the GitHub release
 for artifact in bin/${reponame}/*.{deb,buildinfo}; do
     if [[ -f ${artifact} ]]; then
-        /bin/bash /srv/jellyfin/scripts/upload-artifact "${reponame}" "${tagname}" "${artifact}"
+        /bin/bash ${builddir}/scripts/upload-artifact "${reponame}" "${tagname}" "${artifact}"
     fi
 done
 
 # Rebuild the latest Jellyfin Docker packages to use new ffmpeg Docker packages
-bash build-jellyfin-docker latest build-docker-manifests=no
+/bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker latest build-docker-manifests=no
 
 # Clean up
 rm -r ${builddir}/bin/jellyfin-ffmpeg

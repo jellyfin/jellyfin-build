@@ -27,7 +27,7 @@ git submodule update --init
 popd
 
 # Build Docker containers for release
-bash build-jellyfin-docker tag-name=${tagname} build-docker-manifests=yes
+/bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker tag-name=${tagname} build-docker-manifests=yes
 
 # Build OS packages
 ./build ${reponame}
@@ -74,7 +74,7 @@ for dir in bin/${reponame}/*; do
     esac
     # Upload the artifacts to the GitHub release
 	for artifact in ${temp_dir}/*; do
-	    /bin/bash /srv/jellyfin/scripts/upload-artifact "${reponame}" "${tagname}" "${artifact}"
+	    /bin/bash ${builddir}/scripts/upload-artifact "${reponame}" "${tagname}" "${artifact}"
 	done
     popd
 	rm -r ${temp_dir}
