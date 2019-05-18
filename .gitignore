@@ -3,3 +3,11 @@ projects/
 __pycache__/
 secure/
 deploy/
+
+# Things from homedirs on build.jellyfin.org
+.bashrc
+.dotnet/
+.gitconfig
+.local/
+.nuget/
+.viminfo
