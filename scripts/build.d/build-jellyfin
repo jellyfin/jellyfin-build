@@ -85,5 +85,5 @@ done
 # Clean up
 rm -r ${builddir}/bin/jellyfin
 popd
-docker image ls | awk '{ print $3 }' | xargs docker image rm --force
+docker image ls | awk '{ print $3 }' | xargs docker image rm --force || true
 exit 0
