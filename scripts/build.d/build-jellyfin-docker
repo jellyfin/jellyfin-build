@@ -59,7 +59,7 @@ git checkout tags/${tagname}
 git submodule update --init
 
 # Set up qemu static
-docker run --rm --privileged multiarch/qemu-user-static:register || true
+docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
 # Build images (amd64, arm, arm64)
 docker build --no-cache --pull -f Dockerfile -t "${docker_image}":${nice_tagname}-amd64 .
