@@ -1,0 +1,45 @@
+#!/bin/bash
+
+builddir="/srv/jellyfin"
+reponame="jellyfin"
+repotype="server"
+
+subprojects=( "Jellyfin.Common" "Jellyfin.Controller" "Jellyfin.Model" "Jellyfin.Naming" )
+subprojdirs=( "MediaBrowser.Common" "MediaBrowser.Controller" "MediaBrowser.Model" "Emby.Naming" )
+
+nuget_api="https://api.nuget.org/v3/index.json"
+nuget_api_token="$( sudo cat /srv/jellyfin/secure/nuget_api_token )"
+owner='jellyfin'
+
+#####
+
+set -o errexit
+set -o xtrace
+
+pushd ${builddir}/projects/${repotype}/${reponame}
+
+tagname="$( hub release -L1 )"
+nice_tagname="$( sed 's/^v//g' <<<"${tagname}" )"
+
+#####
+
+for i in $( seq 0 $(( ${#subprojects[@]} - 1 )) ); do
+    subproject="${subprojects[$i]}"
+    dir="${subprojdirs[$i]}"
+    pushd ${dir}
+    # Pack the nupkg
+    dotnet pack -c Release /p:Version=${nice_tagname}
+    test -f bin/Release/${subproject}.${nice_tagname}.nupkg || continue
+    # Push the nupkg
+    set +o xtrace
+    pushd bin/Release
+    echo "+ dotnet nuget push ${subproject}.${nice_tagname}.nupkg -k xxx -s ${nuget_api}"
+    dotnet nuget push bin/Release/${subproject}.${nice_tagname}.nupkg -k ${nuget_api_token} -s ${nuget_api}
+    popd
+    set -o xtrace
+    # Clean up the nupkg artifacts
+    dotnet clean || true
+    popd
+done
+
+popd
