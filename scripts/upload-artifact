@@ -27,7 +27,7 @@ xargs=$(which gxargs || which xargs)
 # Validate settings.
 [ "$TRACE" ] && set -x
 
-github_api_token="$( sudo cat /srv/github_api_token )"
+github_api_token="$( sudo cat /srv/jellyfin/secure/github_api_token )"
 owner='jellyfin'
 repo="${1}"
 tag="${2}"
