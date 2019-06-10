@@ -11,6 +11,7 @@ repotype="server"
 
 reposerver="repo1.jellyfin.org"
 
+echo "*** PREPARING REPOSITORY ***"
 pushd ${builddir}
 
 # Grab the source and init
@@ -29,21 +30,27 @@ git submodule update --init
 popd
 
 # Build Nuget packages for release
+echo "*** BUILDING NUGET PACKAGES ***"
 /bin/bash ${builddir}/scripts/build.d/build-jellyfin-nuget
 
 # Build Docker containers for release
+echo "*** BUILDING DOCKER IMAGES ***"
 /bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker tag-name=${tagname} build-docker-manifests=yes
 
 # Build OS packages
+echo "*** BUILDING OS PACKAGES ***"
 ./build ${reponame}
 
 # Copy the output to the repo server
+ECHO "*** SYNCING OS PACKAGES TO REPO ***"
 rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagname}
 
 # Execute import job on repo server
+echo "*** COLLECTING PACKAGES FOR REPO ***"
 ssh build@${reposerver} "sudo /srv/collect-server.sh /srv/incoming/${reponame}_${tagname}"
 
 # Upload artifacts to the GitHub release
+echo "*** UPLOADING BINARIES TO GITHUB RELEASE ***"
 for dir in bin/${reponame}/*; do
     artifact_dir="$( awk -F'/' '{ print $NF }' <<<"${dir}" )"
     temp_dir="$( mktemp -d )"
@@ -86,6 +93,7 @@ for dir in bin/${reponame}/*; do
 done
 
 # Clean up
+echo "*** CLEANING UP ***"
 rm -r ${builddir}/bin/jellyfin
 popd
 docker image ls | awk '{ print $3 }' | xargs docker image rm --force || true
