@@ -42,7 +42,7 @@ echo "*** BUILDING OS PACKAGES ***"
 ./build ${reponame}
 
 # Copy the output to the repo server
-ECHO "*** SYNCING OS PACKAGES TO REPO ***"
+echo "*** SYNCING OS PACKAGES TO REPO ***"
 rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagname}
 
 # Execute import job on repo server
