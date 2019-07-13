@@ -1,0 +1,82 @@
+#!/bin/bash
+
+set -o errexit
+set -o xtrace
+
+tagname="${2}"
+nice_tagname="$( sed 's/^v//g' <<<"${tagname}" )"
+
+builddir="/srv/jellyfin"
+reponame="${1}"
+repotype="client"
+
+reposerver="repo1.jellyfin.org"
+
+echo "*** PREPARING REPOSITORY ***"
+pushd ${builddir}
+
+# Grab the source and init
+./build ${reponame} --clone-only
+
+pushd projects/${repotype}/${reponame}
+
+# Check out the tag
+git tag -d tags/${tagname} || true
+git fetch --all
+git checkout tags/${tagname}
+
+# Initialize the submodule
+git submodule update --init
+
+popd
+
+# Build APK packages
+echo "*** BUILDING APK PACKAGES ***"
+./build ${reponame}
+
+# Sign APK packages
+# Sorry, this script is not public for security reasons. It takes unsigned APK, leaves signed+renamed APK.
+echo "*** SIGNING APK PACKAGES **"
+for file in bin/${reponame}/*.apk; do
+    directory="$( dirname ${file} )"
+    name="$( awk -F'/' '{ print $NF }' <<<"${file}" )"
+    if grep -q 'unsigned' <<<"${name}"; then
+        new_name="$( sed 's/-unsigned//g' <<<"${name}" )"
+    else
+        new_name="${name}"
+    fi
+    if [[ ${name} != ${new_name} ]]; then
+        # This is a file we need to sign
+        sudo apksigner sign \
+            --ks /srv/jellyfin/secure/keystore \
+            --ks-pass file:/srv/jellyfin/secure/keystore_password \
+            --out "${directory}/${new_name}" \
+            "${directory}/${name}"
+        rm -f "${file}"
+    fi
+done
+
+# Copy the output to the repo server
+echo "*** SYNCING APK PACKAGES TO REPO ***"
+rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagname}
+
+# Execute import job on repo server
+echo "*** COLLECTING PACKAGES FOR REPO ***"
+nice_reponame="$( sed 's/jellyfin-//g' <<<"${reponame}" )"
+#ssh build@${reposerver} "sudo /srv/collect-client.sh ${nice_reponame} /srv/incoming/${reponame}_${tagname}"
+
+# Upload artifacts to the GitHub release
+echo "*** UPLOADING BINARIES TO GITHUB RELEASE ***"
+for artifact in bin/${reponame}/*.apk; do
+    newfile="$( basename ${artifact} .apk )_${tagname}.apk"
+    mv "${artifact}" "${newfile}"
+    echo ">> ${newfile}"
+    #/bin/bash ${builddir}/scripts/upload-artifact "${reponame}" "${tagname}" "${newfile}"
+done
+
+# Clean up
+echo "*** CLEANING UP ***"
+rm -r ${builddir}/bin/${reponame}
+popd
+docker image ls | awk '{ print $3 }' | xargs docker image rm --force || true
+exit 0

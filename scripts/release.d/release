@@ -26,6 +26,10 @@ case ${reponame} in
     repotype="plugin"
     buildcmd="/srv/jellyfin/scripts/build.d/build-plugin ${reponame} ${tagname}"
   ;;
+  jellyfin-android|jellyfin-androidtv)
+    repotype="client"
+    buildcmd="/srv/jellyfin/scripts/build.d/build-client-android ${reponame} ${tagname}"
+  ;;
   *)
     echo "ERROR: Invalid repository name ${reponame}"
     rm ${tempfile}
