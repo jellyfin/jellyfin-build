@@ -19,6 +19,9 @@ pushd ${builddir}
 
 pushd projects/${repotype}/${reponame}
 
+git reset --hard HEAD
+git clean -fd
+
 # Check out the tag
 git tag -d tags/${tagname} || true
 git fetch --all
