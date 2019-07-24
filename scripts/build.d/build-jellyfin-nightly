@@ -48,7 +48,20 @@ git fetch --all
 git reset --hard HEAD
 git clean -fd
 git checkout origin/master
+# Determine our changelog from the last nightly (web)
+git_log_web="$( git log --merges --since "${yesterday}" --grep 'Merge pull request' --oneline | grep --color=none --only-matching 'Merge .*$' || true)"
 popd
+
+# Determine our changelog from the last nightly (main)
+git_log_main="$( git log --merges --since "${yesterday}" --grep 'Merge pull request' --oneline | grep --color=none --only-matching 'Merge .*$' || true)"
+
+if [[ -z ${git_log_main} && -z ${git_log_web} ]]; then
+    # We have no log since yesterday; don't build a nightly today
+    echo "No new pull request merges since yesterday. Aborting unneccessary build."
+    exit 0
+else
+    git_log="$git_log_main $git_log_web"
+fi
 
 # Set the package name to `jellyfin-nightly`
 pushd deployment/debian-package-x64/pkg-src
@@ -57,15 +70,6 @@ sed -i '/^Package/ s/jellyfin/jellyfin-nightly/' control
 sed -i '/^Replaces/ s/$/, jellyfin/' control
 sed -i '/^Breaks/ s/$/, jellyfin/' control
 sed -i '/^Conflicts/ s/$/, jellyfin/' control
-
-# Determine our changelog from the last nightly
-git_log="$( git log --merges --since "${yesterday}" --grep 'Merge pull request' --oneline | grep --color=none --only-matching 'Merge .*$' || true)"
-
-if [[ -z ${git_log} ]]; then
-    # We have no log since yesterday; don't build a nightly today
-    echo "No new pull request merges since yesterday. Aborting unneccessary build."
-    exit 0
-fi
 
 # Set the changelog
 formatted_git_log="$( sed 's/^/  * /' <<<"${git_log}" )"
