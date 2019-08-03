@@ -55,6 +55,11 @@ def build_plugin(project):
     os.chdir(project_dir)
 
     if build_cfg['build_type'] == 'dotnet':
+        restore_command = "dotnet restore --no-cache"
+        stdout, stderr, retcode = run_os_command(restore_command)
+        print(stdout)
+        print(stderr)
+
         build_command = "dotnet publish --configuration {} --framework {} --output ../bin/".format(
             build_cfg['dotnet_configuration'],
             build_cfg['dotnet_framework']
