@@ -43,19 +43,19 @@ docker push "${docker_image}":${nice_tagname}-amd64
 docker push "${docker_image}":${nice_tagname}-arm
 docker push "${docker_image}":${nice_tagname}-arm64
 
-## Create tagname manifest
-#docker manifest create --amend "${docker_image}:${nice_tagname}" \
-#	"${docker_image}:${nice_tagname}-amd64" \
-#	"${docker_image}:${nice_tagname}-arm" \
-#	"${docker_image}:${nice_tagname}-arm64"
-#docker manifest push --purge "${docker_image}:${nice_tagname}"
-#
-## Create alias nightly manifest
-#docker manifest create --amend "${docker_image}:nightly" \
-#	"${docker_image}:${nice_tagname}-amd64" \
-#	"${docker_image}:${nice_tagname}-arm" \
-#	"${docker_image}:${nice_tagname}-arm64"
-#docker manifest push --purge "${docker_image}:nightly"
+# Create tagname manifest
+docker manifest create --amend "${docker_image}:${nice_tagname}" \
+	"${docker_image}:${nice_tagname}-amd64" \
+	"${docker_image}:${nice_tagname}-arm" \
+	"${docker_image}:${nice_tagname}-arm64"
+docker manifest push --purge "${docker_image}:${nice_tagname}"
+
+# Create alias nightly manifest
+docker manifest create --amend "${docker_image}:nightly" \
+	"${docker_image}:${nice_tagname}-amd64" \
+	"${docker_image}:${nice_tagname}-arm" \
+	"${docker_image}:${nice_tagname}-arm64"
+docker manifest push --purge "${docker_image}:nightly"
 
 #####
 
