@@ -63,7 +63,7 @@ rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagn
 # Execute import job on repo server
 echo "*** COLLECTING PACKAGES FOR REPO ***"
 nice_reponame="$( sed 's/jellyfin-//g' <<<"${reponame}" )"
-#ssh build@${reposerver} "sudo /srv/collect-client.sh ${nice_reponame} /srv/incoming/${reponame}_${tagname}"
+ssh build@${reposerver} "sudo /srv/collect-client.sh ${nice_reponame} /srv/incoming/${reponame}_${tagname}"
 
 # Upload artifacts to the GitHub release
 echo "*** UPLOADING BINARIES TO GITHUB RELEASE ***"
@@ -71,7 +71,7 @@ for artifact in bin/${reponame}/*.apk; do
     newfile="$( basename ${artifact} .apk )_${tagname}.apk"
     mv "${artifact}" "${newfile}"
     echo ">> ${newfile}"
-    #/bin/bash ${builddir}/scripts/upload-artifact "${reponame}" "${tagname}" "${newfile}"
+    /bin/bash ${builddir}/scripts/upload-artifact "${reponame}" "${tagname}" "${newfile}"
 done
 
 # Clean up
