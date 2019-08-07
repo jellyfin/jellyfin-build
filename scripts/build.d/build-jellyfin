@@ -30,6 +30,9 @@ git checkout tags/${tagname}
 # Initialize the submodule
 git submodule update --init
 
+# Perform nuget restore
+dotnet restore --no-cache
+
 popd
 
 echo "*** BUILDING NUGET PACKAGES ***"

@@ -25,10 +25,6 @@ echo "Proceeding with build..."
 
 set -o xtrace
 
-# Build Docker containers (self-contained)
-echo "*** BUILDING DOCKER IMAGES ***"
-/bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker-nightly
-
 echo "*** PREPARING REPOSITORY ***"
 pushd ${builddir}
 
@@ -67,6 +63,14 @@ else
     git_log="$git_log_main $git_log_web"
 fi
 
+# Perform nuget restore
+dotnet restore --no-cache
+
+# Build Docker containers (self-contained)
+echo "*** BUILDING DOCKER IMAGES ***"
+#/bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker-nightly
+
+echo "*** PREPARING OS PACKAGE SETTINGS ***"
 # Set the package name to `jellyfin-nightly`
 pushd deployment/debian-package-x64/pkg-src
 sed -i '/^Source/ s/jellyfin/jellyfin-nightly/' control
