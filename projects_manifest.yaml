@@ -120,6 +120,11 @@ jellyfin-manifest:
     url: "github.com/fruhnow/jellyfin-plugin-slack.git"
     plugin_id: 16
 
+  - name: jellyfin-plugin-bookshelf
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-bookshelf.git"
+    plugin_id: 17
+
 #    - name: jellyfin-plugin-channels
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-channels.git"
@@ -146,15 +151,6 @@ jellyfin-manifest:
 #      plugin_overview: "Import media from OneDrive"
 #      plugin_category: "General"
 #      plugin_guid: "2d95f22b-0748-4bc9-8891-d1be430617f2"
-
-#    - name: jellyfin-plugin-bookshelf
-#      type: plugin
-#      url: "github.com/jellyfin/jellyfin-plugin-bookshelf.git"
-#      plugin_id: ?
-#      plugin_nicename: "BookShelf"
-#      plugin_overview: "Import data from BookShelf"
-#      plugin_category: "General"
-#      plugin_guid: "bdf0e700-9386-4e96-9250-45749cebe23f"
 
 #    - name: jellyfin-plugin-tunein
 #      type: plugin
