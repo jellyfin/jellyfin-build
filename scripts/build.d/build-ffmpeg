@@ -66,5 +66,5 @@ fi
 # Clean up
 rm -r ${builddir}/bin/jellyfin-ffmpeg
 popd
-docker image ls | awk '{ print $3 }' | xargs docker image rm
+docker image rm -f $( docker images -aq ) || true
 exit 0

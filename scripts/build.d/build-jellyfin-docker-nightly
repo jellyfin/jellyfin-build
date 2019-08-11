@@ -60,5 +60,5 @@ docker manifest push --purge "${docker_image}:nightly"
 #####
 
 popd
-docker image ls | awk '{ print $3 }' | xargs docker image rm --force || true
+docker image rm -f $( docker images -aq ) || true
 exit 0

@@ -95,5 +95,5 @@ done
 echo "*** CLEANING UP ***"
 rm -r ${builddir}/bin/jellyfin
 popd
-docker image ls | awk '{ print $3 }' | xargs docker image rm --force || true
+docker image rm -f $( docker images -aq ) || true
 exit 0
