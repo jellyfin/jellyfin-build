@@ -91,17 +91,23 @@ popd
 
 # Build OS packages
 echo "*** BUILDING OS PACKAGES ***"
-./build ${reponame} debian-package-x64
-./build ${reponame} debian-package-armhf
-./build ${reponame} debian-package-arm64
-./build ${reponame} ubuntu-package-x64
-./build ${reponame} ubuntu-package-armhf
-./build ${reponame} ubuntu-package-arm64
-./build ${reponame} portable
-./build ${reponame} macos
-./build ${reponame} linux-x64
-./build ${reponame} win-x64
-./build ${reponame} win-x86
+./build "${reponame}" debian-package-x64
+./build "${reponame}" debian-package-armhf
+./build "${reponame}" debian-package-arm64
+./build "${reponame}" ubuntu-package-x64
+./build "${reponame}" ubuntu-package-armhf
+./build "${reponame}" ubuntu-package-arm64
+
+./build "${reponame}" portable
+mmv "bin/${reponame}/portable/jellyfin*.*" "bin/${reponame}/portable/jellyfin-nightly_${tagname}.#2"
+./build "${reponame}" macos
+mmv "bin/${reponame}/macos/jellyfin*.*" "bin/${reponame}/macos/jellyfin-nightly_${tagname}.#2"
+./build "${reponame}" linux-x64
+mmv "bin/${reponame}/linux-x64/jellyfin*.*" "bin/${reponame}/linux-x64/jellyfin-nightly_${tagname}.#2"
+./build "${reponame}" win-x64
+mmv "bin/${reponame}/win-x64/jellyfin*.*" "bin/${reponame}/win-x64/jellyfin-nightly_${tagname}.#2"
+./build "${reponame}" win-x86
+mmv "bin/${reponame}/win-x86/jellyfin*.*" "bin/${reponame}/win-x86/jellyfin-nightly_${tagname}.#2"
 
 # Copy the output to the repo server
 echo "*** SYNCING OS PACKAGES TO REPO ***"
