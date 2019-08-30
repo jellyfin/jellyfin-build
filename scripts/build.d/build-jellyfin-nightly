@@ -66,10 +66,6 @@ fi
 # Perform nuget restore
 dotnet restore --no-cache
 
-# Build Docker containers (self-contained)
-echo "*** BUILDING DOCKER IMAGES ***"
-#/bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker-nightly
-
 echo "*** PREPARING OS PACKAGE SETTINGS ***"
 # Set the package name to `jellyfin-nightly`
 pushd deployment/debian-package-x64/pkg-src
@@ -101,6 +97,11 @@ echo "*** BUILDING OS PACKAGES ***"
 ./build ${reponame} ubuntu-package-x64
 ./build ${reponame} ubuntu-package-armhf
 ./build ${reponame} ubuntu-package-arm64
+./build ${reponame} portable
+./build ${reponame} macos
+./build ${reponame} linux-x64
+./build ${reponame} win-x64
+./build ${reponame} win-x86
 
 # Copy the output to the repo server
 echo "*** SYNCING OS PACKAGES TO REPO ***"
@@ -109,6 +110,10 @@ rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagn
 # Execute import job on repo server
 echo "*** COLLECTING PACKAGES FOR REPO ***"
 ssh build@${reposerver} "sudo /srv/collect-server.sh /srv/incoming/${reponame}_${tagname}"
+
+# Build Docker containers (self-contained)
+echo "*** BUILDING DOCKER IMAGES ***"
+/bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker-nightly
 
 # Clean up
 echo "*** CLEANING UP ***"
