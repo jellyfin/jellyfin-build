@@ -17,7 +17,7 @@ repotype="server"
 reposerver="repo1.jellyfin.org"
 
 # Delay until there's no release process building, if required
-while [[ -n $( ps aux | grep "/bin/bash /srv/jellyfin/scripts/release.d/[r]elease" ) ]]; do
+while [[ -n "$( ps aux | grep "/bin/bash /srv/jellyfin/scripts/release.d/[r]elease" )" ]]; do
     echo "Waiting 30s for existing release builds to finish..."
     sleep 30
 done
@@ -99,15 +99,15 @@ echo "*** BUILDING OS PACKAGES ***"
 ./build "${reponame}" ubuntu-package-arm64
 
 ./build "${reponame}" portable
-mmv "bin/${reponame}/portable/jellyfin*.*" "bin/${reponame}/portable/jellyfin-nightly_${tagname}.#2"
+mmv "bin/${reponame}/portable/jellyfin*.portable.tar.gz" "bin/${reponame}/portable/jellyfin-nightly_${tagname}.tar.gz"
 ./build "${reponame}" macos
-mmv "bin/${reponame}/macos/jellyfin*.*" "bin/${reponame}/macos/jellyfin-nightly_${tagname}.#2"
+mmv "bin/${reponame}/macos/jellyfin*.portable.tar.gz" "bin/${reponame}/macos/jellyfin-nightly_${tagname}.tar.gz"
 ./build "${reponame}" linux-x64
-mmv "bin/${reponame}/linux-x64/jellyfin*.*" "bin/${reponame}/linux-x64/jellyfin-nightly_${tagname}.#2"
+mmv "bin/${reponame}/linux-x64/jellyfin*.portable.tar.gz" "bin/${reponame}/linux-x64/jellyfin-nightly_${tagname}.tar.gz"
 ./build "${reponame}" win-x64
-mmv "bin/${reponame}/win-x64/jellyfin*.*" "bin/${reponame}/win-x64/jellyfin-nightly_${tagname}.#2"
+mmv "bin/${reponame}/win-x64/jellyfin_*.zip" "bin/${reponame}/win-x64/jellyfin-nightly_${tagname}.zip"
 ./build "${reponame}" win-x86
-mmv "bin/${reponame}/win-x86/jellyfin*.*" "bin/${reponame}/win-x86/jellyfin-nightly_${tagname}.#2"
+mmv "bin/${reponame}/win-x86/jellyfin_*.zip" "bin/${reponame}/win-x86/jellyfin-nightly_${tagname}.zip"
 
 # Copy the output to the repo server
 echo "*** SYNCING OS PACKAGES TO REPO ***"
@@ -115,7 +115,7 @@ rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagn
 
 # Execute import job on repo server
 echo "*** COLLECTING PACKAGES FOR REPO ***"
-ssh build@${reposerver} "sudo /srv/collect-server.sh /srv/incoming/${reponame}_${tagname}"
+ssh build@${reposerver} "sudo /srv/collect-server.sh /srv/incoming/${reponame}_${tagname} nightly"
 
 # Build Docker containers (self-contained)
 echo "*** BUILDING DOCKER IMAGES ***"
