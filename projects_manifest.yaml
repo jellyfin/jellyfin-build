@@ -125,6 +125,11 @@ jellyfin-manifest:
     url: "github.com/jellyfin/jellyfin-plugin-bookshelf.git"
     plugin_id: 17
 
+  - name: jellyfin-plugin-isomounter
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-isomounter.git"
+    plugin_id: 18
+
 #    - name: jellyfin-plugin-channels
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-channels.git"
