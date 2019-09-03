@@ -90,8 +90,9 @@ popd
 popd
 
 # Build OS packages
+set +o errexit
 echo "*** BUILDING OS PACKAGES ***"
-./build "${reponame}" debian-package-x64
+./build "${reponame}" debian-package-x64 ||
 ./build "${reponame}" debian-package-armhf
 ./build "${reponame}" debian-package-arm64
 ./build "${reponame}" ubuntu-package-x64
@@ -108,6 +109,7 @@ mmv "bin/${reponame}/linux-x64/jellyfin*.portable.tar.gz" "bin/${reponame}/linux
 mmv "bin/${reponame}/win-x64/jellyfin_*.zip" "bin/${reponame}/win-x64/jellyfin-nightly_${tagname}.zip"
 ./build "${reponame}" win-x86
 mmv "bin/${reponame}/win-x86/jellyfin_*.zip" "bin/${reponame}/win-x86/jellyfin-nightly_${tagname}.zip"
+set -o errexit
 
 # Copy the output to the repo server
 echo "*** SYNCING OS PACKAGES TO REPO ***"
@@ -118,8 +120,10 @@ echo "*** COLLECTING PACKAGES FOR REPO ***"
 ssh build@${reposerver} "sudo /srv/collect-server.sh /srv/incoming/${reponame}_${tagname} nightly"
 
 # Build Docker containers (self-contained)
+set +o errexit
 echo "*** BUILDING DOCKER IMAGES ***"
 /bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker-nightly
+set -o errexit
 
 # Clean up
 echo "*** CLEANING UP ***"
