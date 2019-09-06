@@ -18,8 +18,12 @@ set -o xtrace
 
 pushd ${builddir}/projects/${repotype}/${reponame}
 
-tagname="$( hub release -L1 )"
-nice_tagname="$( sed 's/^v//g' <<<"${tagname}" )"
+if [[ -n "${1}" ]]; then
+    nice_tagname="${1}"
+else
+    tagname="$( hub release -L1 )"
+    nice_tagname="$( sed 's/^v//g' <<<"${tagname}" )"
+fi
 
 #####
 
