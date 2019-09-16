@@ -21,7 +21,7 @@ jellyfin-manifest:
 
   - name: jellyfin-site
     type: meta
-    url: "github.com:jellyfin/jellyfin.github.io.git"
+    url: "github.com/jellyfin/jellyfin.github.io.git"
 
   - name: jellyfin-android
     type: client
