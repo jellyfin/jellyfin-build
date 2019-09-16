@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -o xtrace
+
+VERSION="${1}"
+
+pushd /srv/jellyfin
+./build --clone-only jellyfin-site
+pushd /srv/jellyfin/projects/meta/jellyfin-site
+git fetch --all
+git rebase origin/master
+
+# Download the latest release.
+curl -s https://api.github.com/repos/jellyfin/jellyfin-docs/releases/latest | grep "browser_download_url.*docs-.*\.tar\.gz" | cut -d : -f 2,3 | tr -d \" | wget -O /tmp/docs.tar.gz -qi -
+
+tmpdir=$( mktemp -d )
+tar -x -C ${tmpdir} -f /tmp/docs.tar.gz
+
+rsync --recursive --delete ${tmpdir}/ docs/
+
+git add docs/
+git -c "user.name=jellyfin-bot" -c "user.email=team@jellyfin.org" commit -m "CI Documentation update ${VERSION}"
+
+git remote add ssh git@github.com:jellyfin/jellyfin.github.io.git
+
+export GIT_SSH_COMMAND='ssh -i /srv/jellyfin/.ssh/id_rsa.github'
+#git -c "user.name=jellyfin-bot" -c "user.email=team@jellyfin.org" push ssh
+
+git remote remove ssh
+
+popd
+popd
+
+rm -rf ${tmpdir} /tmp/docs.tar.gz

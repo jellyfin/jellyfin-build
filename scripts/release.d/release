@@ -30,6 +30,10 @@ case ${reponame} in
     repotype="client"
     buildcmd="/srv/jellyfin/scripts/build.d/build-client-android ${reponame} ${tagname}"
   ;;
+  jellyfin-docs)
+    repotype="meta"
+    buildcmd="/srv/jellyfin/scripts/build.d/build-docs ${tagname}"
+  ;;
   *)
     echo "ERROR: Invalid repository name ${reponame}"
     rm ${tempfile}
