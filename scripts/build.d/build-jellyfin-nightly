@@ -111,6 +111,14 @@ mmv "bin/${reponame}/win-x64/jellyfin_*.zip" "bin/${reponame}/win-x64/jellyfin-n
 mmv "bin/${reponame}/win-x86/jellyfin_*.zip" "bin/${reponame}/win-x86/jellyfin-nightly_${tagname}.zip"
 set -o errexit
 
+echo "*** GRABBING LATEST WINDOWS INSTALLER FROM AZURE ***"
+installer_tmpdir="$( mktemp -d )"
+azure_build_id="$( az pipelines runs list --branch master --pipeline-ids 1 --reason batchedCI --result succeeded --status completed --query-order QueueTimeDesc --top 1 | jq '.[].id' )"
+az pipelines runs artifact download --artifact-name 'Jellyfin Server Setup' --path ${installer_tmpdir} --run-id ${azure_build_id}
+mkdir -p bin/jelyfin/win-installer
+mmv "${tmpdir}/jellyfin_*_windows-*.exe" "bin/jelyfin/win-installer/jellyfin-nightly_${tagname}-#2.exe"
+rm -rf ${installer_tmpdir}
+
 # Copy the output to the repo server
 echo "*** SYNCING OS PACKAGES TO REPO ***"
 rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagname}
