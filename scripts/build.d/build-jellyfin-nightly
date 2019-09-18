@@ -92,7 +92,7 @@ popd
 # Build OS packages
 set +o errexit
 echo "*** BUILDING OS PACKAGES ***"
-./build "${reponame}" debian-package-x64 ||
+./build "${reponame}" debian-package-x64
 ./build "${reponame}" debian-package-armhf
 ./build "${reponame}" debian-package-arm64
 ./build "${reponame}" ubuntu-package-x64
@@ -115,8 +115,8 @@ echo "*** GRABBING LATEST WINDOWS INSTALLER FROM AZURE ***"
 installer_tmpdir="$( mktemp -d )"
 azure_build_id="$( az pipelines runs list --branch master --pipeline-ids 1 --reason batchedCI --result succeeded --status completed --query-order QueueTimeDesc --top 1 | jq '.[].id' )"
 az pipelines runs artifact download --artifact-name 'Jellyfin Server Setup' --path ${installer_tmpdir} --run-id ${azure_build_id}
-mkdir -p bin/jelyfin/win-installer
-mmv "${tmpdir}/jellyfin_*_windows-*.exe" "bin/jelyfin/win-installer/jellyfin-nightly_${tagname}-#2.exe"
+mkdir -p bin/jellyfin/win-installer
+mmv "${installer_tmpdir}/jellyfin_*_windows-*.exe" "bin/jellyfin/win-installer/jellyfin-nightly_${tagname}-#2.exe"
 rm -rf ${installer_tmpdir}
 
 # Copy the output to the repo server
