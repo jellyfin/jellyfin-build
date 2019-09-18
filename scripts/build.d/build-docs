@@ -24,7 +24,7 @@ git -c "user.name=jellyfin-bot" -c "user.email=team@jellyfin.org" commit -m "CI 
 git remote add ssh git@github.com:jellyfin/jellyfin.github.io.git
 
 export GIT_SSH_COMMAND='ssh -i /srv/jellyfin/.ssh/id_rsa.github'
-#git -c "user.name=jellyfin-bot" -c "user.email=team@jellyfin.org" push ssh
+git -c "user.name=jellyfin-bot" -c "user.email=team@jellyfin.org" push ssh
 
 git remote remove ssh
 
