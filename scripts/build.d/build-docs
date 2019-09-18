@@ -1,8 +1,11 @@
 #!/bin/bash
 
 set -o xtrace
+set -o errexit
 
 VERSION="${1}"
+
+sleep 60 # Wait to ensure the release is up
 
 pushd /srv/jellyfin
 ./build --clone-only jellyfin-site
