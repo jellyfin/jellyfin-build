@@ -34,6 +34,10 @@ case ${reponame} in
     repotype="meta"
     buildcmd="/srv/jellyfin/scripts/build.d/build-docs ${tagname}"
   ;;
+  jellyfin-kodi)
+    repotype="client"
+    buildcmd="ssh build@repo1.jellyfin.org /srv/kodi-repo.sh ${tagname}"
+  ;;
   *)
     echo "ERROR: Invalid repository name ${reponame}"
     rm ${tempfile}
