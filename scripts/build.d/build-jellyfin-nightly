@@ -40,7 +40,7 @@ git clean -fd
 git checkout origin/master
 
 # Initialize the submodule
-git submodule update --init
+git submodule update --init || true
 
 # Ensure submodule is on master too
 pushd MediaBrowser.WebDashboard/jellyfin-web
