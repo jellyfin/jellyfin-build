@@ -28,7 +28,7 @@ git fetch --all
 git checkout tags/${tagname}
 
 # Initialize the submodule
-git submodule update --init
+git submodule update --init || true
 
 # Perform nuget restore
 dotnet restore --no-cache
@@ -43,6 +43,15 @@ echo "*** BUILDING DOCKER IMAGES ***"
 
 echo "*** BUILDING OS PACKAGES ***"
 ./build ${reponame}
+
+echo "*** GRABBING WINDOWS INSTALLER FROM AZURE ***"
+installer_tmpdir="$( mktemp -d )"
+azure_build_id="$( az pipelines runs list --branch release-10.4.z --pipeline-ids 1 --reason batchedCI --result succeeded --status completed --query-order QueueTimeDesc --top 1 | jq '.[].id' )"
+az pipelines runs artifact download --artifact-name 'Jellyfin Server Setup' --path ${installer_tmpdir} --run-id ${azure_build_id} && \
+mkdir -p bin/jellyfin/win-installer && \
+mmv "${installer_tmpdir}/jellyfin_*_windows-*.exe" "bin/jellyfin/win-installer/jellyfin_${tagname}-#2.exe" && \
+rm -rf ${installer_tmpdir} || \
+echo "FAILED TO GRAB A WINDOWS EXE, FIX THIS MANUALLY PL0X."
 
 echo "*** SYNCING OS PACKAGES TO REPO ***"
 rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagname}
@@ -82,6 +91,9 @@ for dir in bin/${reponame}/*; do
         ;;  
         win-x86)
             mmv "jellyfin_*.zip" "${temp_dir}/jellyfin_#1_windows-x86.zip"
+        ;;
+        win-installer)
+            mmv "jellyfin_*.exe" "${temp_dir}/jellyfin_#1_windows.exe"
         ;;
     esac
     # Upload the artifacts to the GitHub release
