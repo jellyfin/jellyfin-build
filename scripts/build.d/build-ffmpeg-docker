@@ -9,7 +9,7 @@ builddir="/srv/jellyfin"
 reponame="jellyfin-ffmpeg"
 repotype="ffmpeg"
 
-docker_image="jellyfin/jellyfin"
+docker_image="jellyfin/ffmpeg"
 
 pushd ${builddir}
 
