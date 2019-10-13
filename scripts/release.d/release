@@ -63,7 +63,8 @@ while [[ -n $( ps aux | grep "/bin/bash /srv/jellyfin/scripts/release.d/[r]eleas
 done
 
 pushd ${builddir}
-git pull
+git reset --hard
+git pull --rebase
 popd
 
 /bin/bash ${buildcmd}
