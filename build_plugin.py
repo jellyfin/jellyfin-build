@@ -57,21 +57,27 @@ def build_plugin(project):
     if build_cfg['build_type'] == 'dotnet':
         restore_command = "dotnet restore --no-cache"
         stdout, stderr, retcode = run_os_command(restore_command)
-        print(stdout)
-        print(stderr)
+        if retcode:
+            print(stdout)
+            print(stderr)
+            exit(1)
 
         build_command = "dotnet publish --configuration {} --framework {} --output ../bin/".format(
             build_cfg['dotnet_configuration'],
             build_cfg['dotnet_framework']
         )
         stdout, stderr, retcode = run_os_command(build_command)
-        print(stdout)
-        print(stderr)
+        if retcode:
+            print(stdout)
+            print(stderr)
+            exit(1)
     elif build_cfg['build_type'] == 'build.py':
         build_command = "python3 build.py"
         stdout, stderr, retcode = run_os_command(build_command)
-        print(stdout)
-        print(stderr)
+        if retcode:
+            print(stdout)
+            print(stderr)
+            exit(1)
     else:
         print("ERROR: Unsupported build type.")
         return False
