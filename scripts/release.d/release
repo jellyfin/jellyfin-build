@@ -16,27 +16,27 @@ reponame="$( echo "${payload}" | jq -r '.repository.name' )"
 case ${reponame} in
   jellyfin)
     repotype="server"
-    buildcmd="/srv/jellyfin/scripts/build.d/build-jellyfin ${tagname}"
+    buildcmd="/bin/bash /srv/jellyfin/scripts/build.d/build-jellyfin ${tagname}"
   ;;
   jellyfin-ffmpeg)
     repotype="ffmpeg"
-    buildcmd="/srv/jellyfin/scripts/build.d/build-ffmpeg ${tagname}"
+    buildcmd="/bin/bash /srv/jellyfin/scripts/build.d/build-ffmpeg ${tagname}"
   ;;
   jellyfin-plugin-*)
     repotype="plugin"
-    buildcmd="/srv/jellyfin/scripts/build.d/build-plugin ${reponame} ${tagname}"
+    buildcmd="/bin/bash /srv/jellyfin/scripts/build.d/build-plugin ${reponame} ${tagname}"
   ;;
   jellyfin-android|jellyfin-androidtv)
     repotype="client"
-    buildcmd="/srv/jellyfin/scripts/build.d/build-client-android ${reponame} ${tagname}"
+    buildcmd="/bin/bash /srv/jellyfin/scripts/build.d/build-client-android ${reponame} ${tagname}"
   ;;
   jellyfin-docs)
     repotype="meta"
-    buildcmd="/srv/jellyfin/scripts/build.d/build-docs ${tagname}"
+    buildcmd="/bin/bash /srv/jellyfin/scripts/build.d/build-docs ${tagname}"
   ;;
   jellyfin-kodi)
     repotype="client"
-    buildcmd="ssh build@repo1.jellyfin.org /srv/kodi-repo.sh ${tagname}"
+    buildcmd="/usr/bin/ssh build@repo1.jellyfin.org /srv/kodi-repo.sh ${tagname}"
   ;;
   *)
     echo "ERROR: Invalid repository name ${reponame}"
@@ -67,7 +67,7 @@ git reset --hard
 git pull --rebase
 popd
 
-/bin/bash ${buildcmd}
+${buildcmd}
 
 rm ${tempfile}
 
