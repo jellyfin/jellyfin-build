@@ -11,6 +11,22 @@ repotype="server"
 
 reposerver="repo1.jellyfin.org"
 
+######
+# HACK FOR STABLE RELEASES
+######
+do_dotnet2() {
+    sudo apt purge -y dotnet-sdk-3.0 || true
+    sudo apt autoremove -y || true
+    sudo apt install -y dotnet-sdk-2.2 || true
+}
+do_dotnet3() {
+    sudo apt purge -y dotnet-sdk-2.2 || true
+    sudo apt autoremove -y || true
+    sudo apt install -y dotnet-sdk-3.0 || true
+}
+
+do_dotnet2
+
 echo "*** PREPARING REPOSITORY ***"
 pushd ${builddir}
 
@@ -109,3 +125,5 @@ rm -r ${builddir}/bin/jellyfin
 popd
 docker image rm -f $( docker images -aq ) || true
 exit 0
+
+do_dotnet3
