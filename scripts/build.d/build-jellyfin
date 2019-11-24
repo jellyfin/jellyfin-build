@@ -52,10 +52,28 @@ git submodule update --init || true
 popd
 
 echo "*** BUILDING OS PACKAGES ***"
-./build ${reponame}
-
-echo "*** BUILDING NUGET PACKAGES ***"
-/bin/bash ${builddir}/scripts/build.d/build-jellyfin-nuget
+platforms=(
+    debian-package-x64 debian-package-arm64 debian-package-armhf
+    ubuntu-package-x64 ubuntu-package-arm64 ubuntu-package-armhf
+    fedora-package-x64
+    centos-package-x64
+    linux-x64
+    win-x64
+    win-x86
+    portable
+    macos
+)
+for platform in ${platforms[@]}; do
+    ./build ${reponame} ${platform}
+    if [[ ! -f $( find bin/${reponame}/${platform}/ -type f | head -1 ) ]]; then
+        # Try to build each one again if it fails the first time
+        ./build ${reponame} ${platform}
+    fi
+    if [[ ! -f $( find bin/${reponame}/${platform}/ -type f | head -1 ) ]]; then
+        echo "*** FAILED TO BUILD PLATFORM ${platform}"
+        exit 1
+    fi
+done
 
 echo "*** GRABBING WINDOWS INSTALLER FROM AZURE ***"
 installer_tmpdir="$( mktemp -d )"
@@ -119,6 +137,9 @@ for dir in bin/${reponame}/*; do
     popd
     rm -r ${temp_dir}
 done
+
+echo "*** BUILDING NUGET PACKAGES ***"
+/bin/bash ${builddir}/scripts/build.d/build-jellyfin-nuget
 
 echo "*** CLEANING UP ***"
 rm -r ${builddir}/bin/jellyfin
