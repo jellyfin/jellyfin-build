@@ -47,7 +47,7 @@ git checkout tags/${tagname}
 git submodule update --init || true
 
 # Perform nuget restore
-dotnet restore --no-cache
+#dotnet restore --no-cache
 
 popd
 
