@@ -51,14 +51,11 @@ dotnet restore --no-cache
 
 popd
 
-echo "*** BUILDING NUGET PACKAGES ***"
-/bin/bash ${builddir}/scripts/build.d/build-jellyfin-nuget
-
-echo "*** BUILDING DOCKER IMAGES ***"
-/bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker tag-name=${tagname} build-docker-manifests=yes
-
 echo "*** BUILDING OS PACKAGES ***"
 ./build ${reponame}
+
+echo "*** BUILDING NUGET PACKAGES ***"
+/bin/bash ${builddir}/scripts/build.d/build-jellyfin-nuget
 
 echo "*** GRABBING WINDOWS INSTALLER FROM AZURE ***"
 installer_tmpdir="$( mktemp -d )"
@@ -74,6 +71,9 @@ rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagn
 
 echo "*** COLLECTING PACKAGES FOR REPO ***"
 ssh build@${reposerver} "sudo /srv/collect-server.sh /srv/incoming/${reponame}_${tagname}"
+
+echo "*** BUILDING DOCKER IMAGES ***"
+/bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker tag-name=${tagname} build-docker-manifests=yes
 
 echo "*** UPLOADING BINARIES TO GITHUB RELEASE ***"
 for dir in bin/${reponame}/*; do
