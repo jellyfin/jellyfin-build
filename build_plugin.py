@@ -62,7 +62,7 @@ def build_plugin(project):
             print(stderr)
             exit(1)
 
-        build_command = "dotnet publish --configuration {} --framework {} --output ../bin/".format(
+        build_command = "dotnet publish --configuration {} --framework {} --output ./bin/".format(
             build_cfg['dotnet_configuration'],
             build_cfg['dotnet_framework']
         )
@@ -71,6 +71,7 @@ def build_plugin(project):
             print(stdout)
             print(stderr)
             exit(1)
+        print(stdout)
     elif build_cfg['build_type'] == 'build.py':
         build_command = "python3 build.py"
         stdout, stderr, retcode = run_os_command(build_command)
