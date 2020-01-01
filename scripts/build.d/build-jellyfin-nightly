@@ -29,14 +29,14 @@ set -o xtrace
 # HACK FOR STABLE RELEASES
 ######
 do_dotnet2() {
-    sudo apt purge -y dotnet-sdk-3.0 || true
+    sudo apt purge -y dotnet-sdk-3.1 || true
     sudo apt autoremove -y || true
     sudo apt install -y dotnet-sdk-2.2 || true
 }
 do_dotnet3() {
     sudo apt purge -y dotnet-sdk-2.2 || true
     sudo apt autoremove -y || true
-    sudo apt install -y dotnet-sdk-3.0 || true
+    sudo apt install -y dotnet-sdk-3.1 || true
 }
 
 # Just in case
