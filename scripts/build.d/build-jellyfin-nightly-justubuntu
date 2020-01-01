@@ -1,0 +1,117 @@
+#!/bin/bash
+
+set -o errexit
+
+echo "------------------------------------------------------------------"
+echo "Running Jellyfin nightly autobuild at $( date )"
+echo "------------------------------------------------------------------"
+
+yesterday="$( date --date='yesterday' )"
+
+tagname="$( date +%Y%m%d )"
+
+builddir="/srv/jellyfin"
+reponame="jellyfin"
+repotype="server"
+
+reposerver="repo1.jellyfin.org"
+
+# Delay until there's no release process building, if required
+while [[ -n "$( ps aux | grep "/bin/bash /srv/jellyfin/scripts/release.d/[r]elease" )" ]]; do
+    echo "Waiting 30s for existing release builds to finish..."
+    sleep 30
+done
+echo "Proceeding with build..."
+
+set -o xtrace
+
+######
+# HACK FOR STABLE RELEASES
+######
+do_dotnet2() {
+    sudo apt purge -y dotnet-sdk-3.1 || true
+    sudo apt autoremove -y || true
+    sudo apt install -y dotnet-sdk-2.2 || true
+}
+do_dotnet3() {
+    sudo apt purge -y dotnet-sdk-2.2 || true
+    sudo apt autoremove -y || true
+    sudo apt install -y dotnet-sdk-3.1 || true
+}
+
+# Just in case
+do_dotnet3
+
+echo "*** PREPARING REPOSITORY ***"
+pushd ${builddir}
+
+# Grab the source and init
+./build ${reponame} --clone-only
+
+pushd projects/${repotype}/${reponame}
+
+# Check out master
+git fetch --all
+git reset --hard HEAD
+git clean -fd
+git checkout origin/master
+
+pushd ../jellyfin-web
+git fetch --all
+git reset --hard HEAD
+git clean -fd
+git checkout origin/master
+# Determine our changelog from the last nightly (web)
+git_log_web="$( git log --merges --since "${yesterday}" --grep 'Merge pull request' --oneline | grep --color=none --only-matching 'Merge .*$' || true)"
+popd
+
+# Determine our changelog from the last nightly (main)
+git_log_main="$( git log --merges --since "${yesterday}" --grep 'Merge pull request' --oneline | grep --color=none --only-matching 'Merge .*$' || true)"
+
+if [[ -z ${git_log_main} && -z ${git_log_web} ]]; then
+    # We have no log since yesterday; don't build a nightly today
+    echo "No new pull request merges since yesterday. Aborting unneccessary build."
+    exit 0
+else
+    git_log="$git_log_main $git_log_web"
+fi
+
+# Perform nuget restore
+dotnet restore --no-cache
+
+echo "*** PREPARING OS PACKAGE SETTINGS ***"
+# Set the package name to `jellyfin-nightly`
+pushd deployment/debian-package-x64/pkg-src
+sed -i '/^Source/ s/jellyfin/jellyfin-nightly/' control
+sed -i '/^Package/ s/jellyfin/jellyfin-nightly/' control
+sed -i '/^Replaces/ s/$/, jellyfin/' control
+sed -i '/^Breaks/ s/$/, jellyfin/' control
+sed -i '/^Conflicts/ s/$/, jellyfin/' control
+
+# Set the changelog
+formatted_git_log="$( sed 's/^/  * /' <<<"${git_log}" )"
+cat <<EOF >changelog
+jellyfin-nightly ($( date +%Y%m%d )) unstable; urgency=medium
+
+${formatted_git_log}
+
+ -- Jellyfin Packaging Team <packaging@jellyfin.org>  $( date --rfc-2822 )
+EOF
+
+popd
+
+popd
+
+# Build OS packages
+set +o errexit
+echo "*** BUILDING OS PACKAGES ***"
+./build "${reponame}" ubuntu-package-x64
+
+# Clean up
+echo "*** CLEANING UP ***"
+pushd projects/${repotype}/${reponame}
+git reset --hard HEAD
+git clean -fd
+popd
+docker image rm -f $( docker images -aq ) || true
+exit 0
