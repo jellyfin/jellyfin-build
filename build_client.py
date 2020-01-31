@@ -63,7 +63,10 @@ def build_client(project, package, web_target):
         os.chdir(project_dir)
 
         # We wrap `build` so we expect it to be sane and like what we send it
-        subprocess.call('./build -r {} -b {}'.format(package, web_target), shell=True)
+        build_script = './build'
+        if not os.path.isfile('./build') and os.path.isfile('./build.sh'):
+            build_script = './build.sh'
+        subprocess.call('{} -r {} -b {}'.format(build_script, package, web_target), shell=True)
 
         # Move back to the previous directory
         os.chdir(revdir)
