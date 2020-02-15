@@ -135,6 +135,11 @@ jellyfin-manifest:
     url: "github.com/jellyfin/jellyfin-plugin-fanart.git"
     plugin_id: 19
 
+  - name: jellyfin-plugin-pushover
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-pushover.git"
+    plugin_id: 20
+
 #    - name: jellyfin-plugin-channels
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-channels.git"
