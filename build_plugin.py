@@ -94,7 +94,7 @@ def build_plugin(project):
         artifacts_list.append("{}".format(artifact))
     stdout, stderr, retcode = run_os_command("zip {} {}".format(new_name, ' '.join(artifacts_list)))
     if retcode:
-        print('Could not archive artifacts: {}'.format(stderr))
+        print('Could not archive artifacts: {}'.format(stdout))
         return False
 
     # Move back to the previous directory
