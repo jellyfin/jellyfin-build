@@ -11,10 +11,9 @@ yesterday="$( date --date='yesterday' )"
 tagname="$( date +%Y%m%d )"
 
 builddir="/srv/jellyfin"
+repodir="/srv/repository"
 reponame="jellyfin"
 repotype="server"
-
-reposerver="repo1.jellyfin.org"
 
 # Delay until there's no release process building, if required
 while [[ -n "$( ps aux | grep "/bin/bash /srv/jellyfin/scripts/release.d/[r]elease" )" ]]; do
@@ -134,11 +133,11 @@ rm -rf ${installer_tmpdir}
 
 # Copy the output to the repo server
 echo "*** SYNCING OS PACKAGES TO REPO ***"
-rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagname}
+rsync -avz bin/${reponame}/ ${repodir}/incoming/${reponame}_${tagname}
 
 # Execute import job on repo server
 echo "*** COLLECTING PACKAGES FOR REPO ***"
-ssh build@${reposerver} "sudo /srv/collect-server.sh /srv/incoming/${reponame}_${tagname} nightly"
+/bin/bash ${repodir}/collect-server.sh ${repodir}/incoming/${reponame}_${tagname} nightly
 
 # Build Docker containers (self-contained)
 set +o errexit

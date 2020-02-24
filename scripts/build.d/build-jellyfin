@@ -6,10 +6,9 @@ set -o xtrace
 tagname="${1}"
 
 builddir="/srv/jellyfin"
+repodir="/srv/repository"
 reponame="jellyfin"
 repotype="server"
-
-reposerver="repo1.jellyfin.org"
 
 ######
 # HACK FOR STABLE RELEASES
@@ -85,10 +84,10 @@ rm -rf ${installer_tmpdir} || \
 echo "FAILED TO GRAB A WINDOWS EXE, FIX THIS MANUALLY PL0X."
 
 echo "*** SYNCING OS PACKAGES TO REPO ***"
-rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagname}
+rsync -avz bin/${reponame}/ ${repodir}/incoming/${reponame}_${tagname}
 
 echo "*** COLLECTING PACKAGES FOR REPO ***"
-ssh build@${reposerver} "sudo /srv/collect-server.sh /srv/incoming/${reponame}_${tagname}"
+/bin/bash ${repodir}/collect-server.sh ${repodir}/incoming/${reponame}_${tagname}
 
 echo "*** BUILDING DOCKER IMAGES ***"
 /bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker tag-name=${tagname} build-docker-manifests=yes

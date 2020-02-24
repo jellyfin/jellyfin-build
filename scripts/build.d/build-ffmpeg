@@ -6,10 +6,9 @@ set -o xtrace
 tagname="${1}"
 
 builddir="/srv/jellyfin"
+repodir="/srv/repository"
 reponame="jellyfin-ffmpeg"
 repotype="ffmpeg"
-
-reposerver="repo1.jellyfin.org"
 
 pushd ${builddir}
 
@@ -45,11 +44,11 @@ fi
 # Build the packages
 ./build ${reponame}
 
-# Copy the output to the repo server
-rsync -avz bin/${reponame}/ build@${reposerver}:/srv/incoming/${reponame}_${tagname}
+# Copy the output to the repo dir
+rsync -avc bin/${reponame}/ ${repodir}/incoming/${reponame}_${tagname}
 
-# Execute import job on repo server
-ssh build@${reposerver} "sudo /srv/collect-ffmpeg.sh /srv/incoming/${reponame}_${tagname}"
+# Execute import job on repo dir
+/bin/bash ${repodir}/collect-ffmpeg.sh ${repodir}/incoming/${reponame}_${tagname}
 
 # Upload artifacts to the GitHub release
 for artifact in bin/${reponame}/*.{deb,buildinfo}; do

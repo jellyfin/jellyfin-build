@@ -5,11 +5,13 @@ set -o errexit
 
 VERSION="${1}"
 
+builddir="/srv/jellyfin"
+
 sleep 60 # Wait to ensure the release is up
 
-pushd /srv/jellyfin
+pushd ${builddir}
 ./build --clone-only jellyfin-site
-pushd /srv/jellyfin/projects/meta/jellyfin-site
+pushd ${builddir}/projects/meta/jellyfin-site
 git fetch --all
 git rebase origin/master
 
@@ -26,7 +28,7 @@ git -c "user.name=jellyfin-bot" -c "user.email=team@jellyfin.org" commit -m "CI 
 
 git remote add ssh git@github.com:jellyfin/jellyfin.github.io.git
 
-export GIT_SSH_COMMAND='ssh -i /srv/jellyfin/.ssh/id_rsa.github'
+export GIT_SSH_COMMAND="ssh -i ${builddir}/.ssh/id_rsa.github"
 git -c "user.name=jellyfin-bot" -c "user.email=team@jellyfin.org" push ssh
 
 git remote remove ssh

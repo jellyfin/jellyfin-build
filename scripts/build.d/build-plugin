@@ -7,9 +7,8 @@ reponame="${1}"
 tagname="${2}"
 
 builddir="/srv/jellyfin"
+repodir="/srv/repository"
 repotype="plugin"
-
-reposerver="repo1.jellyfin.org"
 
 pushd ${builddir}
 
@@ -32,7 +31,7 @@ popd
 ./build ${reponame}
 
 # Copy the output to the repo server
-rsync -avz bin/plugin/ build@${reposerver}:/srv/releases/plugin/
+rsync -avz bin/plugin/ ${repodir}/releases/plugin/
 
 # Upload the artifact to the GitHub release
 nice_tagname="$( sed 's/^v//g' <<<"${tagname}" )"
