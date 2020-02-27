@@ -48,7 +48,7 @@ fi
 rsync -avc bin/${reponame}/ ${repodir}/incoming/${reponame}_${tagname}
 
 # Execute import job on repo dir
-/bin/bash ${repodir}/collect-ffmpeg.sh ${repodir}/incoming/${reponame}_${tagname}
+sudo /bin/bash ${repodir}/collect-ffmpeg.sh ${repodir}/incoming/${reponame}_${tagname}
 
 # Upload artifacts to the GitHub release
 for artifact in bin/${reponame}/*.{deb,buildinfo}; do
