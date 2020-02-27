@@ -137,7 +137,7 @@ rsync -avz bin/${reponame}/ ${repodir}/incoming/${reponame}_${tagname}
 
 # Execute import job on repo server
 echo "*** COLLECTING PACKAGES FOR REPO ***"
-sudo /bin/bash ${repodir}/collect-server.sh ${repodir}/incoming/${reponame}_${tagname} nightly
+sudo ${repodir}/collect-server.sh ${repodir}/incoming/${reponame}_${tagname} nightly
 
 # Build Docker containers (self-contained)
 set +o errexit

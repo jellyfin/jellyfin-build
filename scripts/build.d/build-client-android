@@ -62,7 +62,7 @@ rsync -avc bin/${reponame}/ ${repodir}/incoming/${reponame}_${tagname}
 # Execute import job on repo dir
 echo "*** COLLECTING PACKAGES FOR REPO ***"
 nice_reponame="$( sed 's/jellyfin-//g' <<<"${reponame}" )"
-sudo /bin/bash ${repodir}/collect-client.sh ${nice_reponame} ${repodir}/incoming/${reponame}_${tagname}
+sudo ${repodir}/collect-client.sh ${nice_reponame} ${repodir}/incoming/${reponame}_${tagname}
 
 # Upload artifacts to the GitHub release
 echo "*** UPLOADING BINARIES TO GITHUB RELEASE ***"
