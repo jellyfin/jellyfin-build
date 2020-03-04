@@ -1,0 +1,279 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [157]
+
+ * #1846 [@EraYaN] Switch to custom patched build for ffmpeg for the Windows installer
+ * #1845 [@joshuaboniface] Correct missing mesa-va-drivers package
+ * #1844 [@dkanada] Fix missing image on seasons without posters
+ * #1841 [@joshuaboniface] Update Docs to docs.jellyfin.org URL
+ * #1829 [@thornbill] Fix SchedulesDirect authentication
+ * #1825 [@joshuaboniface] Revert "Fix premature stop when streaming"
+ * #1822 [@anthonylavado] Update README for new docs location
+ * #1820 [@joshuaboniface] Properly build DLL for porable
+ * #1819 [@nvllsvm] Ignore exception when attempting to kill ffmpeg that has exited
+ * #1818 [@EraYaN] Fix SourceBranch -> SourceBranchName in git clone for Web UI
+ * #1817 [@joshuaboniface] Change PRAGMA mode from WAL to TRUNCATE
+ * #1815 [@Bond-009] Fix tests
+ * #1814 [@Bond-009] Fix ffmpeg version check for unknown versions
+ * #1812 [@dkanada] Avoid editing preferences without user interaction
+ * #1811 [@joshuaboniface] Configure Kestrel listener to use configured IPs
+ * #1808 [@joshuaboniface] Change Win32 AMF flag to d3d11va
+ * #1805 [@Bond-009] Fix plugin installation
+ * #1804 [@Bond-009] Add tests for EncoderValidator and add support for ffmpeg 4.2
+ * #1803 [@Bond-009] Don't log revision number
+ * #1802 [@JustAMan] Fix premature stop when streaming
+ * #1793 [@joshuaboniface] Clean up and update builds to use new jellyfin-web
+ * #1791 [@EraYaN] Remove submodule and add clone and build to CI for web UI
+ * #1788 [@joshuaboniface] Include libssl-dev dep in Ubuntu build containers
+ * #1785 [@dkanada] Add mediabrowser route back for now
+ * #1775 [@Bond-009] Fix multiple mistakes and warnings
+ * #1773 [@sparky8251] Remove WAN DDNS
+ * #1772 [@sparky8251] Hide new users from public API by default
+ * #1770 [@sparky8251] Remove WAN IP Detection
+ * #1768 [@whooo] Set log level to debug for HTTP range requests
+ * #1765 [@EraYaN] Add submodule update to CI build.
+ * #1764 [@EraYaN] Fix publish CI YAML parse error
+ * #1751 [@Bond-009] Reset invalid login counter on successfull login
+ * #1746 [@nvllsvm] Docker - Build jellyfin-web
+ * #1744 [@Bond-009] Rewrite `ItemDataProvider` to be more robust
+ * #1731 [@EraYaN] Fix culture problem on Windows for segment_time_delta argument.
+ * #1723 [@Bond-009] Possible fix for MrMC
+ * #1709 [@joshuaboniface] Fix crash due to missing userRootFolder data
+ * #1708 [@crobibero] Fix translate link
+ * #1707 [@nvllsvm] Fix default build arg
+ * #1704 [@nvllsvm] Fix replace multiple spaces
+ * #1702 [@Bond-009] Fix more warnings
+ * #1700 [@thornbill] Restore flac mime type
+ * #1699 [@joshuaboniface] Bump version to 10.4.0
+ * #1695 [@nvllsvm] Make Docker ffmpeg version configurable
+ * #1693 [@joshuaboniface] Update Debian build to Buster and LibSSL 1.1
+ * #1691 [@sammyrc34] Enable VAAPI decoding without hardware encoding
+ * #1687 [@Bond-009] Move IsoMounter to plugin
+ * #1686 [@Bond-009] More warning fixes
+ * #1685 [@Bond-009] Fix invalid arg for
+ * #1683 [@dkanada] Move the transcode path and other small fixes
+ * #1680 [@marius-luca-87] Fix q6fn dlna seek for direct play
+ * #1678 [@marius-luca-87] Fix ArgumentOutOfRangeException in ParseTimeSeekHeader 
+ * #1676 [@Bond-009] Fix login
+ * #1659 [@cvium] Fix segment_time_delta value for ffmpeg 4.1
+ * #1656 [@loli10K] Fix firewall-cmd: Error: INVALID_SERVICE: 'jellyfin' not among existing services
+ * #1651 [@sl1288] Fix local trailers playback
+ * #1650 [@Bond-009] Upgrade SQLitePCL to v2
+ * #1646 [@Bond-009] Return DB lock immediately
+ * #1645 [@Bond-009] Fix UserNotFoundError
+ * #1644 [@Bond-009] Fix possible hidden exceptions
+ * #1643 [@Bond-009] Fix some documentation warnings for MediaBrowser.XbmcMetadata
+ * #1642 [@cvium] Speed up BaseItem deserialization
+ * #1641 [@cvium] Tmdb cleanup and re-add Writer and Producer
+ * #1636 [@Bond-009] Add analysers to Emby.IsoMounting and enable TreatWarningsAsErrors
+ * #1634 [@Bond-009] Fix build on .Net Core 2.x
+ * #1633 [@Bond-009] Attempt to fix #1391
+ * #1632 [@Bond-009] Improve LocalizationManager
+ * #1631 [@Bond-009] Fix build for .Net Core 2.x
+ * #1629 [@cvium] Fix tvdb guest stars with multiple roles
+ * #1628 [@cvium] Always fetch episode id as EpisodeInfo does not contain it
+ * #1625 [@Bond-009] Fix instant crash.
+ * #1624 [@Bond-009] Fix possible Nullref
+ * #1622 [@anthonylavado] Add a task to clean up transcode cache
+ * #1614 [@Bond-009] Document all public/internal members of Emby.Drawing
+ * #1613 [@Bond-009] Update deps + document startup project
+ * #1612 [@Bond-009] Fix warnings
+ * #1608 [@Marenz] Add link to feature request hub to readme
+ * #1605 [@nvllsvm] Fix Docker build
+ * #1602 [@anthonylavado] Update the Stale-bot config
+ * #1597 [@whooo] Set log level to debug for HTTP range requests
+ * #1593 [@nvllsvm] Docker - make web version more configurable
+ * #1590 [@anthonylavado] Adds null check on studio/network name
+ * #1588 [@dkanada] Add base url option to server configuration
+ * #1584 [@Bond-009] Check checksum for plugin downloads
+ * #1583 [@EraYaN] Add Fider to README
+ * #1582 [@Bond-009] Include library via NuGet instead of via source
+ * #1581 [@Bond-009] Use System.Net abstractions instead of raw socket
+ * #1580 [@Bond-009] Ignore Ipv6 link-local addresses
+ * #1579 [@Bond-009] Fix #1388 and #1472
+ * #1578 [@Bond-009] Replace custom code with Asp.Net Core code
+ * #1574 [@EraYaN] Add the --azure-pipelines switch to the compat checker
+ * #1573 [@Bond-009] Use a dictionary to look up mimetypes
+ * #1572 [@EraYaN] Remove the issue template for feature requests.
+ * #1568 [@whooo] Add DLNA headers if requested by the client
+ * #1562 [@Bond-009] Don't copy the complete response stream
+ * #1560 [@joshuaboniface] Backmerge for 10.3.7
+ * #1555 [@EraYaN] Add Stale app configuration starting point
+ * #1541 [@joshuaboniface] Override the Debian installinit name
+ * #1540 [@HelloWorld017] Fixed SMI Encoding Bug
+ * #1536 [@joshuaboniface] Fix broken symlinks in deployment
+ * #1534 [@joshuaboniface] Use dash or underscore on mv command
+ * #1524 [@Bond-009] Remove IpAddressInfo and IpEndPointInfo classes
+ * #1521 [@Bond-009] Clean up livestreaming code
+ * #1519 [@Bond-009] Fix merge errors
+ * #1518 [@EraYaN] Update the GitHub token to a Grant Auth token
+ * #1517 [@EraYaN] Update the GitHub connection name to use the GitHub App token
+ * #1516 [@EraYaN] Move VACUUM command to fix merge error
+ * #1515 [@joshuaboniface] Backmerge for 10.3.6
+ * #1513 [@Bond-009] Fix style issues
+ * #1511 [@crankdoofus] Add NSIS installer build support
+ * #1505 [@trumblejoe] Qualified Namespace of pscredential
+ * #1500 [@dkanada] Add optional password field on user creation
+ * #1499 [@crobibero] Log IP address on failed login attempt
+ * #1484 [@SenorSmartyPants] Update TVDB provider to search based on series display order
+ * #1463 [@Bond-009] Update deps
+ * #1462 [@Bond-009] Improvements to InstallationManager
+ * #1457 [@TrisMcC] Stop path substitution in SubtitleEncoder - Fix #1446
+ * #1454 [@Bond-009] Simplify file serving code
+ * #1453 [@Bond-009] Improve main code flow
+ * #1452 [@Bond-009] Improvements to UserManager
+ * #1448 [@joshuaboniface] Use the username for the user config path
+ * #1442 [@joshuaboniface] Backmerge for Release 10.3.4 and 10.3.5
+ * #1440 [@cvium] Change UsCulture to InvariantCulture
+ * #1433 [@fhriley] Add support for encoding with libx265 and hevc_nvenc
+ * #1427 [@dkanada] Move fanart image provider to plugin
+ * #1397 [@Bond-009] Streamline authentication proccess
+ * #1383 [@joshuaboniface] Backmerge for Release 10.3.3
+ * #1369 [@teacupx] Enable Exynos MFC encoder and fix transcoding bitrate control
+ * #1368 [@dkanada] Only return useful drives
+ * #1367 [@Bond-009] Ignore casing photo extensions
+ * #1366 [@Bond-009] Fix more warnings
+ * #1363 [@joshuaboniface] Update getting-help link in README
+ * #1337 [@joshuaboniface] Backmerge for 10.3.2 release
+ * #1304 [@joshuaboniface] Backmerge 10.3.1
+ * #1293 [@Bond-009] Fix query time logging
+ * #1274 [@bugfixin] Prevent null reference when request content type is x-www-form-urlencoded
+ * #1252 [@joshuaboniface] Backmerge release 10.3.0
+ * #1247 [@bugfixin] Adjust detection of 'sample' in filenames to use regex boundaries
+ * #1245 [@Bond-009] Remove unused event
+ * #1229 [@voodoos] Cleaning WebSocketSharp continued
+ * #1225 [@DrPandemic] Fix help message to indicate the right output folder
+ * #1224 [@Terror-Gene] Fix missing Unraid cache mount and name capitalization
+ * #1218 [@EraYaN] Disable dotnet_compat part of pipeline
+ * #1211 [@Terror-Gene] Update Unraid Docker icon
+ * #1210 [@DrPandemic] Fix README documentation link
+ * #1182 [@Bond-009] Speed up DeepCopy
+ * #1176 [@Bond-009] Remove unused dependency for Emby.Naming
+ * #1168 [@Bond-009] Improve IO code
+ * #1167 [@Bond-009] Force LF line endings
+ * #1159 [@Bond-009] Trying to make sense of the streaming code
+ * #1158 [@Bond-009] Reduce complexity http routes
+ * #1156 [@Bond-009] Small cleanups here and there
+ * #1111 [@EraYaN] Azure Pipelines DownloadBuildArtifacts@0 Experiment
+ * #1080 [@Bond-009] Remove usage of deprecated 'WebRequest'
+ * #1023 [@Bond-009] Use CultureInvariant string conversion for Guids
+ * #994 [@Bond-009] Remove Tasks wrapped in a Task
+ * #956 [@Bond-009] Simplify db code
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [116]
+
+ * #503 [@dkanada] Fix some minor issues with the dashboard page
+ * #502 [@joshuaboniface] Update Docs to docs.jellyfin.org URL
+ * #501 [@anthonylavado] Resolves missing policy error on user creation
+ * #500 [@thornbill] Restore prepare script
+ * #498 [@dkanada] Fix issues with scrollbutton visibility
+ * #492 [@grafixeyehero] Add webpack-dev-server 
+ * #490 [@thornbill] Add jQuery to global scope
+ * #484 [@thornbill] Revert "Allow card text to continue through line breaks"
+ * #481 [@thornbill] Fix missing jQuery in medialibraryeditor
+ * #479 [@dkanada] Improve the user settings interface
+ * #478 [@thornbill] Fix video osd header styles
+ * #477 [@grafixeyehero] Fix mediainfo display on tv mode
+ * #474 [@redSpoutnik] add 700ms timer for 'mousemove' and 'touchmove' volume listeners
+ * #472 [@sparky8251] Remove WAN domain name options
+ * #468 [@grafixeyehero] Fix Duplicate loading animation
+ * #464 [@PrplHaz4] update apphost appVersion to 10.4.0
+ * #463 [@dhartung] Changed to non-blocking subtitles
+ * #462 [@grafixeyehero] Add style for metadata sidebar Icon folder 
+ * #461 [@dhartung] Fix: Not all players support xxxSubtitleOffset
+ * #460 [@dhartung] Added toast notification when copy-stream is executed
+ * #459 [@dhartung] Added more details to itemdetails page
+ * #458 [@dkanada] Refactor several files and methods
+ * #455 [@joshuaboniface] Allow fldSelectLoginProvider for admins
+ * #451 [@dkanada] Improve button style when focused
+ * #450 [@thornbill] Disable animations in editor sidebar
+ * #449 [@mitchfizz05] Don't hide play all and shuffle buttons on mobile
+ * #448 [@PrplHaz4] fix AutoRunWebApp checkbox on dashboardgeneral
+ * #446 [@dkanada] Dashboard layout improvements
+ * #444 [@grafixeyehero] Minor update for media info 
+ * #441 [@Nickbert7] Improve image quality on detail page
+ * #436 [@fhriley] Always have last sort of movies be by production year
+ * #435 [@grafixeyehero] Change primary highlight for delete confirmation dialog
+ * #432 [@grafixeyehero] Add icon to metadata editor side bar
+ * #430 [@dkanada] Fix layout issues for device cards on dashboard
+ * #428 [@thornbill] Fix preload background color
+ * #425 [@dependabot[bot]] Bump eslint-utils from 1.4.0 to 1.4.2
+ * #424 [@ckcr4lyf] Add a "Copy Stream URL" button in the dropdown menu, for easy Direct Play in VLC
+ * #418 [@Abbe98] if collection has no playable items hide play and shuffle btns
+ * #417 [@Abbe98] add favorite books section to favorite tab
+ * #414 [@cvium] Resolve deviceId promise properly during apphost init
+ * #413 [@dkanada] Fix card layout on home for books
+ * #412 [@dkanada] Move transcoding page to playback settings and improve strings
+ * #411 [@grafixeyehero] Clean up unused filter audio language
+ * #410 [@grafixeyehero] Disable Group versions for non admin
+ * #408 [@EraYaN] Reflect changes made to main repo's stale bot config.
+ * #406 [@Nickbert7] Enable blurred footer in chrome
+ * #405 [@nvllsvm] Upgrade dependencies
+ * #403 [@grafixeyehero] Fix text overlap on now playing bar
+ * #402 [@grafixeyehero] Selectively hide manual login button
+ * #400 [@dkanada] Add base url option to web client
+ * #399 [@EraYaN] Delete enhancement-request.md and feature-request.md
+ * #398 [@EraYaN] Add stale app config.
+ * #397 [@Abbe98] Allow card text to continue through line breaks
+ * #396 [@Abbe98] Move download action to major button for books (itemdetailspage)
+ * #394 [@joshuaboniface] Backmerge for 10.3.7
+ * #388 [@Nickbert7] Enable display mode setting
+ * #387 [@joshuaboniface] Backmerge for 10.3.6
+ * #382 [@dinki] Fix homesection 'On now' display elements
+ * #381 [@dinki] Fix homesection programs button to go to correct page
+ * #380 [@dinki] Fix to enable tuner edit again
+ * #379 [@dkanada] Add an ImageHelper class to consolidate frequently used icons
+ * #378 [@dkanada] Add optional password field on user creation
+ * #377 [@dkanada] Fix log issue from #365
+ * #376 [@grafixeyehero] Fix adminDrawerLogo
+ * #375 [@grafixeyehero] Fix querySelector for Save metadata and images as hidden files
+ * #366 [@dkanada] Minor fixes for section headers
+ * #365 [@dkanada] Fix repeated automatic attempts to cast to a device
+ * #360 [@dkanada] Small tweaks to the server settings
+ * #356 [@grafixeyehero] Fix certain elements getting incorrectly centered on firefox
+ * #353 [@grafixeyehero] Add proper styling to DlnaProfile and ScheduledTask pages
+ * #350 [@dkanada] Move fanart provider to plugin
+ * #348 [@grafixeyehero] Fix firefox dropdown
+ * #343 [@thornbill] Bundle npm dependencies using webpack
+ * #342 [@grafixeyehero] Add span class to fix a margin issue with some icons
+ * #339 [@dkanada] Add editorconfig
+ * #337 [@97carmine] Correction and translation of texts or words in spanish
+ * #336 [@grafixeyehero] Update purple haze theme and fix some unstyled elements
+ * #335 [@dkanada] Always show options menu next to mouse
+ * #330 [@joshuaboniface] Merge current translations
+ * #328 [@joshuaboniface] Backmerge for Release 10.3.3
+ * #327 [@DrPandemic] Changes checkboxes focus appearance
+ * #326 [@grafixeyehero] Fix icon 
+ * #325 [@dkanada] Add some missing strings and remove gradients from themes
+ * #324 [@Nickbert7] Change warning icons on dashboard to a bell instead of "pvr"
+ * #322 [@grafixeyehero] Fix secondery title position and show year on tv show ui
+ * #318 [@dkanada] Add a response on icon hover and other style fixes
+ * #315 [@dkanada] Move buttons to top right for custom scroll element
+ * #314 [@oddstr13] Initial support for keyboard navigation (for webOS remote etc.)
+ * #313 [@dkanada] Improve the library page and dialog UX
+ * #312 [@dkanada] Always show the start task button except on errors
+ * #307 [@DrPandemic] Redirect when loading video player fails
+ * #300 [@grafixeyehero] Fix dashboard column & update purple haze 
+ * #299 [@dkanada] remove networking information from the dashboard
+ * #297 [@joshuaboniface] Backmerge for 10.3.2 release
+ * #295 [@grafixeyehero] Add a round progress bar to purple haze theme
+ * #294 [@grafixeyehero] change cast & crew view to horizontal scroller
+ * #292 [@dkanada] Fix some issues with the user preference page
+ * #278 [@DrPandemic] New keyboard shortcuts
+ * #276 [@thornbill] Fix text overflow not displaying ellipsis in cards
+ * #275 [@DrPandemic] Add double click to fullscreen
+ * #272 [@dkanada] Remove option to enable debug logging
+ * #271 [@dkanada] Remove similar themes with accent changes
+ * #269 [@joshuaboniface] Backmerge 10.3.1
+ * #266 [@grafixeyehero] fix rounded progress bars
+ * #265 [@dkanada] Update links for most of the old documentation
+ * #264 [@DrPandemic] Fix Thumb rendering without thumbnails
+ * #256 [@joshuaboniface] Backmerge release 10.3.0
+ * #251 [@grafixeyehero] Adding new Purple haze themes with rounded layout
+ * #241 [@DrPandemic] Fix logout session storage
+ * #238 [@dkanada] Remove unusable assets and update a string reference to connect
+ * #232 [@dkanada] Replace more web archive buttons with new documentation
+ * #230 [@thornbill] Remove unnecessary overflowY changes
+ * #229 [@grafixeyehero] Fix "Password Reset by PIN" page
+ * #224 [@vitorsemeano] Conversion to webpack - part5 - module resolution, data-require cleaned
+ * #220 [@redSpoutnik] Add subtitle synchronization on HTML video player
+ * #215 [@dkanada] Fix some minor CSS issues and add the classic themes back
+

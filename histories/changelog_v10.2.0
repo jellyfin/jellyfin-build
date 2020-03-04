@@ -1,0 +1,89 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [66]
+
+ * #911 [@nvllsvm] Checkout submodules in Docker Hub hook
+ * #910 [@nvllsvm] Enhance Dockerfiles
+ * #909 [@n8225] Fix docker arm builds
+ * #901 [@cvium] Properly dispose HttpWebResponse when the request failed to avoid 'too many open files'
+ * #899 [@AThomsen] DLNA: Fix race condition leading to missing device names
+ * #892 [@joshuaboniface] Add jellyfin-ffmpeg and versioning to package deps
+ * #883 [@joshuaboniface] Import Translations
+ * #872 [@WillWill56] Fix potential NullReferenceException
+ * #869 [@cvium] Remove DLL support and require all packages/plugins to be zip archives
+ * #868 [@WillWill56] Fix audio streaming via BaseProgressiveStreamingService
+ * #864 [@joshuaboniface] Add support for ZIP plugin archives
+ * #853 [@joshuaboniface] Fix poor handling of cache directories
+ * #852 [@Bond-009] Use SQLitePCL.pretty.netstandard on NuGet
+ * #842 [@nvllsvm] Use VAAPI-enabled ffmpeg
+ * #841 [@joshuaboniface] Fix OC badge to all and add forum badge
+ * #840 [@Bond-009] Fix more warnings
+ * #838 [@Bond-009] Quick style fix
+ * #834 [@joshuaboniface] Add donation badge and reorganize badges
+ * #833 [@cvium] Add await to GetCountries in LocalizationService
+ * #831 [@Bond-009] Move some arrays to generics
+ * #824 [@joshuaboniface] Improved Docker pkgbuild
+ * #822 [@Bond-009] Complete rename ImageSize -> ImageDimensions
+ * #819 [@Bond-009] Some small changes in Device.cs and DidlBuilder.cs
+ * #812 [@joshuaboniface] Fix up the explicit docs links in the README
+ * #810 [@Bond-009] Fix loading of rating files
+ * #807 [@joshuaboniface] Fix restart script in OS packages
+ * #805 [@joshuaboniface] Add weblate translation status to README
+ * #804 [@joshuaboniface] Handle new option parser properly
+ * #802 [@Bond-009] Fix build error
+ * #800 [@Wuerfelbecher] Add CentOS and update rpm spec for the cachedir option
+ * #798 [@Bond-009] Cleanup around the api endpoints
+ * #797 [@Bond-009] Fix all warnings
+ * #794 [@Bond-009] Remove MoreLINQ
+ * #788 [@Bond-009] Fix more warnings
+ * #783 [@joshuaboniface] Update builds to use #749 and #756
+ * #782 [@hawken93] Remove commented file MediaBrowser.LocalMetadata.Savers.PersonXmlSaver
+ * #774 [@dkanada] reimplement support for plugin repository
+ * #769 [@EraYaN] Fix conditions where the ! was swallowed in #726
+ * #764 [@Bond-009] Remove dead code, made some functions properly async 
+ * #758 [@RazeLighter777] Add password field to initial setup
+ * #757 [@cvium] Fix default aspect ratio
+ * #756 [@Bond-009] Make cache dir configurable
+ * #740 [@Bond-009] Remove code for pre-installed plugins & properly check if file exists
+ * #739 [@cvium] Change multi version logic for movies
+ * #737 [@EraYaN] Add AssemblyInfo for Jellyfin.Drawing.Skia
+ * #736 [@Bond-009] Start startup tasks async
+ * #734 [@Bond-009] Fix more analyzer warnings
+ * #733 [@Bond-009] Remove unused function
+ * #732 [@Bond-009] Reworked LocalizationManager to load data async
+ * #728 [@nvllsvm] Use ffmpeg from jrottenberg/ffmpeg 
+ * #727 [@cvium] Change default aspect ratio to 2/3 from 0
+ * #726 [@EraYaN] Clean up IFileSystem wrappers around stdlib.
+ * #724 [@Bond-009] Move Skia back into it's own project
+ * #723 [@Bond-009] Minor improvements to db code
+ * #721 [@Bond-009] Change image dimentions from double to int
+ * #716 [@Bond-009] Remove more compile time warnings
+ * #713 [@EraYaN] Fix empty statement in DidlBuilder.cs
+ * #711 [@Bond-009] Remove remnants of system events
+ * #710 [@Bond-009] Fix a spelling mistake
+ * #709 [@Bond-009] Fix always null expressions
+ * #706 [@sparky8251] Make another docker layer reusable
+ * #702 [@Bond-009] Fix debug build on windows
+ * #700 [@nvllsvm] Dev sync
+ * #699 [@nvllsvm] Dev sync
+ * #681 [@LogicalPhallacy] Fix Windows build script errors + pin ffmpeg to 4.0
+ * #452 [@Bond-009] Use EF Core for Activity database
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [17]
+
+ * #95 [@dkanada] add display language option back
+ * #94 [@dkanada] update british strings
+ * #92 [@RazeLighter777] Added frontend support for a password field on setup
+ * #80 [@cvium] Remove games
+ * #79 [@cvium] Remove unused Connect related from the frontend
+ * #76 [@cvium] Fix syntax error caused by deminification
+ * #75 [@nvllsvm] User profile fixes
+ * #74 [@cvium] Add download menu option to media items
+ * #73 [@nvllsvm] Dev sync
+ * #130 [@joshuaboniface] Import Translations
+ * #127 [@cvium] Change sharedcomponents module to core
+ * #121 [@joshuaboniface] Fix syntax error in site.js
+ * #119 [@anthonylavado] Make the toggle track visible on all themes
+ * #118 [@anthonylavado] Enable and fix PiP for Safari
+ * #117 [@sparky8251] Fix volume slider behavior
+ * #116 [@dkanada] Consolidate all strings into a single file per language
+ * #112 [@sparky8251] Removed seasonal theme support
+

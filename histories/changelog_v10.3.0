@@ -1,0 +1,178 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [119]
+
+ * #1244 [@joshuaboniface] Hotfix authapi
+ * #1242 [@Bond-009] Fix metadata path save
+ * #1239 [@anthonylavado] Clean up UDP responders, and move ProductName to Public endpoint
+ * #1221 [@LogicalPhallacy] Make Jellyfin search its base dir for ffmpeg
+ * #1209 [@joshuaboniface] Override username with AuthenticationProvider
+ * #1199 [@jftuga] Use TLS 1.2 to download NSSM
+ * #1195 [@nvllsvm] Optimize images with image_optim
+ * #1190 [@nvllsvm] Update Dockerfiles
+ * #1188 [@joshuaboniface] Fix problems with plugin installation
+ * #1178 [@LogicalPhallacy] Updates windows installer default lib location
+ * #1172 [@joshuaboniface] Minor improvements to release build setup
+ * #1171 [@joshuaboniface] Add Ubuntu armhf build
+ * #1170 [@joshuaboniface] Correct bad quote characters
+ * #1169 [@joshuaboniface] Use new libexecdir location for jellyfin-ffmpeg
+ * #1166 [@Bond-009] Fix exception on startup
+ * #1157 [@Bond-009] Simplify/remove/clean code
+ * #1153 [@Bond-009] Check if disposed first
+ * #1151 [@Phlogi] WAN Address should use public ports instead of local ports. Advertise DNS WAN if available
+ * #1149 [@LogicalPhallacy] Adds per user password reset
+ * #1140 [@oddstr13] Add Doxygen config
+ * #1139 [@Liggy] Update init scripts for compatibility with Devuan
+ * #1137 [@thornbill] Fix default value for Expires header
+ * #1136 [@JustAMan] Require access type to be included in bug report
+ * #1127 [@LogicalPhallacy] Add configurable user lockout
+ * #1121 [@LogicalPhallacy] Update username regex to string literal with escaped -
+ * #1120 [@LogicalPhallacy] quick fix for auth bug
+ * #1119 [@ploughpuff] MusicBrainz 503 Retry Strategy
+ * #1117 [@Bond-009] Check before flushing ffmpeg log
+ * #1116 [@Bond-009] Fix exception caused by #1096
+ * #1115 [@SuperSandro2000] Clean apt lists in arm Dockerfiles
+ * #1114 [@SuperSandro2000] Only remove /var/lib/apt/lists/* in Dockerfile
+ * #1110 [@EraYaN] Adjusted the Product Name so the User Agent is correct/better.
+ * #1106 [@Bond-009] More warning fixes
+ * #1105 [@ploughpuff] Only delay making MusicBrainz request if necessary
+ * #1104 [@EraYaN] Disable the Drone CI ABI check
+ * #1103 [@Bond-009] Improvements around streams
+ * #1100 [@ploughpuff] Finalise removal of --ffprobe switch
+ * #1098 [@Bond-009] Fix build by removing non existent namespace
+ * #1096 [@dkanada] Remove open subtitles from the server
+ * #1095 [@Bond-009] Add AppConfig to the DI service collection
+ * #1094 [@cvium] Skip processing of images that don't exist
+ * #1093 [@joshuaboniface] Use better path configuration for packages
+ * #1092 [@joshuaboniface] Add configurable webdir option
+ * #1090 [@redSpoutnik] Set DisplayTitle for subtitles
+ * #1089 [@joshuaboniface] Update translations
+ * #1081 [@cvium] Disable HTTPS in Kestrel if Certificate is null
+ * #1077 [@Bond-009] Make MusicBrainz base url configurable
+ * #1075 [@dkanada] Remove mirror images from library thumbnail
+ * #1072 [@anthonylavado] Remove New File Header
+ * #1071 [@Bond-009] Fix error
+ * #1069 [@Bond-009] Quick nullref fix
+ * #1067 [@cvium] Add urlprefixes during init
+ * #1065 [@cvium] Don't set status code if response is closed
+ * #1064 [@Bond-009] Remove file added in #996
+ * #1063 [@EraYaN] Update to renamed DownloadGitHubRelease task (Microsoft/azure-pipelines-tasks#9481)
+ * #1062 [@Bond-009] Fix the 2 new warnings
+ * #1061 [@Bond-009] Remove dead code
+ * #1060 [@Bond-009] Remove redundant class AssemblyInfo
+ * #1059 [@Bond-009] Remove EnvironmentInfo
+ * #1058 [@Bond-009] Cleanup/simplification
+ * #1051 [@joshuaboniface] Build improvements for wrapping infrastructure
+ * #1043 [@thornbill] Update image overlays to use Jellyfin blue
+ * #1032 [@Lynxy] Correct the list of series types
+ * #1030 [@joshuaboniface] Backmerge for 10.2.2
+ * #1028 [@Bond-009] Simplify rating loading
+ * #1024 [@joshuaboniface] Backmerge for 10.2.2
+ * #1021 [@Bond-009] Fail on warnings for Jellyfin.Server
+ * #1020 [@Lynxy] Do not allow new users to delete content by default
+ * #1018 [@fasheng] Fix rmvb video can not play under DLNA
+ * #1011 [@Bond-009] Don't try to order the response the same as the request
+ * #1010 [@cvium] Remove System.Net and port to Kestrel
+ * #1007 [@Bond-009] Log time in a standardized way
+ * #1003 [@Bond-009] Use stopwatch for more accurate measurements and reduce log spam
+ * #1000 [@cvium] Don't close the socket response multiple times
+ * #999 [@cvium] Check that ffmpeg log target isn't disposed before writing to it
+ * #996 [@Bond-009] Reduce the amount of exceptions thrown
+ * #986 [@JustAMan] Backmerge submodule updating strategy
+ * #984 [@WWWesten] Update kz.csv
+ * #981 [@cvium] Close the response stream after fetching temp files
+ * #978 [@fasheng] Fix DLNA for multiple interfaces on linux
+ * #977 [@Lynxy] Always set ffmpeg flag +genpts when video stream is being copied
+ * #962 [@scheidleon] Fix Path
+ * #961 [@joshuaboniface] Release 10.2.1
+ * #959 [@Bond-009] Reduce string allocations at startup
+ * #955 [@ploughpuff] Avoid exceptions due to folder and file not found
+ * #952 [@Liggy] Populate video extras again
+ * #950 [@cvium] Replace OptimizedPriorityQueue source with NuGet reference
+ * #947 [@EraYaN] Add Azure Pipelines YAML
+ * #939 [@joshuaboniface] Clean up and rename obsolete deployment platforms
+ * #936 [@EraYaN] Fixed the assemblynames for compatibility check in drone.
+ * #934 [@Bond-009] WIP - Don't require a restart for 75% of plugins
+ * #930 [@fruhnow] checking user-permission in GetQueryResult
+ * #925 [@Bond-009] Merge 10.2.0 release branch back into master
+ * #915 [@cvium] Remove IEncryptionManager
+ * #914 [@Bond-009] Separate HttpPostedFile into it's own file
+ * #913 [@Bond-009] Reduce log spam
+ * #907 [@cvium] Fix assembly visibility
+ * #902 [@brianjmurrell] COPR auto building
+ * #900 [@ploughpuff] Implement proper FFmpeg version checking
+ * #898 [@EraYaN] Switch to Roslyn naming rules in EditorConfig
+ * #891 [@Bond-009] Reduce the amount of db calls during the post scan event
+ * #889 [@Bond-009] Fix uncaught xml error
+ * #887 [@wtayl0r] Replace primitive injection with IConfiguration
+ * #885 [@Bond-009] More warning fixes
+ * #875 [@Bond-009] Treat warnings as errors for release builds
+ * #870 [@LogicalPhallacy] Better default authentication
+ * #863 [@fruhnow] Adding support for "tvg-chno"-Tag in M3U Channel Lists
+ * #862 [@EraYaN] Add dotnet-compat ABI testing and Debug configuration building to drone-CI
+ * #851 [@Bond-009] Simplify code to get data dir
+ * #849 [@Bond-009] Less string allocations
+ * #848 [@Bond-009] Minor changes to reduce allocations
+ * #847 [@Bond-009] Make websockets code async
+ * #844 [@ploughpuff] Reworked FFmpeg path discovery and always display to user
+ * #830 [@Bond-009] Removed remaining self-update code
+ * #829 [@Bond-009] Removed some unused fields
+ * #801 [@Bond-009] Move to Microsoft.Extensions.DependencyInjection
+ * #785 [@Bond-009] Remove useless abstraction around XmlReaderSettings
+ * #776 [@cvium] Update tvdb provider to v2 api
+ * #735 [@Bond-009] Readability changes
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [53]
+
+ * #253 [@joshuaboniface] Readd missing strings
+ * #249 [@joshuaboniface] Correct edititemmetadata.js script location
+ * #247 [@anthonylavado] Update the name in Manifest.json
+ * #245 [@grafixeyehero] Add Missing strings "HeaderFavorite..."
+ * #244 [@dkanada] Fix a deminification issue with the plugin page
+ * #237 [@dkanada] Avoid element overlap with music controls
+ * #235 [@dkanada] Add check for multiserver on login page
+ * #231 [@dkanada] Improve the plugin catalog and related controllers
+ * #227 [@thornbill] Update add server input type
+ * #226 [@nvllsvm] Optimize images with image_optim
+ * #225 [@joshuaboniface] Fix restart button API call
+ * #223 [@Froghut] When playing on Chromecast make volume buttons change chromecast volume
+ * #222 [@Froghut] Remember device volume/mute on Chromecast playback stop
+ * #221 [@agrenott] Fix local chromecast play behind reverse proxy
+ * #219 [@Froghut] Change Chromecast volume instead while casting
+ * #218 [@vitorsemeano] Solve random dark pane over video playing in fullscreen mode
+ * #217 [@grafixeyehero] Re-add missing strings
+ * #216 [@grafixeyehero] remove sync menu from multiselect
+ * #214 [@tbraeutigam] Fix Issue #213 - Direct Playback broken in Chrome 73
+ * #211 [@LogicalPhallacy] Adds web options to support better password resets
+ * #206 [@vitorsemeano] Conversion to webpack - part4 - module resolution, appStorage refactor, minor cleanup
+ * #205 [@dkanada] Move assets and third party libs out of components and update some strings
+ * #204 [@nvllsvm] Fix CI
+ * #203 [@dkanada] Remove all unused strings from translation files
+ * #202 [@dkanada] remove sync and registration services
+ * #197 [@vitorsemeano] Cleanup cordova modules - webpack fix
+ * #196 [@cvium] Return inner promise in createConnectionManager
+ * #195 [@cvium] Remove no to nb
+ * #190 [@LogicalPhallacy] Add setting to support configurable user lockout
+ * #189 [@vitorsemeano] Fix require apiInput
+ * #188 [@vitorsemeano] Conversion to webpack - part3 - routes isolation, module resolution, refactoring appStorage
+ * #187 [@dkanada] Add CI for eslint
+ * #181 [@joshuaboniface] Correct syntax error in networkPath
+ * #180 [@vitorsemeano] Apply typo fix for apphost
+ * #178 [@lostmypillow] Remove unused localization strings (updated)
+ * #177 [@vitorsemeano] Conversion to webpack - part2 - emby-webcomponents into components and module naming resolution
+ * #175 [@anthonylavado] Update the translation help link
+ * #172 [@dkanada] Add web path as config option
+ * #171 [@cvium] Sort item results in the same order as requested
+ * #170 [@joshuaboniface] Updated translations
+ * #168 [@dkanada] Lots of changes to the server configuration pages
+ * #166 [@joshuaboniface]  Better progressive playback controls of bottom pages (#164)
+ * #163 [@joshuaboniface] Backmerge for 10.2.2
+ * #162 [@vitorsemeano] Convertion to webpack - part1 - npm and dynamic module resolution for site.js
+ * #159 [@dkanada] remove some deprecated plugin code
+ * #153 [@sparky8251] Make types more consistent
+ * #149 [@joshuaboniface] Release 10.2.1
+ * #145 [@JustAMan] Copy issue and PR templates from main repo
+ * #144 [@grafixeyehero] Add top offset and bottom offset margins in emby-scrollbuttons
+ * #139 [@joshuaboniface] Release 10.2.0
+ * #138 [@cvium] Remove left-over JS for Customize Home Screen
+ * #137 [@grafixeyehero] Replace HeaderEmbyServer with HeaderJellyfinServer on plugincatalog
+ * #128 [@ploughpuff] Always show FFmpeg path in Transcoding page
+
