@@ -1,0 +1,351 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [178]
+
+ * #2512 [@Artiume] Update Fedora build container version
+ * #2508 [@joshuaboniface] Update contributors list
+ * #2501 [@JustAMan] Default transcoding throttling to false for new installs
+ * #2500 [@mark-monteiro] Register Logging Services Correctly
+ * #2491 [@mark-monteiro] Fix Playlist Deletion
+ * #2483 [@xosdy] Fix download file with non-ASCII filename
+ * #2476 [@JustAMan] Bring back sorting when needed to fix PlayTo
+ * #2474 [@JustAMan] Simplify AlphanumericComparer, reduce code duplication
+ * #2472 [@Narfinger] moves shows tests to Theory and InlineData format
+ * #2448 [@Narfinger] adds names from the episodenumber tests to path tests
+ * #2444 [@Narfinger] converted tests to inlinedata
+ * #2442 [@Bond-009] Switch remux and direct stream
+ * #2436 [@dkanada] Add config options for MusicBrainz
+ * #2434 [@Bond-009] Fix photo serialization
+ * #2429 [@Bond-009] Fix episode parsing
+ * #2427 [@Bond-009] Minor improvements
+ * #2421 [@viaregio] #2407: Prefer episode and season numbers from the embedded MP4-metadata
+ * #2405 [@nvllsvm] Fix arm32 built on amd64 host
+ * #2400 [@Bond-009] Another baseurl related fix
+ * #2398 [@Artiume] Update dockerfile to install git for new dependency
+ * #2394 [@mark-monteiro] Add Some XML Documentation
+ * #2393 [@DMouse10462] Fix Fedora build
+ * #2384 [@Bond-009] Fix some warnings in Emby.Server.Implementations
+ * #2382 [@dkanada] Refactor some API services
+ * #2381 [@sebPomme] Fix quick start guide url in readme
+ * #2379 [@joshuaboniface] Use NodeJS 10.X for NPM builds
+ * #2374 [@Bond-009] Fix some warnings in MediaBrowser.Controller
+ * #2373 [@Bond-009] Fix some warnings in MediaBrowser.Model
+ * #2368 [@nyanmisaka] Fix framerate info not showing when mediasource is in H264 format.
+ * #2367 [@Artiume] fix SSL issue in arm and arm64
+ * #2365 [@mcarlton00] Add root certificates to docker image
+ * #2363 [@dkanada] Add session view endpoint
+ * #2362 [@dkanada] Improve scan progress and fix a few bugs
+ * #2359 [@Bond-009] Allow changing capitalization of usernames
+ * #2358 [@Bond-009] Enable TreatWarningsAsErrors and Nullable for test projects
+ * #2357 [@Bond-009] Fix warnings
+ * #2349 [@Bond-009] Update deps
+ * #2347 [@Matt07211] Fix broken webserver caused by dotnet publish. Temp Fix for #2255
+ * #2343 [@Bond-009] Fix spacing logs
+ * #2338 [@ferferga] Removed old 'automatic restart after update' features
+ * #2337 [@ThreeFive-O] Add transcoding framerate info
+ * #2332 [@pR0Ps] Fix another issue with DLNA responses not properly paginating
+ * #2331 [@nyanmisaka] fix an issue that could not correctly determine 'IsSecondaryAudio' in some cases.
+ * #2326 [@Bond-009] Improvements to dlna server
+ * #2325 [@Bond-009] Clean up Emby.Naming
+ * #2321 [@Bond-009] Simplify image processing by removing image enhancers
+ * #2304 [@pR0Ps] Fix pagination for DLNA root folder list
+ * #2299 [@dkanada] Fix a few more tests for music and episodes
+ * #2297 [@Bond-009] Kestrel doesn't like sync IO operations
+ * #2295 [@shemanaev] Enable path mapping in `PlaybackInfo` endpoint
+ * #2291 [@Bond-009] Fix warnings in SessionManager
+ * #2290 [@anthonylavado] Update SQLitePCL to new version
+ * #2289 [@Bond-009] Add back support for DVDs copied as folders
+ * #2288 [@Bond-009] Add brackets around thread id
+ * #2287 [@nyanmisaka] New upstream ffmpeg version 4.2.1 for windows nightly channel
+ * #2283 [@EraYaN] Change NSIS log verbosity and use lesser but faster compression.
+ * #2275 [@Artiume] Explicitly ask for ffmpeg logs
+ * #2272 [@Bond-009] Add thread ID and source to logging
+ * #2269 [@EraYaN] Split CI YAML files and update code coverage collection
+ * #2268 [@dkanada] Fix tests for absolute paths
+ * #2266 [@Bond-009] Try to fix nullreff
+ * #2264 [@Bond-009] Clean up server discovery code
+ * #2258 [@geilername] Enable Throttling when transcoding without Hardware-Acceleration
+ * #2257 [@Bond-009] Fix a couple of tests
+ * #2254 [@Bond-009] Fix regex for movies released after 2019
+ * #2251 [@nyanmisaka] add support for AMD AMF hardware encoding on Windows & Linux
+ * #2249 [@Narfinger] fixes dockerfile building on recent linux installations
+ * #2248 [@EraYaN] Fix the VSTest runner
+ * #2247 [@Bond-009] Remove StringHelper functions
+ * #2245 [@BnMcG] Add a test to prevent a regression of absolute path generation behaviour
+ * #2242 [@Bond-009] Remove FileSystem.GetStream
+ * #2240 [@anthonylavado] Re-order the path statement to avoid file issues
+ * #2230 [@dkanada] Fix dependency issue for CI
+ * #2222 [@sachk] Update the build script to use .NET core SDK 3.1
+ * #2221 [@Bond-009] Fix baseurl (again)
+ * #2220 [@Bond-009] Replace unicode char with its integer value
+ * #2219 [@Bond-009] Fix JSON subtitle writer
+ * #2216 [@gnattu] Let HLS fallback to mpegts in case device reports unsupported container
+ * #2208 [@Bond-009] Fix a couple of TODOs
+ * #2206 [@Bond-009] Delete user config dir on user deletion
+ * #2185 [@Bond-009] Fix exceptions while scanning
+ * #2184 [@WiiPlayer2] Remove explicit configuration of "global_header" flag
+ * #2181 [@BnMcG] Test Jellyfin.Api authentication handling
+ * #2176 [@Bond-009] Enable nullable reference types for Emby.Photos and Emby.Notifications
+ * #2170 [@Bond-009] Minor changes to MediaInfoService
+ * #2165 [@Ullmie02] Add Tmdb as a Provider for Season Images
+ * #2160 [@Artiume] Force Transcoding LiveTV
+ * #2155 [@mark-monteiro] Jellyfin.Drawing.Skia Warnings and Analyzers
+ * #2153 [@dkanada] Fix playlist deletion and a few warning fixes
+ * #2152 [@dkanada] Track progress for any item that supports the feature
+ * #2150 [@Bond-009] Enable TreatWarningsAsErrors for some projects
+ * #2146 [@cromefire] Fix invalid username handling
+ * #2144 [@neilsb] Add Excluded Tags to SQLite query using parameters
+ * #2142 [@Bond-009] Add improved error message for #2141
+ * #2138 [@mark-monteiro] Fix Tvdb Provider Episode Search
+ * #2136 [@Bond-009] More warnings (removed)
+ * #2134 [@Bond-009] Fix comparison between different types
+ * #2133 [@Bond-009] Fix typo
+ * #2118 [@chaosinnovator] Add StartIndex result to /Items API query
+ * #2109 [@Bond-009] Fix plugin installation and correct api behaviour
+ * #2107 [@Bond-009] Move to .Net Core 3.1
+ * #2106 [@Bond-009] Fix ubuntu x64 docker build
+ * #2105 [@Bond-009] Add back all old emby tests
+ * #2104 [@cvium] Simplify regex to avoid catastrophic backtracking
+ * #2102 [@Bond-009] Add installed plugins to bug reports
+ * #2099 [@cryptobank] Fix VAAPI encoding on 10-bit hevc. Update QSV encoding and scaling to...
+ * #2098 [@Bond-009] Fix GetTranscodePath function and cache path update logline
+ * #2097 [@Bond-009] Remove unused fields and properties
+ * #2096 [@Bond-009] Clean up Emby.Server.Implementations/LiveTv/EmbyTV/EmbyTV.cs
+ * #2089 [@escabe] Fix #2088
+ * #2082 [@excelite] added required nuget package to enable serilog based centralized logging in gelf format
+ * #2073 [@Bond-009] Minor improvements to network code
+ * #2071 [@excelite] add filesize limit for logfiles and a maximum logfile count
+ * #2062 [@Bond-009] Use .Net Core 3.0 in all docker images
+ * #2058 [@ferferga] Add full Raspberry Pi hardware accelerated decoding support
+ * #2055 [@Bond-009] Fix master build
+ * #2054 [@Bond-009] dlna GetPathValue
+ * #2052 [@EraYaN] Add tag building support to Windows Web build.
+ * #2050 [@Bond-009] Fix possible nullref when updating packages
+ * #2049 [@dkanada] Update readme
+ * #2045 [@Bond-009] Fix baseurl issues part 2
+ * #2041 [@Bond-009] Fix more warnings
+ * #2040 [@Bond-009] Validate https certificates
+ * #2039 [@Bond-009] Fix always false condition
+ * #2034 [@Bond-009] Fix easy password
+ * #2020 [@Bond-009] Add support for multi segment base urls
+ * #2019 [@Bond-009] Remove leading / from baseurl
+ * #2016 [@joshuaboniface] Update stalebot timings and message
+ * #2008 [@Bond-009] Fix GetPathValue function
+ * #1992 [@Bond-009] Fix naming tests
+ * #1991 [@Bond-009] Don't append transcodes to transcoding temp path
+ * #1977 [@Bond-009] Update deps
+ * #1973 [@EraYaN] Fix the last of the docs warnings
+ * #1970 [@Bond-009]  Use Mono.Nat Nuget package 
+ * #1969 [@anthonylavado] Add an exemption for the confirmed label
+ * #1968 [@Bond-009] Disable CA1720: Identifiers should not contain type names
+ * #1967 [@Bond-009] Fix some warnings
+ * #1965 [@Bond-009] Deserialize with the correct type (and warning fixes)
+ * #1954 [@LogicalPhallacy] Use mirror for NSSM
+ * #1949 [@stevehayles] Update to Dockerfile
+ * #1942 [@Bond-009] Enable nullable reference types for Jellyfin.Server
+ * #1941 [@Bond-009] Make probesize and analyzeduration configurable and simplify circular dependencies
+ * #1937 [@justinfenn] use exec form for Dockerfile entrypoint
+ * #1934 [@dkanada] Minor changes to transcode cleanup scheduled task
+ * #1933 [@cvium] Reload logging.json on changes
+ * #1931 [@grafixeyehero] update persons service 
+ * #1930 [@grafixeyehero] update vsc workspace launch for net core 3
+ * #1929 [@Narfinger] Fix parsing of certain names and adds a default season if no season was found
+ * #1926 [@Bond-009] Add clearer exceptions, warnings and docs
+ * #1925 [@joshuaboniface] Integrate web build into Debuntu package build steps
+ * #1923 [@Bond-009] Don't shuffle some types by default
+ * #1922 [@Bond-009] Use the correct dotnet runtime in Docker images 
+ * #1918 [@nvllsvm] Docker fixes
+ * #1915 [@Bond-009] Rewrite hex encoder/decoder
+ * #1909 [@KerryRJ] Fix System.NullReferenceException when playing Dvds copied to HDD
+ * #1904 [@JustAMan] Switch ffmpeg to hls muxer (from segment) to fix premature stop on non-patched ffmpeg
+ * #1903 [@anthonylavado] Update NSIS Installer
+ * #1898 [@Bond-009] Fix Json serialization error
+ * #1891 [@stanionascu] Upgrade BDInfo plugin to UHD/Atmos/DTS:X support
+ * #1887 [@joshuaboniface] Bump version to 10.5.0 for next stable release
+ * #1884 [@Bond-009] Move to netcore3.0
+ * #1872 [@thornbill] Update translate badge in README
+ * #1871 [@Bond-009] Enable `TreatWarningsAsErrors` for MediaBrowser.Common and Emby.Photos
+ * #1870 [@JustAMan] Fix exception when handling error, log errors better
+ * #1866 [@Bond-009] Change slow query time logging to debug
+ * #1864 [@Bond-009] Improve IInstallationManager interface
+ * #1863 [@joshuaboniface] Fix inconsistent BaseUrl behavior
+ * #1862 [@joshuaboniface] Fix bump_version for submodule removal
+ * #1861 [@joshuaboniface] Use NVM to install nodejs v8 and yarn for CentOS
+ * #1859 [@joshuaboniface] Fix COPR build and Fedora packaging
+ * #1855 [@Bond-009] Minor style fixes
+ * #1854 [@Bond-009] Use System.Text.Json api for databases
+ * #1853 [@Bond-009] Log startup time
+ * #1852 [@Bond-009] Fix some more warnings
+ * #1840 [@Bond-009] Ignore warning CA1308 and SA1108
+ * #1838 [@Unhelpful] Add support for embedded attachments in media files
+ * #1789 [@Bond-009] Update deps and add MultiThreading analyzer
+ * #1503 [@cvium] Move StartupWizard to ASP.NET Web Api
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [167]
+
+ * #877 [@JustAMan] Stop checkbox showing a checkmark when unchecked
+ * #875 [@JustAMan] Make card buttons be positioned properly
+ * #874 [@MrTimscampi] Use forked version of JavascriptSubtitlesOctopus
+ * #866 [@sorinyo2004] Fix hover buttons layout on portraitCard
+ * #860 [@thornbill] Fix browsers that do not support Promises
+ * #856 [@thornbill] Add eslint:recommended to eslint config
+ * #854 [@dmitrylyzo] Fix variable reference
+ * #849 [@dkanada] Catch some errors and remove unused method
+ * #846 [@dmitrylyzo] Fix slideshow
+ * #845 [@thornbill] Remove es6 env until babel is added
+ * #844 [@thornbill] Fix horizontal scrolling on emby-scrollers
+ * #843 [@grafixeyehero] Webos icon fix
+ * #838 [@h1nk] Add missing final newlines
+ * #834 [@YouKnowBlom] Fix webOS support in videoosd.js and homesection.js
+ * #831 [@nyanmisaka] Mark h264 high10 as unsupported on mobile browsers
+ * #828 [@Nickbert7] Fix dashboard padding
+ * #819 [@dmitrylyzo] Disable scrollManager on emby-scroller in "native mode"
+ * #818 [@dmitrylyzo] Fix cropping of scaled card (TV layout)
+ * #816 [@MrTimscampi] Make the console quieter by default
+ * #814 [@MrTimscampi] Fix icons on WebOS 4
+ * #813 [@MrTimscampi] Add more icon types
+ * #812 [@dmitrylyzo] Enhance volume slider
+ * #811 [@grafixeyehero] Fix nowplaying  for tv mode
+ * #797 [@dkanada] Fix some minor style issues
+ * #788 [@nyanmisaka] Fix detail page title on mobile layout
+ * #787 [@YouKnowBlom] Add delay on play/pause to prevent hiccup when entering/exiting fullscreen
+ * #786 [@dmitrylyzo] Fix slider positioning on click and (try to) make it look the same in different browsers
+ * #785 [@MrTimscampi] Update Rotten Tomatoes icons
+ * #784 [@nyanmisaka] Fix device icons for Safari and Android browsers
+ * #783 [@MrTimscampi] Update dependencies
+ * #781 [@MrTimscampi] Tweak poster size on home screen
+ * #779 [@MrTimscampi] Fix action icons in lists wrapping to multiple lines
+ * #778 [@MrTimscampi] Force ratings to 1 decimal place
+ * #775 [@joshuaboniface] Alter hardware acceleration message
+ * #773 [@dkanada] Minor theme changes and tweak session cards on dashboard
+ * #772 [@dmitrylyzo] Fix logoscreensaver image path
+ * #770 [@dmitrylyzo] Disable keyboard navigation for non-TV
+ * #769 [@dannymichel] Fix detail page
+ * #767 [@nyanmisaka] Fix encoder preset option not working
+ * #764 [@thornbill] Fix device images on main dashboard page
+ * #763 [@thornbill] Fix custom css precedence
+ * #762 [@MrTimscampi] Adjust details page ribbon margins and colors
+ * #760 [@nyanmisaka] Add some translations for playback info
+ * #759 [@dannymichel] Fix logo page margin
+ * #758 [@dannymichel] Fix padding in header
+ * #755 [@dmitrylyzo] Add server select support for NativeShell
+ * #754 [@ThibaultNocchi] Clipboard API & fallback method to copy stream URL
+ * #751 [@ThibaultNocchi] Checks if stream URL is successfully copied and displays an appropriate toast
+ * #747 [@MrTimscampi] Add placeholder image to detail pages and more placeholder icons
+ * #746 [@ferferga] Load gamepadtokey.js only when is necessary
+ * #744 [@grafixeyehero] Fix usersettings for PR #726
+ * #740 [@MrTimscampi] Enable imageLoader fade-in effect
+ * #739 [@thornbill] Add title attributes to card title buttons
+ * #738 [@ferferga] Switched OS media controls
+ * #737 [@MrTimscampi] Miscellaneous CSS fixes
+ * #736 [@ferferga] Remove "Automatically update this server" checkbox
+ * #735 [@ferferga] Change font family
+ * #734 [@dmitrylyzo] Fix compatibility for older browsers (webOS 3)
+ * #730 [@ManfredRichthofen] Remove red login border on firefox
+ * #728 [@dlahoti] sort items to play in the correct order when sending to Chromecast
+ * #726 [@dkanada] Remove useless autoplay script and add folder for settings
+ * #725 [@dkanada] Fix some missing resource issues
+ * #724 [@nyanmisaka] Update and fix some canPlayType
+ * #722 [@grafixeyehero] Deminify part 4
+ * #721 [@grafixeyehero] Fix alphaPicker padding 
+ * #720 [@dmitrylyzo] Add app exit on "Go back"
+ * #719 [@samuel9554] Add titles in movie tabs genres moviegenres.js
+ * #716 [@Bond-009] Safari supports AC-3
+ * #714 [@MrTimscampi] Use dist versions in bundle.js
+ * #713 [@dkanada] Add a folder for useful scripts
+ * #712 [@dkanada] Move all documentation links to subdomain
+ * #711 [@dkanada] Fix xmltv strings and remove broken tv guide sources
+ * #710 [@dkanada] Fix some issues with theme resources
+ * #709 [@MrTimscampi] Add CSS linting and enforce style
+ * #708 [@MrTimscampi] Move material icons to external package
+ * #704 [@grafixeyehero] Fix scroll for movie recommendation
+ * #702 [@dmitrylyzo] Add playback control from TV remote
+ * #701 [@dmitrylyzo] Fix filter dialog size for TV
+ * #699 [@dmitrylyzo] Fix headerLeft justify-content (WebOS 3/4, Tizen 4)
+ * #698 [@twinkybot] Help Link in the admin area for Users points to 404 on github
+ * #694 [@grafixeyehero] Item detail page layout improvements continued form #611
+ * #688 [@grafixeyehero] Fix respect user option backdrop image
+ * #683 [@dkanada] Minor playback improvements and a few icon and string fixes
+ * #680 [@MrTimscampi] Use scrollManager for TV layout in all browser and improve scroll feel
+ * #676 [@MrTimscampi] Revert vendor prefix removal
+ * #673 [@dkanada] Add android icon and fix issue with kodi icon
+ * #672 [@MrTimscampi] Hide Cast button on TV layout
+ * #670 [@dkanada] Fix issue with previous merge commit
+ * #667 [@Nickbert7] Update remotecontrol layout
+ * #664 [@WX9yMOXWId] Properly load modules before loading view
+ * #663 [@MrTimscampi] Enable headroom only on mobile
+ * #660 [@Larvitar]  Display year in "Collection" and "More like this"
+ * #655 [@MrTimscampi] Remove vendor prefixes in CSS
+ * #654 [@MrTimscampi] Add autoprefix to postcss
+ * #651 [@Larvitar] Fix for commit d111e8c
+ * #650 [@MrTimscampi] Align the page title with other text and icons in the header
+ * #649 [@XVicarious] Allow WEBP Uploading
+ * #645 [@mcarlton00] Rework device icons + add Kodi icon
+ * #641 [@Larvitar] If item EndYear is the same as ProductionYear only display ProductionYear
+ * #640 [@YouKnowBlom] Add a warning to user wizard reflecting the importance of usernames
+ * #639 [@dmitrylyzo] Fix require of 'export default'
+ * #635 [@dkanada] Some general refactoring for assets
+ * #634 [@dkanada] Move more controllers to a sane directory structure
+ * #633 [@Artiume] Correct URL Link, discuss new networking page
+ * #631 [@Artiume] Fix User Link
+ * #630 [@Artiume] Fixed Jellyfin Link
+ * #628 [@Artiume] Fix DLNA Link
+ * #627 [@s0urcelab] add missing string and translation
+ * #626 [@dkanada] Fix context menu margin and user preference buttons
+ * #624 [@redSpoutnik] Fix subtitle sync firefox
+ * #619 [@DaveChild] Fix for card image scaling problem
+ * #618 [@Wunax] Fix a bug that hides children elements in the videoosd
+ * #617 [@dmitrylyzo] Fix variable definition place
+ * #615 [@AndreCarvalho] Add option to randomly sort music albums
+ * #613 [@redSpoutnik] reset subtitle offset on next episode play
+ * #612 [@grafixeyehero] Fix Scroll arrows missing when searching
+ * #611 [@grafixeyehero] Item detail page layout improvements
+ * #610 [@YouKnowBlom] Fix existing library folder path returning undefined
+ * #605 [@ringmatter] Add support for local webpack devserver development
+ * #604 [@grafixeyehero] Fix collection padding in TV layout
+ * #601 [@grafixeyehero] Fix webcomponents-lite bundling 
+ * #600 [@Wunax] Fix can't connect to server if enableAutoLogin is false
+ * #597 [@dkanada] Minor changes to improve Firefox support
+ * #596 [@Wunax] Fix input field user avatar in a wrong position
+ * #594 [@grafixeyehero] Fix some issues with the backdrop image
+ * #593 [@dkanada] Update readme
+ * #592 [@grafixeyehero] Add Screen saver
+ * #584 [@Nickbert7] Enable remote control navigation
+ * #583 [@Wunax] Fixed set aspect ratio option in the player
+ * #582 [@grafixeyehero] Replacing all Unicode icon
+ * #580 [@grafixeyehero] Update apphost appVersion to 10.5.0
+ * #578 [@ryan-hartzell] Add autocomplete attributes to login fields
+ * #577 [@dmitrylyzo] Fix iOS platform detection #572
+ * #576 [@anthonylavado] Remove the leading /web/ from the manifest to avoid PWA titles
+ * #573 [@dkanada] Align scroller items with heading
+ * #571 [@dkanada] Fix select server redirect and remove more dependencies
+ * #568 [@grafixeyehero] update Icon for medialibrarypage, userprofile, device, multiselect and installedplugins
+ * #567 [@anthonylavado] Add label to exclude issue from Stale
+ * #566 [@dmitrylyzo] Make navigation and playback control TV-friendly
+ * #565 [@dmitrylyzo] Add appropriate focuscontainer classes to menus
+ * #564 [@dmitrylyzo] Fix focus of library order item after change
+ * #563 [@dmitrylyzo] Add autofocus on page load
+ * #554 [@ThatNerdyPikachu] Actually make DatePlayed use a colon on ItemDetails
+ * #551 [@dkanada] Remove dashboard icon from header
+ * #550 [@grafixeyehero] Fix Metadata Manager Live TV Loading..
+ * #549 [@grafixeyehero] Move bower_components libraries from source control to npm
+ * #548 [@grafixeyehero] Add favorite people section to favorite tab
+ * #547 [@Unhelpful] Use JavascriptSubtitlesOctopus to render ASS subtitles with embedded fonts.
+ * #545 [@ferferga] Improved appearance of images and artworks - Part 3
+ * #544 [@dmitrylyzo] Add ScrollManager to control scrolling on focus
+ * #542 [@grafixeyehero] Improve wizard finish page redirect
+ * #541 [@bilde2910] Update CONTRIBUTORS.md
+ * #540 [@grafixeyehero] Add file path to itemidentifier
+ * #534 [@dmitrylyzo] Set "Resume" action on season item on TV
+ * #533 [@dmitrylyzo] Tizen: Remove tab activation by focus
+ * #524 [@grafixeyehero] Fix minor style on home section Live TV
+ * #523 [@grafixeyehero] Add icon on item context menu
+ * #521 [@dkanada] Fix save button in now playing controller
+ * #520 [@grafixeyehero] Cleanup connect.emby.media
+ * #519 [@dhartung] Fix subtitle display from previous file in queue
+ * #513 [@thornbill] Revert Swiper to fix initialization error
+ * #511 [@grafixeyehero] Deminify part 3
+ * #510 [@thornbill] Add translate badge to README
+ * #507 [@redSpoutnik] Fix subtitle sync
+ * #506 [@grafixeyehero] Deminify 
+ * #496 [@NathanPickard] Removed Other from TV Guide data providers
+ * #491 [@dkanada] Bundle flvjs and shaka and move all libs to one folder
+
