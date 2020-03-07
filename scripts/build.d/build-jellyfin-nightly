@@ -154,4 +154,8 @@ popd
 rm -r ${builddir}/bin/jellyfin
 popd
 docker image rm -f $( docker images -aq ) || true
+
+echo "------------------------------------------------------------------"
+echo "Completed Jellyfin nightly autobuild at $( date )"
+echo "------------------------------------------------------------------"
 exit 0
