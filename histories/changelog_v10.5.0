@@ -1,5 +1,13 @@
-### [jellyfin](https://github.com/jellyfin/jellyfin) [178]
+### [jellyfin](https://github.com/jellyfin/jellyfin) [186]
 
+ * #2536 [@dkanada] Migrate AudioDB to use plugin interface
+ * #2535 [@mark-monteiro] Create Logging Configuration Heirarchy
+ * #2534 [@joshuaboniface] Set EnableHttps disabled by default
+ * #2532 [@MrTimscampi] Add baseURL to attachments API url
+ * #2524 [@ferferga] Replaces NSIS uninstaller icon so it's more visible
+ * #2523 [@JustAMan] Improve migrations so they are more maintainable
+ * #2515 [@JustAMan] Implement ability to run migration routines when updating Jellyfin
+ * #2513 [@Bond-009] Improve alpha numeric sorting
  * #2512 [@Artiume] Update Fedora build container version
  * #2508 [@joshuaboniface] Update contributors list
  * #2501 [@JustAMan] Default transcoding throttling to false for new installs
