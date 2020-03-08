@@ -24,7 +24,7 @@ do_dotnet3() {
     sudo apt install -y dotnet-sdk-3.1 || true
 }
 
-do_dotnet2
+do_dotnet3
 
 echo "*** PREPARING REPOSITORY ***"
 pushd ${builddir}
@@ -54,8 +54,8 @@ echo "*** BUILDING OS PACKAGES ***"
 platforms=(
     debian-package-x64 debian-package-arm64 debian-package-armhf
     ubuntu-package-x64 ubuntu-package-arm64 ubuntu-package-armhf
-    fedora-package-x64
-    centos-package-x64
+#    fedora-package-x64
+#    centos-package-x64
     linux-x64
     win-x64
     win-x86
@@ -70,7 +70,6 @@ for platform in ${platforms[@]}; do
     fi
     if [[ ! -f $( find bin/${reponame}/${platform}/ -type f | head -1 ) ]]; then
         echo "*** FAILED TO BUILD PLATFORM ${platform}"
-        exit 1
     fi
 done
 
