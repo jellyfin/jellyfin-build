@@ -19,6 +19,10 @@ jellyfin-manifest:
     type: meta
     url: "github.com/jellyfin/jellyfin-ux.git"
 
+  - name: jellyfin-blog
+    type: meta
+    url: "github.com/jellyfin/jellyfin-blog.git"
+
   - name: jellyfin-site
     type: meta
     url: "github.com/jellyfin/jellyfin.github.io.git"
