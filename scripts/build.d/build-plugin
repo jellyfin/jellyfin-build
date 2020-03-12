@@ -35,7 +35,7 @@ rsync -avz bin/plugin/ ${repodir}/releases/plugin/
 
 # Upload the artifact to the GitHub release
 nice_tagname="$( sed 's/^v//g' <<<"${tagname}" )"
-for artifact in bin/plugin/${reponame}/*${nice_tagname}.0.zip; do
+for artifact in bin/plugin/${reponame}/*${nice_tagname}.*.zip; do
     if [[ -f ${artifact} ]]; then
         /bin/bash ${builddir}/scripts/upload-artifact "${reponame}" "${tagname}" "${artifact}"
     fi
