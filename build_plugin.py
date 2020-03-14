@@ -117,11 +117,11 @@ def build_plugin(project):
 
     bin_md5sum = run_os_command("md5sum {}/{}".format(target_dir, new_name))[0].split()[0]
 
-    generate_plugin_manifest(project, build_cfg, bin_md5sum)
+    generate_plugin_manifest(project, build_cfg, bin_md5sum, project_version)
 
     return True
 
-def generate_plugin_manifest(project, build_cfg, bin_md5sum):
+def generate_plugin_manifest(project, build_cfg, bin_md5sum, project_version):
     # Extract our name, type, and plugin_id
     project_name = project['name']
     project_type = project['type']
@@ -132,7 +132,6 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum):
     project_plugin_description = build_cfg['description']
     project_plugin_category = build_cfg['category']
     project_plugin_owner = build_cfg['owner']
-    project_version = "{}.0".format(build_cfg['version'])
 
     jellyfin_version = build_cfg['jellyfin_version']
 
