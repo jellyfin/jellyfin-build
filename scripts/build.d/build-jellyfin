@@ -75,7 +75,7 @@ done
 
 echo "*** GRABBING WINDOWS INSTALLER FROM AZURE ***"
 installer_tmpdir="$( mktemp -d )"
-azure_build_id="$( az pipelines runs list --branch release-10.4.z --pipeline-ids 1 --reason batchedCI --result succeeded --status completed --query-order QueueTimeDesc --top 1 | jq '.[].id' )"
+azure_build_id="$( az pipelines runs list --branch release-10.5.z --pipeline-ids 1 --reason batchedCI --result succeeded --status completed --query-order QueueTimeDesc --top 1 | jq '.[].id' )"
 az pipelines runs artifact download --artifact-name 'Jellyfin Server Setup' --path ${installer_tmpdir} --run-id ${azure_build_id} && \
 mkdir -p bin/jellyfin/win-installer && \
 mmv "${installer_tmpdir}/jellyfin_*_windows-*.exe" "bin/jellyfin/win-installer/jellyfin_${tagname}-#2.exe" && \
