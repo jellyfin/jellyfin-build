@@ -34,7 +34,13 @@ awk '{ print $1 }' <<<"${all_merges}" | while read merge; do
     msg="$( git show --no-patch ${merge} )"
     pr_id="$( grep -Eo '#[0-9]+' <<<"${msg}" | head -1 | tr -d '#' | perl -pe 'chomp' )"
 
-    /usr/local/bin/hub pr show -f " * %i [@%au] %t" ${pr_id}
+    if [[ ${repo} != "jellyfin" ]]; then
+        HEADER="jellyfin/${repo}"
+    else
+        HEADER=""
+    fi
+
+    /usr/local/bin/hub pr show -f " * ${HEADER}%i [@%au] %t" ${pr_id}
 
 done | sort -rn 
 echo
