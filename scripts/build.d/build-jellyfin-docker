@@ -62,9 +62,9 @@ git submodule update --init
 docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
 # Build images (amd64, arm, arm64)
-docker build --no-cache --pull -f Dockerfile -t "${docker_image}":${nice_tagname}-amd64 . &>${curdir}/../../logs/build-test/docker-amd64.log
-docker build --no-cache --pull -f Dockerfile.arm -t "${docker_image}":${nice_tagname}-arm . &>${curdir}/../../logs/build-test/docker-arm.log
-docker build --no-cache --pull -f Dockerfile.arm64 -t "${docker_image}":${nice_tagname}-arm64 . &>${curdir}/../../logs/build-test/docker-arm64.log
+docker build --no-cache --pull -f Dockerfile -t "${docker_image}":${nice_tagname}-amd64 . &>${builddir}/logs/docker-amd64.log
+docker build --no-cache --pull -f Dockerfile.arm -t "${docker_image}":${nice_tagname}-arm . &>${builddir}/logs/docker-arm.log
+docker build --no-cache --pull -f Dockerfile.arm64 -t "${docker_image}":${nice_tagname}-arm64 . &>${builddir}/logs/docker-arm64.log
 
 # Push images (amd64, arm, arm64)
 docker push "${docker_image}":${nice_tagname}-amd64

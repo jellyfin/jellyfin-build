@@ -10,8 +10,6 @@ repodir="/srv/repository"
 reponame="jellyfin"
 repotype="server"
 
-export curdir="$( pwd )"
-
 ######
 # HACK FOR STABLE RELEASES
 ######
@@ -65,7 +63,7 @@ platforms=(
     macos
 )
 for platform in ${platforms[@]}; do
-    ./build ${reponame} ${platform} &>${curdir}/../../logs/build-test/${platform}.log
+    ./build ${reponame} ${platform} &>${builddir}/logs/${platform}.log
     if [[ $? -gt 0 ]]; then
         echo "FAILED TO BUILD PLATFORM ${platform}"
     else
