@@ -63,6 +63,8 @@ mmv "${installer_tmpdir}/jellyfin_*_windows-*.exe" "bin/jellyfin/win-installer/j
 rm -rf ${installer_tmpdir} || \
 echo "FAILED TO GRAB A WINDOWS EXE, FIX THIS MANUALLY PL0X."
 
+popd
+
 echo "*** BUILDING DOCKER IMAGES ***"
 /bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker-test tag-name=${tagname} build-docker-manifests=yes
 
@@ -73,7 +75,6 @@ read
 
 echo "*** CLEANING UP ***"
 rm -r ${builddir}/bin/jellyfin
-popd
 docker image rm -f $( docker images -aq ) || true
 exit 0
 
