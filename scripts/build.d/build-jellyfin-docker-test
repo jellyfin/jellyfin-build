@@ -86,4 +86,3 @@ fi
 
 popd
 
-docker image rm -f $( docker images -aq ) || true
