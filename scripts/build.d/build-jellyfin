@@ -10,6 +10,8 @@ repodir="/srv/repository"
 reponame="jellyfin"
 repotype="server"
 
+export curdir="$( pwd )"
+
 ######
 # HACK FOR STABLE RELEASES
 ######
@@ -54,8 +56,8 @@ echo "*** BUILDING OS PACKAGES ***"
 platforms=(
     debian-package-x64 debian-package-arm64 debian-package-armhf
     ubuntu-package-x64 ubuntu-package-arm64 ubuntu-package-armhf
-#    fedora-package-x64
-#    centos-package-x64
+    fedora-package-x64
+    centos-package-x64
     linux-x64
     win-x64
     win-x86
@@ -63,7 +65,7 @@ platforms=(
     macos
 )
 for platform in ${platforms[@]}; do
-    ./build ${reponame} ${platform}
+    ./build ${reponame} ${platform} &>${curdir}/../../logs/build-test/${platform}.log
     if [[ ! -f $( find bin/${reponame}/${platform}/ -type f | head -1 ) ]]; then
         # Try to build each one again if it fails the first time
         ./build ${reponame} ${platform}
