@@ -1,0 +1,80 @@
+#!/bin/bash
+
+set -o errexit
+set -o xtrace
+
+tagname="${1}"
+
+builddir="/srv/jellyfin"
+repodir="/srv/repository"
+reponame="jellyfin"
+repotype="server"
+
+curdir="$( pwd )"
+
+######
+# HACK FOR STABLE RELEASES
+######
+do_dotnet2() {
+    sudo apt purge -y dotnet-sdk-3.1 || true
+    sudo apt autoremove -y || true
+    sudo apt install -y dotnet-sdk-2.2 || true
+}
+do_dotnet3() {
+    sudo apt purge -y dotnet-sdk-2.2 || true
+    sudo apt autoremove -y || true
+    sudo apt install -y dotnet-sdk-3.1 || true
+}
+
+do_dotnet3
+
+echo "*** PREPARING REPOSITORY ***"
+pushd ${builddir}
+
+# Grab the source and init
+./build ${reponame} --clone-only
+
+echo "*** BUILDING OS PACKAGES ***"
+platforms=(
+    debian-package-x64 debian-package-arm64 debian-package-armhf
+    ubuntu-package-x64 ubuntu-package-arm64 ubuntu-package-armhf
+    fedora-package-x64 centos-package-x64
+    linux-x64
+    win-x64
+    win-x86
+    portable
+    macos
+)
+for platform in ${platforms[@]}; do
+    ./build ${reponame} ${platform} &>${curdir}/../../logs/build-test/${platform}.log
+    if [[ $? -gt 0 ]]; then
+        echo "FAILED TO BUILD PLATFORM ${platform}"
+    else
+        echo "OK ${platform}"
+    fi
+done
+
+echo "*** GRABBING WINDOWS INSTALLER FROM AZURE ***"
+installer_tmpdir="$( mktemp -d )"
+azure_build_id="$( az pipelines runs list --branch release-10.5.z --pipeline-ids 1 --reason batchedCI --result succeeded --status completed --query-order QueueTimeDesc --top 1 | jq '.[].id' )"
+az pipelines runs artifact download --artifact-name 'Jellyfin Server Setup' --path ${installer_tmpdir} --run-id ${azure_build_id} && \
+mkdir -p bin/jellyfin/win-installer && \
+mmv "${installer_tmpdir}/jellyfin_*_windows-*.exe" "bin/jellyfin/win-installer/jellyfin_${tagname}-#2.exe" && \
+rm -rf ${installer_tmpdir} || \
+echo "FAILED TO GRAB A WINDOWS EXE, FIX THIS MANUALLY PL0X."
+
+echo "*** BUILDING DOCKER IMAGES ***"
+/bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker-test tag-name=${tagname} build-docker-manifests=yes
+
+echo "*** VALIDATE ***"
+read
+read
+read
+
+echo "*** CLEANING UP ***"
+rm -r ${builddir}/bin/jellyfin
+popd
+docker image rm -f $( docker images -aq ) || true
+exit 0
+
+do_dotnet3
