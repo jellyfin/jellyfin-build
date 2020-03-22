@@ -18,6 +18,9 @@ git checkout upstream/${branch} &>/dev/null
 
 if git tag | grep -q ${cur_minor}; then
     target="${cur_minor}"
+    if ! git log --oneline | grep -q ${cur_minor}; then
+        target="HEAD"
+    fi
 else
     target="HEAD"
 fi
