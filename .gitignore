@@ -21,3 +21,4 @@ deploy/
 .azure-devops/
 .cache/
 .wget-hsts
+logs/
