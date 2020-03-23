@@ -22,3 +22,4 @@ deploy/
 .cache/
 .wget-hsts
 logs/
+.gnupg/
