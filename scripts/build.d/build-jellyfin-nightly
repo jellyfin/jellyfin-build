@@ -80,7 +80,7 @@ dotnet restore --no-cache
 
 echo "*** PREPARING OS PACKAGE SETTINGS ***"
 # Set the package name to `jellyfin-nightly`
-pushd deployment/debian-package-x64/pkg-src
+pushd debian/
 sed -i '/^Source/ s/jellyfin/jellyfin-nightly/' control
 sed -i '/^Package/ s/jellyfin/jellyfin-nightly/' control
 sed -i '/^Replaces/ s/$/, jellyfin/' control
