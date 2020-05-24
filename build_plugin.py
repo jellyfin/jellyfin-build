@@ -124,16 +124,13 @@ def build_plugin(project):
 def generate_plugin_manifest(project, build_cfg, bin_md5sum, project_version):
     # Extract our name, type, and plugin_id
     project_name = project['name']
-    project_type = project['type']
-    project_plugin_id = project['plugin_id']
     project_plugin_guid = build_cfg['guid']
-    project_plugin_nicename = build_cfg['nicename']
     project_plugin_overview = build_cfg['overview']
     project_plugin_description = build_cfg['description']
     project_plugin_category = build_cfg['category']
     project_plugin_owner = build_cfg['owner']
 
-    jellyfin_version = build_cfg['jellyfin_version']
+    target_abi = build_cfg['targetAbi']
 
     build_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -150,44 +147,22 @@ def generate_plugin_manifest(project, build_cfg, bin_md5sum, project_version):
                     plugin_manifest_existing_version_fragments.append(version)
 
     plugin_manifest_new_version_fragment = [{
-        "name": project_plugin_nicename,
-        "versionStr": project_version,
-        "classification": "Release",
-        "description": "Release",
-        "requiredVersionStr": jellyfin_version,
+        "version": project_version,
+        "changelog": "changelog",
+        "targetAbi": target_abi,
         "sourceUrl": "https://repo.jellyfin.org/releases/plugin/{0}/{0}_{1}.zip".format(project_name, project_version),
-        "targetFilename": "{0}_{1}.zip".format(project_name, project_version),
         "checksum": bin_md5sum,
-        "timestamp": build_date,
-        "runtimes": "netframework,netcore"
+        "timestamp": build_date
     }]
     plugin_manifest_versions = plugin_manifest_new_version_fragment + plugin_manifest_existing_version_fragments
 
     plugin_manifest_fragment = {
-        "id": project_plugin_id,
-        "packageId": project_plugin_id,
+        "guid": project_plugin_guid,
         "name": project_plugin_nicename,
-        "shortDescription": project_plugin_description,
+        "description": project_plugin_description,
         "overview": project_plugin_overview,
-        "isPremium": False,
-        "richDescUrl": "",
-        "thumbImage": "",
-        "previewImage": "",
-        "type": "UserInstalled",
         "owner": project_plugin_owner,
         "category": project_plugin_category,
-        "titleColor": "#FFFFFF",
-        "featureId": project_plugin_nicename,
-        "regInfo": "",
-        "price": 0.00,
-        "targetSystem": "Server",
-        "guid": project_plugin_guid,
-        "adult": 0,
-        "totalRatings": 1,
-        "avgRating": 5,
-        "isRegistered": False,
-        "expDate": None,
-        "installs": 0,
         "versions": plugin_manifest_versions
     }
     with open(manifest_fragment_file_name, 'w') as manifest_fragment_file:
