@@ -12,21 +12,18 @@ version: "1" # Please increment with each pull request
 
 # The supported Jellyfin version, usually the earliest binary-compatible
 # version. Based on the Jellyfin components from NuGet.
-jellyfin_version: "10.3.0" # The earliest binary-compatible version
+targetAbi: "10.3.0" # The earliest binary-compatible version
 
 # The owner name of the plugin, "jellyfin" for official plugins. Change
 # to your own name if you wish to remain a 3rd-party plugin.
 owner: "jellyfin"
 
-# The nicely-formatted name of the plugin
-nicename: "My Plugin Name"
-
 # A short description of the plugin
-description: "My plugin to do things"
+overview: "My plugin to do things"
 
 # A longer and more detailed description of the plugin; use multiple
 # lines as required for readability.
-overview: >
+description: >
     My plugin does things. It can help your Jellyfin be more graceful.
 
     Installing my plugin requires knowledge of flubber as required.
