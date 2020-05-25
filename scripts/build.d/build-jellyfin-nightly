@@ -47,7 +47,9 @@ pushd ${builddir}
 # Grab the source and init
 ./build ${reponame} --clone-only
 
-pushd projects/${repotype}/${reponame}
+pushd projects/${repotype}
+
+pushd jellyfin
 
 # Check out master
 git fetch --all
@@ -55,17 +57,21 @@ git reset --hard HEAD
 git clean -fd
 git checkout origin/master
 
-pushd ../jellyfin-web
+# Determine our changelog from the last nightly (main)
+git_log_main="$( git log --merges --since "${yesterday}" --grep 'Merge pull request' --oneline | grep --color=none --only-matching 'Merge .*$' || true)"
+
+popd
+pushd jellyfin-web
+
 git fetch --all
 git reset --hard HEAD
 git clean -fd
 git checkout origin/master
+
 # Determine our changelog from the last nightly (web)
 git_log_web="$( git log --merges --since "${yesterday}" --grep 'Merge pull request' --oneline | grep --color=none --only-matching 'Merge .*$' || true)"
-popd
 
-# Determine our changelog from the last nightly (main)
-git_log_main="$( git log --merges --since "${yesterday}" --grep 'Merge pull request' --oneline | grep --color=none --only-matching 'Merge .*$' || true)"
+popd
 
 if [[ -z ${git_log_main} && -z ${git_log_web} ]]; then
     # We have no log since yesterday; don't build a nightly today
@@ -75,60 +81,95 @@ else
     git_log="$git_log_main $git_log_web"
 fi
 
-# Perform nuget restore
-dotnet restore --no-cache
+for dir in jellyfin jellyfin-web; do
+
+if [[ ${dir} == 'jellyfin' ]]; then
+    pkgtype="server"
+else
+    pkgtype="web"
+fi
+
+pushd $dir
+
+if [[ ${pkgtype} == 'server' ]]; then
+    # Perform nuget restore
+    dotnet restore --no-cache
+fi
 
 echo "*** PREPARING OS PACKAGE SETTINGS ***"
 # Set the package name to `jellyfin-nightly`
 pushd debian/
-sed -i '/^Source/ s/jellyfin/jellyfin-nightly/' control
-sed -i '/^Package/ s/jellyfin/jellyfin-nightly/' control
-sed -i '/^Replaces/ s/$/, jellyfin/' control
-sed -i '/^Breaks/ s/$/, jellyfin/' control
-sed -i '/^Conflicts/ s/$/, jellyfin/' control
+sed -i "/^Source/ s/jellyfin-${pkgtype}/jellyfin-${pkgtype}-nightly/" control
+sed -i "/^Package/ s/jellyfin-${pkgtype}/jellyfin-${pkgtype}-nightly/" control
+sed -i "/^Replaces/ s/$/, jellyfin-${pkgtype}/" control
+sed -i "/^Breaks/ s/$/, jellyfin-${pkgtype}/" control
+sed -i "/^Conflicts/ s/$/, jellyfin-${pkgtype}/" control
 
 # Set the changelog
 formatted_git_log="$( sed 's/^/  * /' <<<"${git_log}" )"
 cat <<EOF >changelog
-jellyfin-nightly ($( date +%Y%m%d )) unstable; urgency=medium
+jellyfin-${pkgtype}-nightly ($( date +%Y%m%d )) unstable; urgency=medium
 
 ${formatted_git_log}
 
  -- Jellyfin Packaging Team <packaging@jellyfin.org>  $( date --rfc-2822 )
 EOF
 
-popd
+if [[ ${pkgtype} == 'server' ]]; then
+    pushd metapackage
+
+    sed -i "s/jellyfin/jellyfin-nightly/g" jellyfin
+    sed -i "s/jellyfin-nightly-server/jellyfin-server-nightly (=$( date +%Y%m%d ))/g" jellyfin
+    sed -i "s/jellyfin-nightly-web/jellyfin-web-nightly (=$( date +%Y%m%d ))/g" jellyfin
+    sed -i "s/^Version: .*$/Version: $( date +%Y%m%d )/g" jellyfin
+    echo "Replaces: jellyfin" >> jellyfin
+    echo "Breaks: jellyfin" >> jellyfin
+    echo "Conflicts: jellyfin" >> jellyfin
+
+    equivs-build jellyfin
+    mkdir -p ../../../bin/debian.all/
+    mv jellyfin*.deb ../../../bin/debian.all/
+
+    popd
+fi
 
 popd
 
 # Build OS packages
 set +o errexit
 echo "*** BUILDING OS PACKAGES ***"
-./build "${reponame}" debian-package-x64
-./build "${reponame}" debian-package-armhf
-./build "${reponame}" debian-package-arm64
-./build "${reponame}" ubuntu-package-x64
-./build "${reponame}" ubuntu-package-armhf
-./build "${reponame}" ubuntu-package-arm64
+server_releases=( "debian.amd64" "debian.arm64" "debian.armhf" "ubuntu.amd64" "ubuntu.arm64" "ubuntu.armhf" )
+web_releases=( "debian.all" )
+if [[ ${pkgtype} == 'server' ]]; then
+    releases=( ${server_releases[@]} )
+else
+    releases=( ${web_releases[@]} )
+fi
+for release in ${releases[@]}; do
 
-./build "${reponame}" portable
-mmv "bin/${reponame}/portable/jellyfin*.portable.tar.gz" "bin/${reponame}/portable/jellyfin-nightly_${tagname}.tar.gz"
-./build "${reponame}" macos
-mmv "bin/${reponame}/macos/jellyfin*.portable.tar.gz" "bin/${reponame}/macos/jellyfin-nightly_${tagname}.tar.gz"
-./build "${reponame}" linux-x64
-mmv "bin/${reponame}/linux-x64/jellyfin*.portable.tar.gz" "bin/${reponame}/linux-x64/jellyfin-nightly_${tagname}.tar.gz"
-./build "${reponame}" win-x64
-mmv "bin/${reponame}/win-x64/jellyfin_*.zip" "bin/${reponame}/win-x64/jellyfin-nightly_${tagname}.zip"
-./build "${reponame}" win-x86
-mmv "bin/${reponame}/win-x86/jellyfin_*.zip" "bin/${reponame}/win-x86/jellyfin-nightly_${tagname}.zip"
+./build.sh -t docker -p ${release}
+if [[ ${pkgtype} == 'web' ]]; then
+    for srelease in ${server_releases[@]}; do
+        cp ../bin/${release}/* ../bin/${srelease}/
+    done
+    rm -rf ../bin/${release}
+fi
 set -o errexit
 
-echo "*** GRABBING LATEST WINDOWS INSTALLER FROM AZURE ***"
+done
+popd
+done
+popd
+
+mkdir -p bin/${reponame}
+cp -a projects/server/bin/* bin/${reponame}/
+
+#echo "*** GRABBING LATEST WINDOWS INSTALLER FROM AZURE ***"
 installer_tmpdir="$( mktemp -d )"
 azure_build_id="$( az pipelines runs list --branch master --pipeline-ids 1 --reason batchedCI --result succeeded --status completed --query-order QueueTimeDesc --top 1 | jq '.[].id' )"
-az pipelines runs artifact download --artifact-name 'Jellyfin Server Setup' --path ${installer_tmpdir} --run-id ${azure_build_id}
+az pipelines runs artifact download --artifact-name 'Jellyfin Server Setup' --path ${installer_tmpdir} --run-id ${azure_build_id} || true
 mkdir -p bin/jellyfin/win-installer
-mmv "${installer_tmpdir}/jellyfin_*_windows-*.exe" "bin/jellyfin/win-installer/jellyfin-nightly_${tagname}-#2.exe"
+mmv "${installer_tmpdir}/jellyfin_*_windows-*.exe" "bin/jellyfin/win-installer/jellyfin-nightly_${tagname}-#2.exe" || true
 rm -rf ${installer_tmpdir}
 
 # Copy the output to the repo server
@@ -138,12 +179,6 @@ rsync -avz bin/${reponame}/ ${repodir}/incoming/${reponame}_${tagname}
 # Execute import job on repo server
 echo "*** COLLECTING PACKAGES FOR REPO ***"
 sudo ${repodir}/collect-server.sh ${repodir}/incoming/${reponame}_${tagname} nightly
-
-# Build Docker containers (self-contained)
-set +o errexit
-echo "*** BUILDING DOCKER IMAGES ***"
-/bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker-nightly
-set -o errexit
 
 # Clean up
 echo "*** CLEANING UP ***"
