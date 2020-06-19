@@ -81,7 +81,7 @@ else
     git_log="$git_log_main $git_log_web"
 fi
 
-for dir in jellyfin jellyfin-web; do
+for dir in jellyfin-web jellyfin; do
 
 if [[ ${dir} == 'jellyfin' ]]; then
     pkgtype="server"
@@ -127,8 +127,8 @@ if [[ ${pkgtype} == 'server' ]]; then
     echo "Conflicts: jellyfin" >> jellyfin
 
     equivs-build jellyfin
-    mkdir -p ../../../bin/debian.all/
-    mv jellyfin*.deb ../../../bin/debian.all/
+    mkdir -p ../../../bin/debian/
+    mv jellyfin*.deb ../../../bin/debian/
 
     popd
 fi
@@ -139,7 +139,7 @@ popd
 set +o errexit
 echo "*** BUILDING OS PACKAGES ***"
 server_releases=( "debian.amd64" "debian.arm64" "debian.armhf" "ubuntu.amd64" "ubuntu.arm64" "ubuntu.armhf" )
-web_releases=( "debian.all" )
+web_releases=( "debian" )
 if [[ ${pkgtype} == 'server' ]]; then
     releases=( ${server_releases[@]} )
 else
