@@ -1,12 +1,16 @@
 jellyfin-manifest:
-  - name: jellyfin-web
-    type: server
-    url: "github.com/jellyfin/jellyfin-web.git"
-
   - name: jellyfin
     type: server
     url: "github.com/jellyfin/jellyfin.git"
     
+  - name: jellyfin-web
+    type: server
+    url: "github.com/jellyfin/jellyfin-web.git"
+
+  - name: jellyfin-metapackages
+    type: server
+    url: "github.com/jellyfin/jellyfin-metapackages.git"
+
   - name: jellyfin-ffmpeg
     type: ffmpeg
     url: "github.com/jellyfin/jellyfin-ffmpeg.git"
