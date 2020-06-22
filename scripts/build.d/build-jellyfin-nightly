@@ -127,8 +127,10 @@ if [[ ${pkgtype} == 'server' ]]; then
     echo "Conflicts: jellyfin" >> jellyfin
 
     equivs-build jellyfin
-    mkdir -p ../../../bin/debian/
-    mv jellyfin*.deb ../../../bin/debian/
+    mkdir -p ../../../bin/debian/ ../../../bin/ubuntu/
+    cp jellyfin*.deb ../../../bin/debian/
+    cp jellyfin*.deb ../../../bin/ubuntu/
+    rm *.deb
 
     popd
 fi
