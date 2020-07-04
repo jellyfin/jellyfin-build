@@ -149,6 +149,8 @@ else
 fi
 for release in ${releases[@]}; do
 
+(
+
 ./build.sh -t docker -p ${release}
 if [[ ${pkgtype} == 'web' ]]; then
     for srelease in ${server_releases[@]}; do
@@ -156,6 +158,10 @@ if [[ ${pkgtype} == 'web' ]]; then
     done
     rm -rf ../bin/${release}
 fi
+
+) &
+wait $( jobs -rp )
+
 set -o errexit
 
 done
