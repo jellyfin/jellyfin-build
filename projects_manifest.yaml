@@ -147,6 +147,11 @@ jellyfin-manifest:
     type: plugin
     url: "github.com/jellyfin/jellyfin-plugin-pushover.git"
     plugin_id: 20
+  
+  - name: infusesync
+    type: plugin
+    url: "github.com/anthonylavado/InfuseSync.git"
+    plugin_id: 21
 
 #    - name: jellyfin-plugin-channels
 #      type: plugin
