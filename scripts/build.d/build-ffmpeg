@@ -37,9 +37,9 @@ fi
 popd
 
 # Build Docker packages
-if [[ ${rebuild_docker} == "y" ]]; then
-    /bin/bash ${builddir}/scripts/build.d/build-ffmpeg-docker ${tagname} build-docker-manifests=yes
-fi
+#if [[ ${rebuild_docker} == "y" ]]; then
+#    /bin/bash ${builddir}/scripts/build.d/build-ffmpeg-docker ${tagname} build-docker-manifests=yes
+#fi
 
 # Build the packages
 ./build ${reponame}
@@ -58,9 +58,9 @@ for artifact in bin/${reponame}/*.{deb,buildinfo}; do
 done
 
 # Rebuild the latest Jellyfin Docker packages to use new ffmpeg Docker packages
-if [[ ${rebuild_docker} == "y" ]]; then
-    /bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker latest build-docker-manifests=no
-fi
+#if [[ ${rebuild_docker} == "y" ]]; then
+#    /bin/bash ${builddir}/scripts/build.d/build-jellyfin-docker latest build-docker-manifests=no
+#fi
 
 # Clean up
 rm -r ${builddir}/bin/jellyfin-ffmpeg
