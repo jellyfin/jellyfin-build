@@ -41,8 +41,24 @@ popd
 #    /bin/bash ${builddir}/scripts/build.d/build-ffmpeg-docker ${tagname} build-docker-manifests=yes
 #fi
 
-# Build the packages
-./build ${reponame}
+pushd projects/${repotype}/${reponame}
+platforms=(
+    $( grep '^  -' build.yaml | awk '{ print $NF }' )
+)
+mkdir -p ${builddir}/logs/ffmpeg/
+set +o errexit
+for platform in ${platforms[@]}; do
+    release="$( awk -F '-' '{ print $1 }' <<<"${platform}" )"
+    arch="$( awk -F '-' '{ print $2 }' <<<"${platform}" )"
+    ./build ${release} ${arch} &>${builddir}/logs/ffmpeg/${platform}_${arch}.log
+    if [[ $? -gt 0 ]]; then
+        echo "FAILED TO BUILD PLATFORM ${platform}"
+    else
+        echo "OK ${platform}"
+    fi
+done
+set -o errexit
+popd
 
 # Copy the output to the repo dir
 rsync -avc bin/${reponame}/ ${repodir}/incoming/${reponame}_${tagname}
@@ -63,7 +79,7 @@ done
 #fi
 
 # Clean up
-rm -r ${builddir}/bin/jellyfin-ffmpeg
+#rm -r ${builddir}/bin/jellyfin-ffmpeg
 popd
 docker image rm -f $( docker images -aq ) || true
 exit 0
