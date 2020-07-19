@@ -1,5 +1,6 @@
 ### [jellyfin](https://github.com/jellyfin/jellyfin) [283]
 
+ * #3596 [@joshuaboniface] Fix typo in CI configuration
  * #3593 [@joshuaboniface] Add NuGet publish step to tag CI
  * #3591 [@crobibero] Remove profile image before setting new
  * #3590 [@crobibero] Fix tvdb actors url
