@@ -4,8 +4,8 @@ builddir="/srv/jellyfin"
 reponame="jellyfin"
 repotype="server"
 
-subprojects=( "Jellyfin.Common" "Jellyfin.Controller" "Jellyfin.Model" "Jellyfin.Naming" )
-subprojdirs=( "MediaBrowser.Common" "MediaBrowser.Controller" "MediaBrowser.Model" "Emby.Naming" )
+subprojects=( "Jellyfin.Common" "Jellyfin.Controller" "Jellyfin.Model" "Jellyfin.Naming" "Jellyfin.Data" )
+subprojdirs=( "MediaBrowser.Common" "MediaBrowser.Controller" "MediaBrowser.Model" "Emby.Naming" "Jellyfin.Data" )
 
 nuget_api="https://api.nuget.org/v3/index.json"
 nuget_api_token="$( sudo cat /srv/jellyfin/secure/nuget_api_token )"
