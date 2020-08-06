@@ -45,8 +45,8 @@ PLUGIN=${1:-${PLUGIN:-.}}
 pushd "${PLUGIN}"
     git reset --hard
     git clean -fd
-    find . -type d -name obj -exec rm -r {} \;
-    find . -type d -name bin -exec rm -r {} \;
+    find . -type d -name obj -exec rm -r {} \; || true
+    find . -type d -name bin -exec rm -r {} \; || true
     git fetch --all --tags
     git checkout -f $(git tag --ignore-case --sort=-version:refname --list 'v*' | head -n 1)
     dotnet clean --configuration=Release
