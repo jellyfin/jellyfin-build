@@ -153,6 +153,11 @@ jellyfin-manifest:
     url: "github.com/anthonylavado/InfuseSync.git"
     plugin_id: 21
 
+  - name: jellyfin-plugin-coverartarchive
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-coverartarchive.git"
+    plugin_id: 22
+
 #    - name: jellyfin-plugin-channels
 #      type: plugin
 #      url: "github.com/jellyfin/jellyfin-plugin-channels.git"
