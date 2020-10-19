@@ -27,9 +27,6 @@ git submodule update --init
 
 popd
 
-# Build the packages
-./build ${reponame}
-
 ${builddir}/build-plugin.sh ${builddir}/projects/${repotype}/${reponame}
 
 # Clean up
