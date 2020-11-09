@@ -71,6 +71,8 @@ ${buildcmd}
 
 rm ${tempfile}
 
+mirrorbits refresh
+
 time_end=$( date +%s )
 time_running=$(( $time_end - $time_start ))
 echo "------"
