@@ -40,7 +40,29 @@ JPRM="jprm"
 DEFAULT_REPO_DIR="/srv/repository/releases/plugin/manifest-stable.json"
 DEFAULT_REPO_URL="https://repo.jellyfin.org/releases/plugin/"
 
-PLUGIN=${1:-${PLUGIN:-.}}
+JELLYFIN_REPO=${JELLYFIN_REPO:-${DEFAULT_REPO_DIR}}
+JELLYFIN_REPO_URL=${JELLYFIN_REPO_URL:-${DEFAULT_REPO_URL}}
+
+PLUGIN="${1}"
+UNSTABLE="${2}"
+
+if [[ -z ${PLUGIN} ]]; then
+    exit 1
+fi
+if [[ -z ${UNSTABLE} ]]; then
+    UNSTABLE=""
+else
+    UNSTABLE="unstable"
+fi
+
+META_VERSION=$(grep -Po '^ *version: * "*\K[^"$]+' "${PLUGIN}/build.yaml")
+
+if [[ -n ${UNSTABLE} ]]; then
+    VERSION_SUFFIX="$( date -u +%Y.%m%d.%H%M )"
+    VERSION=$( echo $META_VERSION | sed 's/\.[0-9]*\.[0-9]*\.[0-9]*$/.'"$VERSION_SUFFIX"'/' )
+else
+    VERSION=${META_VERSION}
+fi
 
 pushd "${PLUGIN}"
     git reset --hard
@@ -55,22 +77,9 @@ popd
 ARTIFACT_DIR=${ARTIFACT_DIR:-"${MY}/artifacts"}
 mkdir -p "${ARTIFACT_DIR}"
 
-JELLYFIN_REPO=${JELLYFIN_REPO:-${DEFAULT_REPO_DIR}}
-JELLYFIN_REPO_URL=${JELLYFIN_REPO_URL:-${DEFAULT_REPO_URL}}
-
 if [[ ! -f ${JELLYFIN_REPO} ]]; then
     jprm repo init ${JELLYFIN_REPO}
 fi
-
-# Each segment of the version is a 16bit number.
-# Max number is 65535.
-VERSION_SUFFIX=${VERSION_SUFFIX:-$(date -u +%Y.%m%d.%H%M)}
-
-meta_version=$(grep -Po '^ *version: * "*\K[^"$]+' "${PLUGIN}/build.yaml")
-#VERSION=${VERSION:-$(echo $meta_version | sed 's/\.[0-9]*\.[0-9]*\.[0-9]*$/.'"$VERSION_SUFFIX"'/')}
-
-# !!! VERSION IS OVERWRITTEN HERE
-VERSION="${meta_version}"
 
 zipfile=$($JPRM --verbosity=debug plugin build "${PLUGIN}" --output="${ARTIFACT_DIR}" --version="${VERSION}") && {
     $JPRM --verbosity=debug repo add --url=${JELLYFIN_REPO_URL} "${JELLYFIN_REPO}" "${zipfile}"
