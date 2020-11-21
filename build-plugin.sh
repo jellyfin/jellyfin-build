@@ -58,7 +58,7 @@ fi
 META_VERSION=$(grep -Po '^ *version: * "*\K[^"$]+' "${PLUGIN}/build.yaml")
 
 if [[ -n ${UNSTABLE} ]]; then
-    VERSION_SUFFIX="$( date -u +%Y.%m%d.%H%M )"
+    VERSION_SUFFIX="$( date -u '+%y%m.%d%H.%M%S' )"
     VERSION=$( echo $META_VERSION | sed 's/\.[0-9]*\.[0-9]*\.[0-9]*$/.'"$VERSION_SUFFIX"'/' )
 else
     VERSION=${META_VERSION}
