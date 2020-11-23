@@ -58,6 +58,8 @@ fi
 META_VERSION=$(grep -Po '^ *version: * "*\K[^"$]+' "${PLUGIN}/build.yaml")
 
 if [[ -n ${UNSTABLE} ]]; then
+    dotnet nuget add source -n jellyfin-unstable https://pkgs.dev.azure.com/jellyfin-project/jellyfin/_packaging/unstable%40Local/nuget/v3/index.json > /dev/null
+    dotnet nuget enable source jellyfin-unstable
     VERSION_SUFFIX="$( date -u '+%y%m.%d%H.%M%S' )"
     VERSION=$( echo $META_VERSION | sed 's/\.[0-9]*\.[0-9]*\.[0-9]*$/.'"$VERSION_SUFFIX"'/' )
 else
@@ -84,4 +86,10 @@ fi
 zipfile=$($JPRM --verbosity=debug plugin build "${PLUGIN}" --output="${ARTIFACT_DIR}" --version="${VERSION}") && {
     $JPRM --verbosity=debug repo add --url=${JELLYFIN_REPO_URL} "${JELLYFIN_REPO}" "${zipfile}"
 }
-exit $?
+retcode=$?
+
+if [[ -n ${UNSTABLE} ]]; then
+    dotnet nuget disable source jellyfin-unstable
+fi
+
+exit $retcode
