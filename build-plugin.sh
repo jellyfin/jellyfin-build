@@ -33,6 +33,7 @@
 #
 
 set -o errexit
+set -o xtrace
 
 MY=$(dirname $(realpath -s "${0}"))
 JPRM="jprm"
@@ -58,7 +59,7 @@ fi
 META_VERSION=$(grep -Po '^ *version: * "*\K[^"$]+' "${PLUGIN}/build.yaml")
 
 if [[ -n ${UNSTABLE} ]]; then
-    dotnet nuget add source -n jellyfin-unstable https://pkgs.dev.azure.com/jellyfin-project/jellyfin/_packaging/unstable%40Local/nuget/v3/index.json > /dev/null
+    dotnet nuget add source -n jellyfin-unstable https://pkgs.dev.azure.com/jellyfin-project/jellyfin/_packaging/unstable%40Local/nuget/v3/index.json > /dev/null || true
     dotnet nuget enable source jellyfin-unstable
     VERSION_SUFFIX="$( date -u '+%y%m.%d%H.%M%S' )"
     VERSION=$( echo $META_VERSION | sed 's/\.[0-9]*\.[0-9]*\.[0-9]*$/.'"$VERSION_SUFFIX"'/' )
