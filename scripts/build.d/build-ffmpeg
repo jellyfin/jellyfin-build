@@ -61,7 +61,8 @@ set -o errexit
 popd
 
 # Copy the output to the repo dir
-rsync -avc bin/${reponame}/ ${repodir}/incoming/${reponame}_${tagname}
+mkdir -p ${repodir}/incoming/${reponame}_${tagname}
+rsync -a ${builddir}/projects/${repotype}/bin/ ${repodir}/incoming/${reponame}_${tagname}/
 
 # Execute import job on repo dir
 sudo ${repodir}/collect-ffmpeg.sh ${repodir}/incoming/${reponame}_${tagname}
@@ -79,7 +80,7 @@ done
 #fi
 
 # Clean up
-#rm -r ${builddir}/bin/jellyfin-ffmpeg
+rm -r ${builddir}/projects/${repotype}/bin/
 popd
 docker image rm -f $( docker images -aq ) || true
 exit 0
