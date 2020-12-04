@@ -73,7 +73,11 @@ pushd "${PLUGIN}"
     find . -type d -name obj -exec rm -r {} \; || true
     find . -type d -name bin -exec rm -r {} \; || true
     git fetch --all --tags
-    git checkout -f $(git tag --ignore-case --sort=-version:refname --list 'v*' | head -n 1)
+    if [[ -n ${UNSTABLE} ]]; then
+        git checkout -f origin/master
+    else
+        git checkout -f $(git tag --ignore-case --sort=-version:refname --list 'v*' | head -n 1)
+    fi
     dotnet clean --configuration=Release
 popd
 
