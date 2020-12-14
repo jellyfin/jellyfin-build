@@ -51,7 +51,7 @@ fi
 backport_pr_list="$( gh pr list --limit 999 --state merged --label "stable backport" | sort -n | awk '{ print $1 }' | tr -d '#' )"
 backport_merges=()
 
-echo "We will backport the following PR#'s:"
+echo "We will backport the following $( wc -w <<<"${backport_pr_list}" ) PRs:"
 echo "$( tr '\n' ' ' <<<"${backport_pr_list}" )"
 echo
 echo -n "Press <Enter> to continue. "
