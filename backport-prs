@@ -50,6 +50,14 @@ fi
 # Get all the stable-backport PRs
 backport_pr_list="$( gh pr list --limit 999 --state merged --label "stable backport" | sort -n | awk '{ print $1 }' | tr -d '#' )"
 backport_merges=()
+
+echo "We will backport the following PR#'s:"
+echo "$( tr '\n' ' ' <<<"${backport_pr_list}" )"
+echo
+echo -n "Press <Enter> to continue. "
+read
+echo
+
 for pr in ${backport_pr_list}; do
     merge_commit="$( hub pr show -f '%sm' ${pr} )"
     backport_merges+=( "${merge_commit}" )
