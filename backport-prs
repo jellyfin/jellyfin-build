@@ -48,7 +48,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 # Get all the stable-backport PRs
-backport_pr_list="$( gh pr list --state merged --label "stable backport" | sort -n | awk '{ print $1 }' | tr -d '#' )"
+backport_pr_list="$( gh pr list --limit 999 --state merged --label "stable backport" | sort -n | awk '{ print $1 }' | tr -d '#' )"
 backport_merges=()
 for pr in ${backport_pr_list}; do
     merge_commit="$( hub pr show -f '%sm' ${pr} )"
