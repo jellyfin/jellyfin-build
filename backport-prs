@@ -75,7 +75,5 @@ for merge in ${backport_merges[@]}; do
     fi
 done
 
-git checkout ${current_branch}
-
 popd
 exit 0
