@@ -76,4 +76,8 @@ for merge in ${backport_merges[@]}; do
 done
 
 popd
+
+echo
+echo "You can now review and push the backports."
+
 exit 0
