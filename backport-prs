@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# Backport JF PRs to release branch
+
+project="${1}"
+release_branch="${2}"
+
+if [[ -z ${project} ]]; then
+    echo "Please select the project you want to work on:"
+    echo -e "  jellyfin"
+    echo -e "  jellyfin-web"
+    echo -n "> "
+    read project
+fi
+if [[ ${project} != 'jellyfin' && ${project} != 'jellyfin-web' ]]; then
+    echo "Invalid project!"
+    exit 1
+fi
+
+
+pushd projects/server/${project}
+
+upstream_project="jellyfin/${project}"
+remote="$( grep -w --color=none "${upstream_project}" <<<"$( git remote -v )" | grep 'fetch' | awk '{ print $1 }' )"
+echo "Project remote: ${remote}"
+
+current_branch="$( git branch | grep '^*' | awk '{ print $NF }' )"
+echo "Current branch: ${current_branch}"
+
+if [[ -z ${release_branch} ]]; then
+    echo "Please select the release branch you want to apply backports to:"
+    git branch | grep --color=none 'release-'
+    echo -n "> "
+    read release_branch
+fi
+if ! grep -qwo "${release_branch}" <<<"$( git branch )"; then
+    echo "Invalid branch!"
+    exit 1
+fi
+
+### REAL MEAT ###
+git checkout master
+git fetch --all
+git rebase ${remote}/master
+if [[ $? -ne 0 ]]; then
+    echo "Failed to rebase current master onto working directory! Stash or revert changes."
+    exit 1
+fi
+
+# Get all the stable-backport PRs
+backport_pr_list="$( gh pr list --state merged --label "stable backport" | sort -n | awk '{ print $1 }' | tr -d '#' )"
+backport_merges=()
+for pr in ${backport_pr_list}; do
+    merge_commit="$( hub pr show -f '%sm' ${pr} )"
+    backport_merges+=( "${merge_commit}" )
+done
+
+git checkout ${release_branch}
+
+for merge in ${backport_merges[@]}; do
+    echo "Parsing ${merge}..."
+    git cherry-pick -sx -m1 ${merge}
+    if [[ $? -ne 0 ]]; then
+        echo "Issue with cherry-pick! Review the changes in another terminal, run 'git add', then press <Enter>."
+        read
+        git cherry-pick --continue
+    fi
+done
+
+git checkout ${current_branch}
+
+popd
+exit 0
