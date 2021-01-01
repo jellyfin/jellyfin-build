@@ -2,41 +2,39 @@
 
 # Backport JF PRs to release branch
 
-project="${1}"
-release_branch="${2}"
+org="jellyfin"
 
-if [[ -z ${project} ]]; then
-    echo "Please select the project you want to work on:"
-    echo -e "  jellyfin"
-    echo -e "  jellyfin-web"
-    echo -n "> "
-    read project
-fi
-if [[ ${project} != 'jellyfin' && ${project} != 'jellyfin-web' ]]; then
-    echo "Invalid project!"
+echo "Please select the repo you want to work on:"
+echo -e "  jellyfin"
+echo -e "  jellyfin-web"
+echo -n "> "
+read repo
+if [[ ${repo} != 'jellyfin' && ${repo} != 'jellyfin-web' ]]; then
+    echo "Invalid repo!"
     exit 1
 fi
 
+pushd projects/server/${repo}
 
-pushd projects/server/${project}
-
-upstream_project="jellyfin/${project}"
-remote="$( grep -w --color=none "${upstream_project}" <<<"$( git remote -v )" | grep 'fetch' | awk '{ print $1 }' )"
+upstream_repo="${org}/${repo}"
+remote="$( grep -w --color=none "${upstream_repo}" <<<"$( git remote -v )" | grep 'fetch' | awk '{ print $1 }' )"
 echo "Project remote: ${remote}"
 
 current_branch="$( git branch | grep '^*' | awk '{ print $NF }' )"
 echo "Current branch: ${current_branch}"
 
-if [[ -z ${release_branch} ]]; then
-    echo "Please select the release branch you want to apply backports to:"
-    git branch | grep --color=none 'release-'
-    echo -n "> "
-    read release_branch
-fi
+echo "Please select the release branch you want to apply backports to:"
+git branch | grep --color=none 'release-'
+echo -n "> "
+read release_branch
 if ! grep -qwo "${release_branch}" <<<"$( git branch )"; then
     echo "Invalid branch!"
     exit 1
 fi
+
+echo "Please enter the release project name (e.g. 'Release 10.7.0')"
+echo -n "> "
+read gh_project
 
 ### REAL MEAT ###
 git checkout master
@@ -48,7 +46,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 # Get all the stable-backport PRs
-backport_pr_list="$( gh pr list --limit 999 --state merged --label "stable backport" | sort -n | awk '{ print $1 }' | tr -d '#' )"
+backport_pr_list="$( gh pr list --limit 999 --state merged --label "stable backport" 2>/dev/null | sort -n | awk '{ print $1 }' | tr -d '#' )"
 backport_merges=()
 
 echo "We will backport the following $( wc -w <<<"${backport_pr_list}" ) PRs:"
@@ -59,7 +57,7 @@ read
 echo
 
 for pr in ${backport_pr_list}; do
-    merge_commit="$( hub pr show -f '%sm' ${pr} )"
+    merge_commit="$( hub pr show -f '%sm' ${pr} 2>/dev/null )"
     backport_merges+=( "${merge_commit}" )
 done
 
@@ -71,13 +69,30 @@ for merge in ${backport_merges[@]}; do
     if [[ $? -ne 0 ]]; then
         echo "Issue with cherry-pick! Review the changes in another terminal, run 'git add', then press <Enter>."
         read
+
         git cherry-pick --continue
     fi
 done
 
-popd
-
 echo
-echo "You can now review and push the backports."
+echo "Make sure everything is OK, then press <Enter> to push changes, remove labels, and update projects."
+read
+
+git push
+
+export gh_project
+gh_project_id="$( gh api -XGET -H'Accept:application/vnd.github.inertia-preview+json' "orgs/${org}/projects" 2>/dev/null | jq '.[] | select(.name==env.gh_project) | .id' )"
+gh_project_completed_column_id="$( gh api -XGET -H'Accept:application/vnd.github.inertia-preview+json' "projects/${gh_project_id}/columns" 2>/dev/null | jq '.[] | select(.name=="Completed PRs") | .id' )"
+gh_project_jellyfinished_column_id="$( gh api -XGET -H'Accept:application/vnd.github.inertia-preview+json' "projects/${gh_project_id}/columns" 2>/dev/null | jq '.[] | select(.name=="Jellyfinished") | .id' )"
+for pr in ${backport_pr_list}; do
+    echo "Moving project card for PR ${pr}..."
+    export pr_url="https://api.github.com/repos/${org}/${repo}/issues/${pr}"
+    gh_project_card_id="$( gh api -XGET -H'Accept:application/vnd.github.inertia-preview+json' "projects/columns/${gh_project_completed_column_id}/cards" 2>/dev/null | jq '.[] | select(.content_url==env.pr_url) | .id' )"
+    gh api -XPOST -H'Accept:application/vnd.github.inertia-preview+json' /projects/columns/cards/${gh_project_card_id}/moves --field column_id=${gh_project_jellyfinished_column_id} --field position=bottom 2>/dev/null
+    echo "Removing backport label for PR ${pr}..."
+    gh api -XDELETE "repos/${org}/${repo}/issues/${pr}/labels/stable%20backport" 2>/dev/null
+done
+
+popd
 
 exit 0
