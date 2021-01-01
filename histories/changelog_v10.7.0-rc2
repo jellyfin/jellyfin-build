@@ -1,0 +1,111 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [67]
+
+ * #4902 [@BaronGreenback] Fixed loopback subnet
+ * #4891 [@Artiume] Split resume function for Audiobooks
+ * #4890 [@nielsvanvelzen] Fix search hint endpoint error
+ * #4884 [@crobibero] Add JsonConverter for Nullable Guids
+ * #4874 [@MrTimscampi] Enable TMDB and OMDB by default
+ * #4872 [@BaronGreenback] Removed workaround code as web is now fixed.
+ * #4863 [@nyanmisaka] Fix boxes in library name backdrop
+ * #4861 [@crobibero] Fix null reference when logging
+ * #4860 [@nyanmisaka] Avoid transcoding to 3ch audio for HLS streaming
+ * #4856 [@nyanmisaka] Fix some profiles for H264 AMF encoder
+ * #4855 [@crobibero] Initialize JsonSerializerOptions statically
+ * #4852 [@ryanpetris] SchedulesDirect no longer refreshes channels properly
+ * #4850 [@BaronGreenback] Null reference fix
+ * #4847 [@crobibero] Fix another key collision in MigrateDisplayPreferencesDatabase
+ * #4842 [@crobibero] Add JsonDateTimeConverter
+ * #4836 [@crobibero] Return dashboardTheme when requesting DisplayPreferences
+ * #4833 [@Ullmie02] Fix similar items endpoint for movies and TV
+ * #4828 [@joshuaboniface] Add static Linux builds for arm and musl
+ * #4824 [@crobibero] Add request parameters to OpenLiveStreamDto
+ * #4821 [@BaronGreenback] Fix: Disable dlna server API responses if dlna is disabled.
+ * #4819 [@crobibero] Set filename when downloading file
+ * #4816 [@nyanmisaka] Fix some video profiles for Android client
+ * #4807 [@nyanmisaka] Correct DLNA audio codecs for PS3 and PS4
+ * #4803 [@ryanpetris] Fix Live TV Recording Scheduling
+ * #4794 [@cvium] Convert from base64 when saving item images
+ * #4792 [@cvium] Add missing seasons during AfterMetadataRefresh
+ * #4789 [@crobibero] Fix get provider id extension
+ * #4781 [@crobibero] Use request body for mapping xml channels
+ * #4774 [@nyanmisaka] Fine tune some tone mapping params
+ * #4773 [@Artiume] Remove opf extension for book types
+ * #4771 [@crobibero] Use typed UserManager GetPreference
+ * #4769 [@crobibero] Check correct fetcher list for provider name
+ * #4767 [@nyanmisaka] Fix SSL certificate cannot be saved
+ * #4762 [@crobibero] Fix openapi file schema
+ * #4761 [@crobibero] Convert CreatePlaylist to use query params instead of body
+ * #4758 [@nyanmisaka] Fix landing screen options
+ * #4757 [@cvium] Remove ImageFetcherPostScanTask
+ * #4756 [@crobibero] Fix inverted condition when authenticating with an ApiKey
+ * #4753 [@crobibero] Update to dotnet 5.0.1
+ * #4751 [@nyanmisaka] Use larger batch size on mpegts to avoid corrupted thumbnails
+ * #4750 [@crobibero] Fix blueberry
+ * #4749 [@crobibero] Serialize GUID without dashes
+ * #4743 [@crobibero] Actually use library options when filtering metadata providers
+ * #4741 [@Bond-009] Add tests for HdHomerunHost.GetLineup
+ * #4738 [@Bond-009] Add tests for HdHomerunHost.GetModelInfo
+ * #4737 [@crobibero] Add missing EnsureSuccessStatusCode
+ * #4736 [@nyanmisaka] Fix custom library order
+ * #4735 [@crobibero] Fix JsonConverter recursion
+ * #4733 [@crobibero] Fix potential null reference in OMDB
+ * #4730 [@crobibero] Don't serialize empty GUID to null
+ * #4729 [@BaronGreenback] Disable DLNA when HTTPS is required
+ * #4726 [@BaronGreenback] Fix - Access Denied on using certificates in windows as user.
+ * #4724 [@BaronGreenback] Fix null reference error in Dlna PlayTo
+ * #4722 [@crobibero] Fix API forbidden response
+ * #4716 [@OancaAndrei] Update authorization policies for SyncPlay
+ * #4715 [@crobibero] Add number to bool json converter
+ * #4713 [@crobibero] Redirect robots.txt if hosting web content
+ * #4711 [@barronpm] Add required attributes to parameters
+ * #4710 [@OancaAndrei] Restore sessions in SyncPlay groups upon reconnection
+ * #4709 [@BaronGreenback] Improved plugin management functionality
+ * #4706 [@cvium] Only apply series image aspect ratio if episode/season has no primary image
+ * #4701 [@crobibero] Don't return plugin versions that target newer Jellyfin version
+ * #4699 [@crobibero] Fix CustomItemDisplayPreferences unique key collision in the migration
+ * #4678 [@BaronGreenback] Change logging level and message in NetworkManager
+ * #4675 [@BaronGreenback] Ability to use DNS names in KnownProxies
+ * #4672 [@cvium] Fix MergeVersions endpoint
+ * #4671 [@cvium] Clear KnownNetworks and KnownProxies if none are configured explicitly
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [38]
+
+ * jellyfin/jellyfin-web#2288 [@joshuaboniface] Bump API client to 1.6.0
+ * jellyfin/jellyfin-web#2286 [@Artiume] Split Audiobook Resume
+ * jellyfin/jellyfin-web#2283 [@thornbill] Allow decimal entry for bitrate on mobile
+ * jellyfin/jellyfin-web#2280 [@Artiume] Add missing Languages to Web
+ * jellyfin/jellyfin-web#2269 [@dkanada] Fix issue with double click fullscreen
+ * jellyfin/jellyfin-web#2265 [@MrTimscampi] Sort items by premiere date on the details page
+ * jellyfin/jellyfin-web#2263 [@MrTimscampi] Fix OSD gradients not letting pointer events through
+ * jellyfin/jellyfin-web#2260 [@thornbill] Fix chevron centering on home section titles
+ * jellyfin/jellyfin-web#2258 [@thornbill] Restore the dashboard theme option
+ * jellyfin/jellyfin-web#2247 [@thornbill] Always allow stopping via the action menu
+ * jellyfin/jellyfin-web#2246 [@thornbill] Fix layout issues on mobile item details
+ * jellyfin/jellyfin-web#2244 [@Artiume] Fix Continue Listening
+ * jellyfin/jellyfin-web#2242 [@thornbill] Replace bash prepare script with node version
+ * jellyfin/jellyfin-web#2240 [@thornbill] Remove duplicate try/catch
+ * jellyfin/jellyfin-web#2239 [@thornbill] Disable browser hack rule for sass files
+ * jellyfin/jellyfin-web#2238 [@thornbill] Fix restart button being shown when unsupported
+ * jellyfin/jellyfin-web#2237 [@thornbill] Fix layout of plugin cards
+ * jellyfin/jellyfin-web#2236 [@thornbill] Fix touch support in epub reader
+ * jellyfin/jellyfin-web#2234 [@thornbill] Use Noto Sans from Fontsource
+ * jellyfin/jellyfin-web#2225 [@BaronGreenback] Plugin manager changes
+ * jellyfin/jellyfin-web#2224 [@Delgan]  Fix possible HLSError (BufferFullError) on Firefox
+ * jellyfin/jellyfin-web#2222 [@nyanmisaka] Modify some tone mapping related strings
+ * jellyfin/jellyfin-web#2220 [@dependabot[bot]] Bump ini from 1.3.5 to 1.3.7
+ * jellyfin/jellyfin-web#2219 [@crobibero] Set Content-Type header when creating a playlist
+ * jellyfin/jellyfin-web#2218 [@thornbill] Fix style issues on dashboard page
+ * jellyfin/jellyfin-web#2217 [@nyanmisaka] Landing screen options clean up
+ * jellyfin/jellyfin-web#2216 [@dmitrylyzo] Fix canPlay for Live TV
+ * jellyfin/jellyfin-web#2215 [@dmitrylyzo] Fix multiplication of event listeners on Live TV pages
+ * jellyfin/jellyfin-web#2214 [@dmitrylyzo] Fix LiveTV group anchors
+ * jellyfin/jellyfin-web#2213 [@thornbill] Fix sonarqube bugs
+ * jellyfin/jellyfin-web#2211 [@thornbill] Fix invalid dlna profile path
+ * jellyfin/jellyfin-web#2210 [@nyanmisaka] Set the step of subtitle offset slider to 0.1
+ * jellyfin/jellyfin-web#2202 [@thornbill] Remove reference to sharing help element
+ * jellyfin/jellyfin-web#2195 [@OancaAndrei] Fix SyncPlay switching to next item in queue
+ * jellyfin/jellyfin-web#2188 [@dmitrylyzo] Fix anchor click action and plugin configuration page URL
+ * jellyfin/jellyfin-web#2186 [@Maxr1998] Fix plugin loader for function definitions in window
+ * jellyfin/jellyfin-web#2183 [@dmitrylyzo] SyncPlay, don't use bad ApiClient
+ * jellyfin/jellyfin-web#2181 [@MrTimscampi] Remove non-existing UserData field from requests
+
