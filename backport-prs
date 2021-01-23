@@ -37,6 +37,8 @@ echo -n "> "
 read gh_project
 
 ### REAL MEAT ###
+
+echo "Synchronizing local repository with remote master"
 git checkout master
 git fetch --all
 git rebase ${remote}/master
@@ -49,7 +51,7 @@ fi
 backport_pr_list="$( gh pr list --limit 999 --state merged --label "stable backport" 2>/dev/null | sort -n | awk '{ print $1 }' | tr -d '#' )"
 backport_merges=()
 
-echo "We will backport the following $( wc -w <<<"${backport_pr_list}" ) PRs:"
+echo "We will backport the following $( wc -w <<<"${backport_pr_list}" ) PRs to the branch ${release_branch}:"
 echo "$( tr '\n' ' ' <<<"${backport_pr_list}" )"
 echo
 echo -n "Press <Enter> to continue. "
