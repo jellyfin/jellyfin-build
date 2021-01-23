@@ -1,0 +1,35 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [20]
+
+ * #5069 [@crobibero] Add ability to mark query parameter as obsolete
+ * #5064 [@BaronGreenback] Plugin bug fixes
+ * #5062 [@crobibero] Fix delete log task
+ * #5031 [@crobibero] Update to dotnet 5.0.2
+ * #5027 [@crobibero] Add parameter to disable sending first episode as next up
+ * #5025 [@BaronGreenback] Fix DLNA PlayTo encoding issue
+ * #4997 [@crobibero] Require elevated auth to upload subtitles
+ * #4980 [@Ullmie02] Add additional chinese languages
+ * #4978 [@BaronGreenback] Fixes for multiple proxies
+ * #4976 [@BaronGreenback] Fixed DLNA Server on RC2
+ * #4970 [@BaronGreenback] Change split character
+ * #4968 [@ianjazz246] Fix library with music directly under artist folder
+ * #4962 [@thornbill] Fix capitalization of Playstate message
+ * #4961 [@crobibero] Fix potential null reference
+ * #4956 [@jceresini] Fix rpm package dependencies
+ * #4936 [@crobibero] Fix inverted SkipWhile
+ * #4920 [@crobibero] Attach correct Blurhash to BaseItemPerson
+ * #4911 [@Ullmie02] Change stable ci nuget build command
+ * #4906 [@Spacetech] Ignore inaccessible files & folders during library scans
+ * #4859 [@Ullmie02] Don't build unstable Nuget packages on tags
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [9]
+
+ * jellyfin/jellyfin-web#2323 [@jarnedemeulemeester] Fix replay icon not getting replaced with play_arrow icon
+ * jellyfin/jellyfin-web#2318 [@thornbill] Fix removed ButtonDelete key
+ * jellyfin/jellyfin-web#2313 [@dmitrylyzo] Fix browser detection: Safari vs Tizen
+ * jellyfin/jellyfin-web#2312 [@jarnedemeulemeester] Use local version of Noto Sans if available
+ * jellyfin/jellyfin-web#2311 [@nielsvanvelzen] Disable multi download option
+ * jellyfin/jellyfin-web#2309 [@ferferga] fix(card): white flashing images
+ * jellyfin/jellyfin-web#2306 [@thornbill] Fix tiny card icons
+ * jellyfin/jellyfin-web#2293 [@thornbill] Fix latest tab links for tv and music
+ * jellyfin/jellyfin-web#2290 [@MrTimscampi] Add Chromecast error messages to the locales
+
