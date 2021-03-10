@@ -167,3 +167,23 @@ jellyfin-manifest:
     type: plugin
     url: "github.com/jellyfin/jellyfin-plugin-tvdb.git"
     plugin_id: 24
+
+  - name: jellyfin-plugin-anidb
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-anidb.git"
+    plugin_id: 25
+
+  - name: jellyfin-plugin-anisearch
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-anisearch.git"
+    plugin_id: 26
+
+  - name: jellyfin-plugin-anilist
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-anilist.git"
+    plugin_id: 27
+
+  - name: jellyfin-plugin-kitsu
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-kitsu.git"
+    plugin_id: 28
