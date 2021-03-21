@@ -1,0 +1,53 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [33]
+
+ * #5312 [@BaronGreenback] Fix for #5280
+ * #5301 [@Bond-009] Fix unchecked input
+ * #5290 [@Bond-009] Fix possible null ref exception
+ * #5278 [@BaronGreenback] Fix for #5168
+ * #5275 [@BaronGreenback] Fixes #5148
+ * #5274 [@BaronGreenback] Fix for #5254
+ * #5270 [@Bond-009] TMDB: Also search with IMDB or TVDB Id if specified
+ * #5263 [@Bond-009] TMDB: Include year in search
+ * #5255 [@cvium] Validate the new username when renaming
+ * #5251 [@crobibero] Fix vpp null reference
+ * #5250 [@barronpm] Fix user renaming logic
+ * #5230 [@orryverducci] Fix double rate deinterlacing for some TS files
+ * #5217 [@dkanada] handle plugin manifests automatically
+ * #5216 [@dkanada] remove deprecated settings from server config
+ * #5208 [@crobibero] Add image file accept to openapi
+ * #5207 [@matthin] Default to English metadata during the setup wizard.
+ * #5200 [@crobibero] Update to dotnet 5.0.3
+ * #5188 [@cvium] Exclude BOM when writing meta.json plugin manifest
+ * #5181 [@BaronGreenback] Fixed IPHost.TryParse
+ * #5171 [@Ullmie02] Fix forgot password pin request
+ * #5154 [@crobibero] Don't skip hidden / system files when enumerating
+ * #5117 [@nyanmisaka] Make FRAME-RATE field culture invariant
+ * #5111 [@Larvitar] Remove season name from metadata result
+ * #5107 [@nyanmisaka] Fix for NVDEC decoder and improvements for VAAPI tonemap
+ * #5106 [@BaronGreenback] Fixes zero byte nfo files.
+ * #5105 [@crobibero] Add null check for ImageTags
+ * #5099 [@crobibero] Fix openapi nullable properties
+ * #5095 [@Bond-009] Fix GetOrderBy and add tests
+ * #5091 [@crobibero] Use ArrayModelBinder for sortBy and sortOrder
+ * #5090 [@Ullmie02] Catch TypeLoadException during plugin load
+ * #5073 [@BaronGreenback] Fix for 4933: Alternative ffmpeg fix
+ * #4935 [@ConfusedPolarBear] Remove used quick connect tokens
+ * #4905 [@BaronGreenback] Null exception fix
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [14]
+
+ * jellyfin/jellyfin-web#2461 [@thornbill] Remove iOS bandwidth limit
+ * jellyfin/jellyfin-web#2443 [@dmitrylyzo] Fix attachment delivery urls
+ * jellyfin/jellyfin-web#2417 [@MrLemur] Change babel.config.js sourceType to unamiguous
+ * jellyfin/jellyfin-web#2378 [@dkanada] update style for active sessions
+ * jellyfin/jellyfin-web#2375 [@ferferga] fix: message appearing after adding repositories
+ * jellyfin/jellyfin-web#2374 [@cvium] reject play access validation promise
+ * jellyfin/jellyfin-web#2358 [@Alcatraz077] Allows Search On Tizen
+ * jellyfin/jellyfin-web#2357 [@thornbill] Fix epub player height
+ * jellyfin/jellyfin-web#2356 [@ferferga] fix: notched devices area not covered
+ * jellyfin/jellyfin-web#2353 [@thornbill] Fix scaling in comics player
+ * jellyfin/jellyfin-web#2350 [@nyanmisaka] Options for enhanced NVDEC and VPP tonemap
+ * jellyfin/jellyfin-web#2344 [@ferferga] refactor: remove unused imports
+ * jellyfin/jellyfin-web#2343 [@dkanada] fix image alignment on plugin cards
+ * jellyfin/jellyfin-web#2327 [@MrChip53] Edit admin dashboard menu for plugins
+
