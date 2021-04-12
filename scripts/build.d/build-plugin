@@ -18,6 +18,7 @@ pushd ${builddir}
 pushd projects/${repotype}/${reponame}
 
 # Check out the tag
+git reset --hard
 git tag -d tags/${tagname} || true
 git fetch --all
 git checkout tags/${tagname}
