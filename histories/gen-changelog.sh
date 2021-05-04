@@ -25,14 +25,17 @@ else
     target="HEAD"
 fi
 
-all_merges="$( git log --grep 'Merge pull request' --oneline --single-worktree --first-parent ${prev_minor}..${target} )"
+all_merges=( $( git log --grep 'Merge pull request' --oneline --single-worktree --first-parent ${prev_minor}..${target} | awk '{ print $1 }' ) )
 
-echo "### [${repo}](https://github.com/jellyfin/${repo}) [$( wc -l <<<"${all_merges}" )]"
+echo "### [${repo}](https://github.com/jellyfin/${repo}) [${#all_merges[@]}]"
 echo
 
-awk '{ print $1 }' <<<"${all_merges}" | while read merge; do
+for merge in ${all_merges[@]}; do
     msg="$( git show --no-patch ${merge} )"
     pr_id="$( grep -Eo '#[0-9]+' <<<"${msg}" | head -1 | tr -d '#' | perl -pe 'chomp' )"
+    if [[ -z ${pr_id} ]]; then
+        pr_id='0000'
+    fi
 
     echo "Processing #${pr_id}..." 1>&2
 
@@ -43,7 +46,6 @@ awk '{ print $1 }' <<<"${all_merges}" | while read merge; do
     fi
 
     hub pr show -f " * ${HEADER}%i [@%au] %t" ${pr_id}
-
 done | sort -rn 
 echo
 
