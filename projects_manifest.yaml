@@ -192,3 +192,8 @@ jellyfin-manifest:
     type: plugin
     url: "github.com/jellyfin/jellyfin-plugin-webhook.git"
     plugin_id: 29
+
+  - name: jellyfin-plugin-opds
+    type: plugin
+    url: "github.com/jellyfin/jellyfin-plugin-opds.git"
+    plugin_id: 30
