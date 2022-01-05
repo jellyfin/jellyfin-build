@@ -45,17 +45,17 @@ esac
 
 flock -x 300
 
-echo "------"
-echo "Building ${repotype} ${reponame} tag ${tagname} on $(date)"
-echo "------"
-
 time_start=$( date +%s )
 
 action="$( echo "${payload}" | jq -r '.action' )"
 if [[ ${action} != "published" ]]; then
-    echo "ERROR: Not building draft or already-published release ${tagname}."
-    exit 1
+    echo "Webhook received for ${reponame} but action is not 'published', ignoring."
+    exit 0
 fi
+
+echo "------"
+echo "Building ${repotype} ${reponame} tag ${tagname} on $(date)"
+echo "------"
 
 ${buildcmd}
 
