@@ -96,5 +96,8 @@ retcode=$?
 if [[ -n ${UNSTABLE} ]]; then
     dotnet nuget disable source jellyfin-unstable
 fi
+if [[ -n ${zipfile} ]]; then
+    rm -f ${zipfile}*
+fi
 
 exit $retcode

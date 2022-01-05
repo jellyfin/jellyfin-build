@@ -57,11 +57,6 @@ if [[ ${action} != "published" ]]; then
     exit 1
 fi
 
-pushd ${builddir}
-git reset --hard
-git pull --rebase
-popd
-
 ${buildcmd}
 
 rm ${tempfile}
@@ -75,4 +70,4 @@ echo "Build complete for ${repotype} ${reponame} tag ${tagname} on $(date) - tot
 echo "------"
 echo
 
-) >/run/shm/release.lock
+) 300>/run/shm/release.lock
