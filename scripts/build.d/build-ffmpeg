@@ -47,12 +47,14 @@ platforms=(
 )
 mkdir -p ${builddir}/logs/ffmpeg/
 set +o errexit
+failed=''
 for platform in ${platforms[@]}; do
     release="$( awk -F '-' '{ print $1 }' <<<"${platform}" )"
     arch="$( awk -F '-' '{ print $2 }' <<<"${platform}" )"
-    ./build ${release} ${arch} &>${builddir}/logs/ffmpeg/${platform}_${arch}.log
+    ./build ${release} ${arch}
     if [[ $? -gt 0 ]]; then
         echo "FAILED TO BUILD PLATFORM ${platform}"
+        exit 1
     else
         echo "OK ${platform}"
     fi
