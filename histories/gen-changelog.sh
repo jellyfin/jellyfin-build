@@ -14,6 +14,7 @@ for repo in jellyfin jellyfin-web; do
 
 pushd ../projects/server/${repo} &>/dev/null
 cur_branch="$( git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /' )"
+git fetch --all &>/dev/null
 git checkout upstream/${branch} &>/dev/null
 
 if git tag | grep -q ${cur_minor}; then
@@ -25,9 +26,12 @@ else
     target="HEAD"
 fi
 
-all_merges=( $( git log --grep 'Merge pull request' --oneline --single-worktree --first-parent ${prev_minor}..${target} | awk '{ print $1 }' ) )
+all_merges=( $( git log --grep 'Merge pull request' --oneline --single-worktree --first-parent ${prev_minor}..${target} | grep -v 'dependabot' | awk '{ print $1 }' ) )
+echo "${all_merges[@]}" 1>&2
 
 echo "### [${repo}](https://github.com/jellyfin/${repo}) [${#all_merges[@]}]"
+echo
+echo "Note: Dependabot automatic PRs are excluded from this list."
 echo
 
 for merge in ${all_merges[@]}; do
