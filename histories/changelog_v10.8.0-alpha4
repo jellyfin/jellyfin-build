@@ -1,0 +1,78 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [52]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * #7109 [@crobibero] Use provided SortOrder
+ * #7107 [@Bond-009] Speed up Jellyfin.Naming.Tests
+ * #7105 [@1337joe] Respect lock state when updating season 0 name
+ * #7095 [@crobibero] Don't apply transformations to .gif 
+ * #7093 [@ilaborde] Remove unnecessary ToList in DlnaManager
+ * #7092 [@crobibero] Reverse all order-by
+ * #7080 [@crobibero] Allow ApiKey query parameter for authentication
+ * #7076 [@crobibero] Add ability to search by -
+ * #7075 [@crobibero] Fix orderby query
+ * #7070 [@thornbill] Fix Fedora build version
+ * #7059 [@crobibero] Fix device ordering
+ * #7058 [@cvium] Use dedicated resolvers for extras
+ * #7055 [@crobibero] Fix analysis issues
+ * #7052 [@crobibero] Add image/jpg to extension lookup
+ * #7049 [@crobibero] Remove warnings
+ * #7048 [@Bond-009] Update StyleCop
+ * #7047 [@Bond-009] Fix build
+ * #7044 [@1337joe] Fix trailers v2
+ * #7042 [@crobibero] Fix build from PR merging
+ * #7035 [@cvium] Force a remux/transcode with external audio files
+ * #7034 [@cvium] Catch HttpRequestException when saving images from local provider
+ * #7029 [@cvium] Use our own Contains extension
+ * #7028 [@cvium] Fix extras folders
+ * #7021 [@cvium] Use == instead of Object.Equals to avoid closure allocation
+ * #7020 [@cvium] Use static lambdas
+ * #7018 [@Bond-009] Remove unreachable branches from JsonConverters
+ * #7017 [@crobibero] Fix query param spelling
+ * #7015 [@Bond-009] Use System.IO.Compression instead of SharpCompress for zips
+ * #7013 [@1337joe] Increment library name number instead of appending
+ * #7012 [@nnnlog] Remove ProtectClock for hardware encoding
+ * #7006 [@crobibero] Fix BaseItemKind Querying
+ * #7005 [@1337joe] Deprecate LibraryOptions.EnableInternetProviders
+ * #7004 [@Bond-009] General cleanup
+ * #7002 [@crobibero] Update to dotnet 6.0.1
+ * #7000 [@brianjmurrell] Fix build on EL7
+ * #6998 [@1337joe] Fix crash on missing server config file
+ * #6994 [@Tedyst] Fixed crash in MigrationRunner by checking migration for file existance
+ * #6980 [@brianjmurrell] Update RPM build for Ci autoversion packages
+ * #6979 [@crobibero] Use BaseItemKind where possible
+ * #6978 [@Bond-009] Add tests for ProbeResultNormalizer.GetFrameRate
+ * #6977 [@Bond-009] Use correct jpeg MIME type
+ * #6976 [@Bond-009] Don't check floats for equality
+ * #6956 [@cvium] Refactor extras and movie multi-part parsing
+ * #6934 [@nyanmisaka] HWA pipeline refactor, AMD/Intel/Nvidia full hardware filtering support, AV1 hwdec
+ * #6920 [@marius-luca-87] Add an option for dropping specific subtitle formats using the DLNA SubtitleProfile
+ * #6912 [@crobibero] Add additional provider id parsing to file name
+ * #6867 [@yresquirol] Related media according to genre
+ * #6819 [@cvium] Try to use Width and Height from ImageInfo to determine aspect ratio
+ * #6222 [@orryverducci] Fix interlace check for H.264 MBAFF coded MP4 files
+ * #5894 [@brianjmurrell] Allow to bind to priveleged ports (i.e. 80/443)
+ * #5836 [@BaronGreenback] Code Clean up: "value assigned is not used in any execution path"
+ * #5009 [@MrTimscampi] Move studios image providers to plugin
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [16]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * jellyfin/jellyfin-web#3270 [@thornbill] Add Apple device icon
+ * jellyfin/jellyfin-web#3269 [@thornbill] Bump jellyfin-apiclient to v1.10.0
+ * jellyfin/jellyfin-web#3250 [@thornbill] Make movies and shows in genre list random
+ * jellyfin/jellyfin-web#3247 [@thornbill] Remove network device option from add library dialog
+ * jellyfin/jellyfin-web#3246 [@thornbill] Fix Fedora and CentOS builds
+ * jellyfin/jellyfin-web#3242 [@crobibero] Add missing strings for TranscodeReason
+ * jellyfin/jellyfin-web#3231 [@emilrowland] fix: Oculus browser is no longer marked as TV
+ * jellyfin/jellyfin-web#3230 [@SenorSmartyPants] Fix #369 : Episode Details Premiere date
+ * jellyfin/jellyfin-web#3226 [@brianjmurrell] Run bump_version in make srpm
+ * jellyfin/jellyfin-web#3209 [@dmitrylyzo] Handle command 'Back'
+ * jellyfin/jellyfin-web#3208 [@nyanmisaka] Remove unused server check for cinema mode option
+ * jellyfin/jellyfin-web#3206 [@nyanmisaka] Update HWA settings to adapt the server code changes
+ * jellyfin/jellyfin-web#3197 [@ianjazz246] Sort genres by SortName instead of Random
+ * jellyfin/jellyfin-web#3196 [@ianjazz246] Don't clear username on failed login
+ * jellyfin/jellyfin-web#3184 [@WWWesten] Add missing font option for subtitles
+ * jellyfin/jellyfin-web#3070 [@grafixeyehero] Convert edit user page to react
+

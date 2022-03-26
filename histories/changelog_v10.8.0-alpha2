@@ -1,0 +1,63 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [42]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * #6841 [@joshuaboniface] Send SourceBranch to collect-server.azure.sh
+ * #6838 [@crobibero] Add nullable dictionary openapi mapping
+ * #6837 [@crobibero] Don't throw exception on unauthenticated requests
+ * #6836 [@cvium] Very light cleanup in applicationhost
+ * #6830 [@crobibero] Fix filtering images without dimensions
+ * #6829 [@crobibero] Remove Obsolete attribute on enum
+ * #6823 [@crobibero] Fix nullability on DisplayPreferencesDto
+ * #6822 [@NickSica] Fix Ombi auth through Jellyfin
+ * #6816 [@Bond-009] Fix some warnings
+ * #6814 [@thornbill] Fix yaml format issue in issue template
+ * #6813 [@Bond-009] Fix some warnings
+ * #6808 [@cvium] Simplify and reduce LOC in ControlHandler
+ * #6806 [@crobibero] Update to full dotnet 6
+ * #6795 [@LinFor] Fix DLNA on older Samsung TVs
+ * #6794 [@Bond-009] Remove some dead code
+ * #6793 [@Bond-009] Add some docs and tests
+ * #6792 [@Bond-009] Fix UnauthorizedAccessException in GetDrives
+ * #6791 [@cvium] Load all types when checking plugin DLLs
+ * #6784 [@nielsvanvelzen] Fix OpenAPI workflow fork cloning
+ * #6783 [@1337joe] Deprecate ImageType.Screenshot and ItemFields.Screenshot
+ * #6782 [@nielsvanvelzen] Fix OpenAPI workflow not working with pull requests from forks
+ * #6781 [@1337joe] Add MaxCastMembers to TMDb Plugin Settings
+ * #6778 [@jvoisin] Add a bit of hardening to the systemd service
+ * #6777 [@ThibaultNocchi] Fix WebVTT region to spec
+ * #6774 [@cvium] Make sure ReadToDescendant was successful before continuing
+ * #6769 [@Bond-009] Remove unused IHasScreenshots interface
+ * #6766 [@Bond-009] Minor improvements
+ * #6765 [@zehnerGIT] Make tags import from TMDB configurable
+ * #6764 [@zehnerGIT] Prevent log spam in StreamBuilder.cs
+ * #6763 [@1337joe] Clean up duplicate TmdbImageProvider code
+ * #6762 [@WWWesten] Add missing localization options
+ * #6761 [@Bond-009] Streamline startup code
+ * #6752 [@1337joe] Add Tests, Fix metadata refresh deletes backgrounds
+ * #6748 [@ptalmeida] Add pt-pt as culture, fix localization typo
+ * #6745 [@crobibero] Use correct id when finding existing dlna profile
+ * #6740 [@zirdum] Corrected Unraid template link
+ * #6507 [@Artiume] Convert Issue Template to YAML
+ * #6379 [@dearjoey] Optimize episode parser
+ * #6308 [@nielsvanvelzen] Add OpenAPI workflow
+ * #6027 [@fredriklindberg] Improve series matching
+ * #5918 [@crobibero] Add endpoint to log client events
+ * #5905 [@BaronGreenback] Fix for Livetv and DLNA when bind interfaces specified.
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [11]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * jellyfin/jellyfin-web#3172 [@joshuaboniface] Send SourceBranch to collect-server.azure.sh
+ * jellyfin/jellyfin-web#3161 [@thornbill] Rollback hls.js to 0.14
+ * jellyfin/jellyfin-web#3160 [@thornbill] Fix list view item encoding
+ * jellyfin/jellyfin-web#3149 [@grafixeyehero] Fix live tv default tab
+ * jellyfin/jellyfin-web#3147 [@dmitrylyzo] Fix re-emptying image
+ * jellyfin/jellyfin-web#3146 [@dmitrylyzo] Fix plugin image URL
+ * jellyfin/jellyfin-web#3143 [@WWWesten] Update Library Settings
+ * jellyfin/jellyfin-web#3142 [@WWWesten] Update en-us.json for subtitlesettings component
+ * jellyfin/jellyfin-web#3128 [@WWWesten] Add missing localization key for Media Info
+ * jellyfin/jellyfin-web#3116 [@jomp16] Save playback speed rate, and restore when playing a video again
+ * jellyfin/jellyfin-web#3026 [@grafixeyehero] convert NewUserPage to react
+

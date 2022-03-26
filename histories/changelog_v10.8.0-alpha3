@@ -1,0 +1,47 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [33]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * #6965 [@bendardenne] Add artist to '/' split whitelist
+ * #6953 [@matthiasdv] Add more hardening to systemd service
+ * #6941 [@holahmeds] Use MimeTypes package to determine MIME type
+ * #6936 [@cvium] Reduce allocations
+ * #6929 [@Bond-009] Use JsonContent where possible
+ * #6927 [@1337joe] Use SSL for tmdb images
+ * #6923 [@cvium] Don't query series twice
+ * #6915 [@1337joe] Subtitle filename parsing fix
+ * #6914 [@marius-luca-87] Take into account the streams dlnaheaders query parameter set by the DidlBuilder NormalizeDlnaMediaUrl function
+ * #6907 [@marius-luca-87] - enable seek function when direct streaming over DLNA
+ * #6902 [@cvium] Migrate network configuration safely
+ * #6900 [@ianjazz246] Use local time for RecordingHelperTests
+ * #6898 [@jonas-resch] Add support for external audio files
+ * #6890 [@crobibero] Fix creating DLNA profiles
+ * #6879 [@crobibero] Remove ClientLog endpoints
+ * #6874 [@1337joe] Expose TMDb image scale options to user
+ * #6873 [@crobibero] Add ability to exclude active sessions from resumable items
+ * #6871 [@cvium] Only force scheme and port when HTTPS is disallowed
+ * #6870 [@cvium] Refactor omdb providers and fix issues
+ * #6869 [@cvium] Small optimization to child count field
+ * #6862 [@1337joe] Query media streams by type instead of filtering
+ * #6860 [@cvium] Read past empty elements
+ * #6857 [@Bond-009] Fix some warnings
+ * #6856 [@cvium] Remove unused dependencies
+ * #6854 [@1337joe] Add setter for CustomPrefs
+ * #6852 [@Bond-009] Fix some warnings
+ * #6851 [@cvium] Remove ILibraryManager as a dependency in resolvers etc.
+ * #6850 [@PetrusZ] Add Collection Validator, create collection based on nfo
+ * #6849 [@1337joe] Actually check server disabled metadata providers
+ * #6848 [@marius-luca-87] Ensure the proper StartTimeTicks variable is forwarded to the AddDlnaHeaders function
+ * #6845 [@marius-luca-87] Flush the XmlWriter before calling the StringBuilder ToString() method
+ * #6831 [@1337joe] Image provider cleanup
+ * #6818 [@Bond-009] Replace PBKDF2-SHA1 with PBKDF2-SHA512
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [4]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * jellyfin/jellyfin-web#3181 [@PetrusZ] Add AutoCollection option to libraryoptionseditor
+ * jellyfin/jellyfin-web#3180 [@brianjmurrell] Remove chown -R root:root from specfile
+ * jellyfin/jellyfin-web#3171 [@WWWesten] Update displaySettings.template.html
+ * jellyfin/jellyfin-web#3092 [@thornbill] Use single color for loading indicator
+
