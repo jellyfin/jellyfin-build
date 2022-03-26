@@ -99,7 +99,7 @@ echo
 echo "Make sure everything is OK, then press <Enter> to push changes, remove labels, and update projects."
 read
 
-git push
+git push -u ${remote}
 
 export gh_project
 gh_project_id="$( gh api -XGET -H'Accept:application/vnd.github.inertia-preview+json' "orgs/${org}/projects" 2>/dev/null | jq '.[] | select(.name==env.gh_project) | .id' )"
