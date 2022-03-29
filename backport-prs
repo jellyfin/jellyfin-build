@@ -36,10 +36,6 @@ echo "Please enter the release project name (e.g. 'Release 10.7.0')"
 echo -n "> "
 read gh_project
 
-echo "Please enter your full name (for the cherry-pick ref)"
-echo -n "> "
-read name
-
 ### REAL MEAT ###
 
 echo "Synchronizing local repository with remote release branch"
@@ -81,11 +77,6 @@ for pr in ${backport_pr_list}; do
 done
 
 git checkout master
-
-export GIT_AUTHOR_NAME="${name}"
-export GIT_AUTHOR_EMAIL="team@jellyfin.org"
-export GIT_COMMITTER_NAME="${name}"
-export GIT_COMMITTER_EMAIL="team@jellyfin.org"
 
 for merge in ${backport_merges[@]}; do
     echo "Parsing ${merge}..."
