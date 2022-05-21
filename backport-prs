@@ -16,6 +16,12 @@ fi
 
 pushd projects/server/${repo}
 
+# Ensure we're in group mode and fix perms
+sudo -u build git config core.sharedRepository group
+sudo chgrp -R build .
+sudo chmod -R g+rwX .
+sudo find . -type d -exec chmod g+s '{}' +
+
 upstream_repo="${org}/${repo}"
 remote="$( grep -w --color=none "${upstream_repo}" <<<"$( git remote -v )" | grep 'fetch' | awk '{ print $1 }' )"
 echo "Project remote: ${remote}"
