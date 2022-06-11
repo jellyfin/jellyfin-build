@@ -1,0 +1,995 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [662]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * #7868 [@cvium] chore: disable DLNA by default
+ * #7867 [@crobibero] Don't add `MigrationOptions` to the api spec
+ * #7854 [@cvium] chore: enable on demand keyframe extraction for mkv
+ * #7852 [@nyanmisaka] Fix the PNG image decoding issue in Skia
+ * #7842 [@crobibero] Backport all dependency updates
+ * #7828 [@nyanmisaka] Fix Dolby Vision profile 5 and 8 to SDR HW tone-mapping
+ * #7810 [@Bond-009] IAsyncDisposable is one big pitfall
+ * #7802 [@nyanmisaka] Exclude streams with mismatched types in external files
+ * #7792 [@crobibero] Conditionally include platform specific Skia assets
+ * #7785 [@dmitrylyzo] Clear TranscodingInfo if play method changed
+ * #7784 [@crobibero] Enable SupportsTranscoding if device has transcoding profiles
+ * #7781 [@crobibero] Fix closing livetv stream on session end
+ * #7780 [@1337joe] Support searching with tv program filters
+ * #7775 [@crobibero] Manually describe Version for openapi
+ * #7774 [@crobibero] Populate authentication info with server details if using API key
+ * #7766 [@crobibero] Update to dotnet 6.0.5
+ * #7749 [@cvium] fix: disable "Automatically add to collection" by default
+ * #7741 [@LewkyB] Fix to allow for episode numbering over 999 in certain scenarios
+ * #7736 [@nyanmisaka] Fix the mismatched resolution in sw PGS burn-in
+ * #7724 [@jtcasper] Don't let permission denied kill library scans
+ * #7723 [@crobibero] Update TMDbLib to 1.9.2
+ * #7718 [@nyanmisaka] Fix the disordered color in Dolby Vision remuxing on Safari
+ * #7716 [@Shadowghost] Respect limited opus sampling rates when building trancoding command
+ * #7712 [@nyanmisaka] Fix the issue that HEVC transcoding can't be disabled
+ * #7699 [@Shadowghost] Fix streambuilder reasons for direct playback checks
+ * #7693 [@crobibero] Don't migrate auth token if user doesn't exist
+ * #7654 [@Shadowghost] Prefer MetadataProvider enum as provider id key over arbitrary strings
+ * #7648 [@nyanmisaka] Add libssl3 as an alternative dependency for Ubuntu 22.04 LTS
+ * #7643 [@nyanmisaka] Fix H264 level on safari fmp4
+ * #7638 [@1337joe] Fix quick connect tests
+ * #7634 [@neilsb] Correct LocalTrailerCount in API
+ * #7625 [@crobibero] Only delete xmltv cache file if exist
+ * #7624 [@nielsvanvelzen] Enable Quick Connect by default
+ * #7605 [@crobibero] Add missing properties to PlaybackStart, PlaybackStop
+ * #7604 [@Jellifi007] Fixes diacritics regression #7484 #7450 #7560
+ * #7592 [@1337joe] Fix xmltv caching part 2
+ * #7591 [@1337joe] Update Jellyfin.XmlTv to 10.8.0
+ * #7590 [@crobibero] Update to dotnet 6.0.4
+ * #7580 [@nyanmisaka] Fix the wrong external audio map index if text subtitle exists
+ * #7578 [@Shadowghost] Remove mp2 from video file extensions
+ * #7569 [@crobibero] Require elevation to save list of plugin repositories
+ * #7567 [@cvium] Fix xmltv caching
+ * #7561 [@DMouse10462] Fix NamedConfiguration API Generation
+ * #7557 [@nyanmisaka] Fix PGS burn-in on certain iGPU such as Iris Plus 655
+ * #7551 [@cvium] fix: remove (incorrect) negation of bool expression
+ * #7549 [@cvium] fix: use IPAddress.IsLoopback instead of custom
+ * #7548 [@1337joe] Fix album index sorts
+ * #7544 [@jaantaponen] Fix DVR error: too long filename
+ * #7543 [@daullmer] Write UTC Date to .nfo files
+ ** #7542 [@1337joe] Make recording stop at scheduled stop time
+ * #7537 [@dmitrylyzo] Fix StreamBuilder
+ * #7529 [@Shadowghost] Properly handle stream addition and removal for strm use cases
+ * #7527 [@Shadowghost] Remove video file from file list before processing external files
+ * #7525 [@1337joe] Fix media path saving to wrong library when name duplicated
+ * #7523 [@crobibero] Allow media without streams to playback 
+ * #7521 [@1337joe] Add fallback for image downloads with bad reported MediaType
+ * #7519 [@nielsvanvelzen] Add new priority level to ResolverPriority for plugins
+ * #7512 [@crobibero] Catch checksum mismatch when updating plugins
+ * #7507 [@crobibero] Fix StudioImageProvider
+ * #7506 [@crobibero] Safely get/set User permission/preference
+ * #7496 [@crobibero] Fix TranscodeReasons property name
+ * #7495 [@crobibero] Fix chmod entrypoint
+ * #7493 [@Shadowghost] Fix DLNA DirectPlay
+ * #7492 [@crobibero] Don't allow unknown sort-by
+ * #7488 [@crobibero] Fix OpenAPI spec generation for TranscodeReason
+ * #7487 [@InvoxiPlayGames] Change DLNA description requests to obey profiles, format UUID correctly
+ * #7483 [@nyanmisaka] Improve fps for cuda tonemap in sw decoding
+ * #7477 [@crobibero] Use requested bitrate for direct play calculations
+ * #7476 [@crobibero] tmdb - update available series end status
+ * #7474 [@nielsvanvelzen] Add missing authorization attributes
+ * #7468 [@jakobkukla] Fix supportsTranscoding not reflecting user permissions sometimes
+ * #7466 [@nyanmisaka] Prefer Cuvid to Nvdec by default for better performance
+ * #7449 [@crobibero] Revert using Math.Clamp
+ * #7448 [@nielsvanvelzen] Restrict item refreshing to administrators
+ * #7445 [@Bond-009] BaseItem: remove unused functions
+ * #7444 [@Bond-009] Add tests for BaseUrl normalization
+ * #7443 [@whiteowl3] allow strm probe to succeed
+ * #7441 [@1337joe] Add label for external audio/sub tracks
+ * #7440 [@1337joe] Match external sub/audio stream adding logic
+ * #7437 [@Nalsai] Add extracting attachments from external subs
+ * #7435 [@nyanmisaka] Fix the fMP4 HLS audio sync issue on Safari
+ * #7434 [@crobibero] Update to dotnet 6.0.3
+ * #7432 [@Bond-009] SocketFactory: Remove redundant code
+ * #7431 [@Bond-009] UdpServerEntryPoint: Fix typo
+ * #7425 [@Bond-009] Remove none existing Australian rating
+ * #7411 [@crobibero] Revert "chore: Add a read only connection for routes like Shows/NextUp"
+ * #7410 [@MinecraftPlaye] Let the UI show which DTS profile is in use
+ * #7406 [@crobibero] Fix build
+ * #7405 [@StollD] Readd .strm as an allowed extension for videos
+ * #7404 [@nyanmisaka] Remove the deprecated OMX and MMAL HWA
+ * #7403 [@1337joe] Fix external file check for shorter names
+ * #7397 [@nyanmisaka] Set the name of intel vaapi driver explicitly
+ * #7396 [@thornbill] Update artwork repository urls
+ * #7394 [@1337joe] Strip out external file fuzzy name matching
+ * #7388 [@GermanCoding] Hide ISO 639-2 special codes in display titles
+ * #7387 [@nyanmisaka] Lowering the VRAM usage on NVDEC decoder
+ * #7386 [@nyanmisaka] Fix the path to the extracted fonts on Windows
+ * #7383 [@thornbill] Include played and unplayed results in the same next up request
+ * #7382 [@crobibero] Allow KeyframeExtractor to be localized
+ * #7381 [@crobibero] Fix migration of DateTime to EF
+ * #7380 [@crobibero] Add JsonConstructor to GeneralCommand
+ * #7378 [@thornbill] Add resume book as default home section
+ * #7376 [@GermanCoding] Remove superfluous "SoundHandler" from audio stream names
+ * #7375 [@nyanmisaka] Update presets for NVENC encoder
+ * #7374 [@nyanmisaka] Update intel compute runtime to 22.08.22549
+ * #7370 [@crobibero] Only add internal files if the internal metadata path exists
+ * #7369 [@Bond-009] Remove obsolete code for premium plugins
+ * #7366 [@1337joe] Add post filtering for theme song and video
+ * #7363 [@1337joe] Parse the unused chapter id field from ffmpeg output as a long
+ * #7349 [@1337joe] Merge MediaInfoResolver subclass tests
+ * #7346 [@Bond-009] Optimize Guid comparisons
+ * #7338 [@mueslimak3r] fix HLS transcoding on android tv -- dont use -noaccurate_seek for hls transcode
+ * #7333 [@eyezak] [Bugfix] Provile bitStreamArgs for HLS fMP4
+ * #7332 [@eyezak] [Bugfix] Report transcoding complete
+ * #7326 [@Bond-009] Remove some dead code
+ * #7325 [@eyezak] Rework StreamBuilder to avoid unnecessary transcoding
+ * #7324 [@Maxr1998] Implement Comparers for (Parent)IndexNumber
+ * #7322 [@Bond-009] Clean up SqliteItemRepository
+ * #7321 [@Bond-009] Fix some warnings
+ * #7300 [@cvium] Change KeepReading to StopReading and use bytes read as an indicator
+ * #7291 [@aolszowka] Fix h264_v4l2m2m acceleration in Raspberry Pi 4
+ * #7290 [@crobibero] Update to dotnet 6.0.2
+ * #7286 [@daullmer] NFO: fix thumb tags without aspect
+ * #7275 [@Nalsai] Add extracting attachments for ffmpeg to burn subtitles with correct fonts
+ * #7257 [@Shadowghost] Add some more artists to artist split whitelist
+ * #7255 [@Shadowghost] Refactor and extend external subtitle and audio handling
+ * #7245 [@h1dden-da3m0n] add stale issue check workflow
+ * #7241 [@Bond-009] Flush to disk async where possible
+ * #7240 [@jaysonsantos] chore: Add a read only connection for routes like Shows/NextUp
+ * #7239 [@nielsvanvelzen] Use Guid for BaseItemDto parent ids
+ * #7238 [@1337joe] Make ffprobe metadata merge consistent with MetadataService.MergeData
+ * #7236 [@Bond-009] Always create TaskCompletionSource<T> with TaskCreationOptions.RunContinuationsAsynchronously
+ * #7235 [@Bond-009] Ban the usage of Task.Result
+ * #7234 [@nielsvanvelzen] Use Guid for BaseItemPerson.Id
+ * #7233 [@Bond-009] Fix some warnings
+ * #7225 [@crobibero] Properly populate QueryResult
+ * #7221 [@SenorSmartyPants] UserView Thumbnail fixes
+ * #7219 [@1337joe] Add TMDb logo handling
+ * #7217 [@SenorSmartyPants] Generate cover image for music video type libraries.
+ * #7203 [@1337joe] Fix resolving local alternates
+ * #7202 [@knackebrot] Add option to change unix socket permissions
+ * #7198 [@dmitrylyzo] Add TranscodingProfile conditions
+ * #7197 [@dmitrylyzo] Fix maximum video resolution for dynamic HLS controller
+ * #7186 [@1337joe] Order extra rules so directory takes precedence over naming
+ * #7185 [@dmitrylyzo] Fix SA1642 warning
+ * #7176 [@dmitrylyzo] Fix trailers duplication
+ * #7175 [@dmitrylyzo] Ignore JSON serialization for special features of movie.
+ * #7172 [@SenorSmartyPants] Config option to import season name from TMDB
+ * #7141 [@nyanmisaka] Seek the external audio stream
+ * #7138 [@nyanmisaka] Fix the wrong logic in HEVC VP9 10bit hwdec boxes
+ * #7137 [@SenorSmartyPants] Remove special HTTP HEAD processing
+ * #7136 [@1337joe] Fix stuck show library scans
+ * #7134 [@adavier] Implement Trakt Episode Links
+ * #7132 [@Bond-009] Update README.md
+ * #7131 [@Bond-009] Fix warning SA1414 and CA1849
+ * #7129 [@crobibero] VideoStream null handle
+ * #7121 [@Bond-009] Error on SA1316
+ * #7118 [@crobibero] Add null check for audio stream
+ * #7115 [@joshuaboniface] Remove bump-version junk
+ * #7112 [@stanionascu] Fix #7100 - when opening invalid UDF images
+ * #7109 [@crobibero] Use provided SortOrder
+ * #7107 [@Bond-009] Speed up Jellyfin.Naming.Tests
+ * #7105 [@1337joe] Respect lock state when updating season 0 name
+ * #7101 [@Bond-009] Remove incorrect mime type image/jpg
+ * #7095 [@crobibero] Don't apply transformations to .gif 
+ * #7093 [@ilaborde] Remove unnecessary ToList in DlnaManager
+ * #7092 [@crobibero] Reverse all order-by
+ * #7080 [@crobibero] Allow ApiKey query parameter for authentication
+ * #7078 [@1337joe] Improve metadata merge for identify
+ * #7076 [@crobibero] Add ability to search by -
+ * #7075 [@crobibero] Fix orderby query
+ * #7070 [@thornbill] Fix Fedora build version
+ * #7059 [@crobibero] Fix device ordering
+ * #7058 [@cvium] Use dedicated resolvers for extras
+ * #7055 [@crobibero] Fix analysis issues
+ * #7054 [@matthew-jones-uk] Add DisableEmbeddedSubtitles setting
+ * #7052 [@crobibero] Add image/jpg to extension lookup
+ * #7049 [@crobibero] Remove warnings
+ * #7048 [@Bond-009] Update StyleCop
+ * #7047 [@Bond-009] Fix build
+ * #7044 [@1337joe] Fix trailers v2
+ * #7042 [@crobibero] Fix build from PR merging
+ * #7038 [@Bond-009] Fix option to disable server discovery
+ * #7035 [@cvium] Force a remux/transcode with external audio files
+ * #7034 [@cvium] Catch HttpRequestException when saving images from local provider
+ * #7029 [@cvium] Use our own Contains extension
+ * #7028 [@cvium] Fix extras folders
+ * #7021 [@cvium] Use == instead of Object.Equals to avoid closure allocation
+ * #7020 [@cvium] Use static lambdas
+ * #7018 [@Bond-009] Remove unreachable branches from JsonConverters
+ * #7017 [@crobibero] Fix query param spelling
+ * #7015 [@Bond-009] Use System.IO.Compression instead of SharpCompress for zips
+ * #7013 [@1337joe] Increment library name number instead of appending
+ * #7012 [@nnnlog] Remove ProtectClock for hardware encoding
+ * #7006 [@crobibero] Fix BaseItemKind Querying
+ * #7005 [@1337joe] Deprecate LibraryOptions.EnableInternetProviders
+ * #7004 [@Bond-009] General cleanup
+ * #7002 [@crobibero] Update to dotnet 6.0.1
+ * #7000 [@brianjmurrell] Fix build on EL7
+ * #6998 [@1337joe] Fix crash on missing server config file
+ * #6994 [@Tedyst] Fixed crash in MigrationRunner by checking migration for file existance
+ * #6985 [@joshuaboniface] Improve and unharden systemd units for LXC and Fedora
+ * #6980 [@brianjmurrell] Update RPM build for Ci autoversion packages
+ * #6979 [@crobibero] Use BaseItemKind where possible
+ * #6978 [@Bond-009] Add tests for ProbeResultNormalizer.GetFrameRate
+ * #6977 [@Bond-009] Use correct jpeg MIME type
+ * #6976 [@Bond-009] Don't check floats for equality
+ * #6965 [@bendardenne] Add artist to '/' split whitelist
+ * #6956 [@cvium] Refactor extras and movie multi-part parsing
+ * #6953 [@matthiasdv] Add more hardening to systemd service
+ * #6941 [@holahmeds] Use MimeTypes package to determine MIME type
+ * #6936 [@cvium] Reduce allocations
+ * #6934 [@nyanmisaka] HWA pipeline refactor, AMD/Intel/Nvidia full hardware filtering support, AV1 hwdec
+ * #6929 [@Bond-009] Use JsonContent where possible
+ * #6927 [@1337joe] Use SSL for tmdb images
+ * #6923 [@cvium] Don't query series twice
+ * #6920 [@marius-luca-87] Add an option for dropping specific subtitle formats using the DLNA SubtitleProfile
+ * #6915 [@1337joe] Subtitle filename parsing fix
+ * #6914 [@marius-luca-87] Take into account the streams dlnaheaders query parameter set by the DidlBuilder NormalizeDlnaMediaUrl function
+ * #6912 [@crobibero] Add additional provider id parsing to file name
+ * #6907 [@marius-luca-87] - enable seek function when direct streaming over DLNA
+ * #6902 [@cvium] Migrate network configuration safely
+ * #6900 [@ianjazz246] Use local time for RecordingHelperTests
+ * #6898 [@jonas-resch] Add support for external audio files
+ * #6890 [@crobibero] Fix creating DLNA profiles
+ * #6879 [@crobibero] Remove ClientLog endpoints
+ * #6874 [@1337joe] Expose TMDb image scale options to user
+ * #6873 [@crobibero] Add ability to exclude active sessions from resumable items
+ * #6871 [@cvium] Only force scheme and port when HTTPS is disallowed
+ * #6870 [@cvium] Refactor omdb providers and fix issues
+ * #6869 [@cvium] Small optimization to child count field
+ * #6867 [@yresquirol] Related media according to genre
+ * #6866 [@Bond-009] Remove task cancellation hacks
+ * #6862 [@1337joe] Query media streams by type instead of filtering
+ * #6860 [@cvium] Read past empty elements
+ * #6857 [@Bond-009] Fix some warnings
+ * #6856 [@cvium] Remove unused dependencies
+ * #6854 [@1337joe] Add setter for CustomPrefs
+ * #6852 [@Bond-009] Fix some warnings
+ * #6851 [@cvium] Remove ILibraryManager as a dependency in resolvers etc.
+ * #6850 [@PetrusZ] Add Collection Validator, create collection based on nfo
+ * #6849 [@1337joe] Actually check server disabled metadata providers
+ * #6848 [@marius-luca-87] Ensure the proper StartTimeTicks variable is forwarded to the AddDlnaHeaders function
+ * #6845 [@marius-luca-87] Flush the XmlWriter before calling the StringBuilder ToString() method
+ * #6841 [@joshuaboniface] Send SourceBranch to collect-server.azure.sh
+ * #6838 [@crobibero] Add nullable dictionary openapi mapping
+ * #6837 [@crobibero] Don't throw exception on unauthenticated requests
+ * #6836 [@cvium] Very light cleanup in applicationhost
+ * #6831 [@1337joe] Image provider cleanup
+ * #6830 [@crobibero] Fix filtering images without dimensions
+ * #6829 [@crobibero] Remove Obsolete attribute on enum
+ * #6823 [@crobibero] Fix nullability on DisplayPreferencesDto
+ * #6822 [@NickSica] Fix Ombi auth through Jellyfin
+ * #6819 [@cvium] Try to use Width and Height from ImageInfo to determine aspect ratio
+ * #6818 [@Bond-009] Replace PBKDF2-SHA1 with PBKDF2-SHA512
+ * #6816 [@Bond-009] Fix some warnings
+ * #6814 [@thornbill] Fix yaml format issue in issue template
+ * #6813 [@Bond-009] Fix some warnings
+ * #6808 [@cvium] Simplify and reduce LOC in ControlHandler
+ * #6806 [@crobibero] Update to full dotnet 6
+ * #6795 [@LinFor] Fix DLNA on older Samsung TVs
+ * #6794 [@Bond-009] Remove some dead code
+ * #6793 [@Bond-009] Add some docs and tests
+ * #6792 [@Bond-009] Fix UnauthorizedAccessException in GetDrives
+ * #6791 [@cvium] Load all types when checking plugin DLLs
+ * #6784 [@nielsvanvelzen] Fix OpenAPI workflow fork cloning
+ * #6783 [@1337joe] Deprecate ImageType.Screenshot and ItemFields.Screenshot
+ * #6782 [@nielsvanvelzen] Fix OpenAPI workflow not working with pull requests from forks
+ * #6781 [@1337joe] Add MaxCastMembers to TMDb Plugin Settings
+ * #6778 [@jvoisin] Add a bit of hardening to the systemd service
+ * #6777 [@ThibaultNocchi] Fix WebVTT region to spec
+ * #6774 [@cvium] Make sure ReadToDescendant was successful before continuing
+ * #6769 [@Bond-009] Remove unused IHasScreenshots interface
+ * #6766 [@Bond-009] Minor improvements
+ * #6765 [@zehnerGIT] Make tags import from TMDB configurable
+ * #6764 [@zehnerGIT] Prevent log spam in StreamBuilder.cs
+ * #6763 [@1337joe] Clean up duplicate TmdbImageProvider code
+ * #6762 [@WWWesten] Add missing localization options
+ * #6761 [@Bond-009] Streamline startup code
+ * #6752 [@1337joe] Add Tests, Fix metadata refresh deletes backgrounds
+ * #6748 [@ptalmeida] Add pt-pt as culture, fix localization typo
+ * #6745 [@crobibero] Use correct id when finding existing dlna profile
+ * #6740 [@zirdum] Corrected Unraid template link
+ * #6737 [@Bond-009] Enable nullable for MediaBrowser.Providers
+ * #6735 [@Bond-009] Enable nullable for more files
+ * #6718 [@MBR-0001] Add IsAutomated property to SubtitleSearchRequest
+ * #6695 [@crobibero] Update to dotnet6.rc2
+ * #6689 [@1337joe] Expand video attached image extraction to support multiple images/types
+ * #6681 [@dmitrylyzo] Add more sorting to Latest
+ * #6680 [@MarcelCoding] Add Docker Healthcheck
+ * #6678 [@Bond-009] Use new Random.Shared instead of creating new instances
+ * #6677 [@Bond-009] Remove duplicate Fisher–Yates shuffle impl
+ * #6676 [@Bond-009] Use static crypto rng
+ * #6673 [@cvium] Return the path to the pinfile in forgot password
+ * #6670 [@lyarenei] Update artist split whitelist
+ * #6667 [@Bond-009] Fix the last few warnings
+ * #6666 [@Bond-009] Fix issue #6123
+ * #6665 [@Bond-009] Improve test coverage for QuickConnectManager
+ * #6664 [@cvium] Queue refresh after subtitle upload and minor fixes
+ * #6663 [@crobibero] Reference dotnet6-rc1 packages
+ * #6656 [@daullmer] Change .vscode/launch.json to use .NET 6
+ * #6651 [@KonH] Fix part of common warnings
+ * #6649 [@barronpm] Fix Warnings in Emby.Server.Implementations (Part 2)
+ * #6648 [@barronpm] Fix warnings in Emby.Server.Implementations (Part 1)
+ * #6646 [@1337joe] Add test data and unit test for mp4 metadata probe
+ * #6644 [@Bond-009] Enable nullable for ItemDataProvider
+ * #6641 [@Bond-009] Use ConvertFrom with invariant culture instead of current culture
+ * #6639 [@1337joe] Add mp4 track title fallback
+ * #6631 [@GodTamIt] Update README for .NET version
+ * #6629 [@crobibero] Disable DOTNET_SYSTEM_GLOBALIZATION_INVARIANT in docker images
+ * #6627 [@Bond-009] Add regression test for #6560
+ * #6618 [@crobibero] Create output directory when extracting archive files
+ * #6616 [@crobibero] Remove all instances of en-US culture
+ * #6614 [@Bond-009] Fix some warnings
+ * #6613 [@Bond-009] Use RandomAccess instead of a FileStream where it makes sense
+ * #6612 [@Bond-009] Remove sync FileStream hack
+ * #6611 [@Bond-009] Fix user DB migration
+ * #6600 [@cvium] Add first draft of keyframe extraction for Matroska
+ * #6597 [@Bond-009] Add regression test for  #5323
+ * #6596 [@crobibero] Add Jellyfin.Extensions to nuget package publish
+ * #6593 [@Bond-009] ItemImageProvider: improve HTTP error handling
+ * #6592 [@Bond-009] SsdpHttpClient: Ensure successful status code before reading response
+ * #6590 [@Bond-009] Target net6.0
+ * #6589 [@Bond-009] Validate ffmpeg path
+ * #6588 [@Bond-009] Fix issue #6587
+ * #6584 [@Bond-009] Specify DateTimeStyles when possible
+ * #6582 [@Bond-009] Allow shutdown while starting WebHost
+ * #6580 [@Artiume] Update Docker Image
+ * #6571 [@Dixin] Fix extra folder name and type mapping.
+ * #6569 [@crobibero] Update to dotnet 5.0.10
+ * #6567 [@Bond-009] Reduce allocations
+ * #6564 [@Bond-009] Fix Azure CI
+ * #6563 [@Bond-009] Fix SubtitleEncoder and add regression tests
+ * #6558 [@dmitrylyzo] Respond on request when ffmpeg fails
+ * #6556 [@nielsvanvelzen] Use standard Authorization header in OpenAPI specification
+ * #6553 [@ankenyr] Comparing PremiereDate when episode comparison would otherwise be equal.
+ * #6551 [@MrChip53] Add ListingProviderInfo Id to XMLTV cache file name
+ * #6546 [@ianjazz246] Use TheoryData instead of IEnumerable
+ * #6544 [@cvium] Don't set ffmpeg path from null to its Display value
+ * #6541 [@cvium] Read file length for symlinks,
+ * #6538 [@cvium] Kill ProgressiveFileCopier and seek to end for ongoing livetv
+ * #6535 [@Bond-009] Add tests for DlnaController
+ * #6534 [@Bond-009] Fix some warnings
+ * #6531 [@GodTamIt] Fix images "not loading" after manual identification
+ * #6528 [@oledfish] Add "Production" and "TV" episode orders to the metadata editor.
+ * #6526 [@Bond-009] Fix log message
+ * #6523 [@cvium] Fix disposed exception when ffmpeg exits early in GetLiveHlsStream
+ * #6522 [@ferferga] EFCore improvements and cleanups
+ * #6521 [@ferferga] Fix Dockerfile typos
+ * #6515 [@Maeur1] Update Intel Compute Runtime Resources
+ * #6507 [@Artiume] Convert Issue Template to YAML
+ * #6506 [@Artiume] Request FFmpeg version
+ * #6502 [@crobibero] Add Jellyfin.Extensions to package publish
+ * #6501 [@crobibero] Enable nullable for SchedulesDirect // Add Tests for SchedulesDirect
+ * #6499 [@Bond-009] Fix some warnings
+ * #6498 [@Bond-009] Fix InvalidOperationException when serializing MediaPathInfo
+ * #6497 [@Bond-009] Add SqliteItemRepository.ItemImageInfoFromValueString as a fuzzing target
+ * #6495 [@qsniyg] Allow zero activity log retention days
+ * #6494 [@Bond-009] Clean up VideoImageProvider
+ * #6492 [@Bond-009] Ignore Omnisharp crash logs
+ * #6491 [@Bond-009] Fix build
+ * #6486 [@fredriklindberg] Support forwarded headers for api url
+ * #6485 [@markshark05] Update M3U Channel Name Precedence
+ * #6475 [@crobibero] Remove more and more warnings
+ * #6474 [@Bond-009] Add tests for LibraryStructureController
+ * #6473 [@Bond-009] Enable nullable for more files
+ * #6457 [@Izumiko] Add 'includeAdult' option for TheMovieDb
+ * #6456 [@GodTamIt] Disambiguate vpx to vp8 or vp9
+ * #6446 [@Deathspike] Fix embedded subtitles taking priority over external ones
+ * #6445 [@cvium] Add timeout to ProgressiveFileStream
+ * #6444 [@cvium] Use ProgressiveFileStream for LiveRecordings endpoint
+ * #6436 [@daullmer] Add Splashscreen api endpoint
+ * #6434 [@crobibero] Update Dockerfile to use debian:bullseye-slim
+ * #6430 [@Bond-009] Minor improvements
+ * #6429 [@crobibero] Update to dotnet 5.0.9
+ * #6428 [@Bond-009] Fix PasswordHash tests
+ * #6427 [@winterqt] Disable UseAppHost in portable deployment
+ * #6425 [@boolemancer] Fix explicit stream selection in MediaEncoder.ExtractImageInternal
+ * #6423 [@richlander] Fix warnings in MediaBrowser.Controller
+ * #6422 [@daullmer] Add support for NFO fanart tag
+ * #6414 [@richlander] Fix warnings in MediaBrowser.Controller/MediaEncoding directory
+ * #6412 [@richlander] Fix warnings in MediaBrowser.Controller/Session
+ * #6404 [@crobibero] Fix redirect logic if request path is exactly the base url
+ * #6403 [@ankenyr] Adding tests for AiredEpisodeOrderComparer.
+ * #6402 [@anthonylavado] Add sponsor links
+ * #6397 [@MrChip53] Properly stream M3U file over http
+ * #6394 [@h1dden-da3m0n] ci: change OS packaging images to be quiet
+ * #6392 [@Bond-009] ApiServiceCollectionExtensions.AddProxyAddresses: Add more tests
+ * #6388 [@Bond-009] Minor improvements
+ * #6386 [@richlander] Fix warnings in MediaBrowser.Controller/LiveTv
+ * #6383 [@sushilicious] Made default parser a tiny bit more robust
+ * #6381 [@Bond-009] Enable nullable for DlnaManager
+ * #6379 [@getupbuzz] Optimize episode parser
+ * #6377 [@richlander] Optimize Dockerfiles
+ * #6358 [@MrTimscampi] Enable people for audio files and add music probing test
+ * #6355 [@Bond-009] EnsureLibraryFolder: Minor optimization
+ * #6354 [@Bond-009] Enable nullable in more files
+ * #6346 [@richlander] Fix warnings in MediaBrowser.Controller/Drawing
+ * #6344 [@richlander] Update to .NET SDK 5.0.302
+ * #6342 [@richlander] Fix warnings in MediaBrowser.Controller/Library
+ * #6339 [@richlander] Fix partial set of MediaBrowser.Controller/Entities warnings
+ * #6338 [@richlander] Fix warnings for MediaBrowser.Controller/Providers directory
+ * #6336 [@richlander] Fix warning in MediaBrowser.Controllers/Channels
+ * #6335 [@richlander] Fix MediaBrowsers.Providers analysis issues
+ * #6329 [@Bond-009] Add tests for GetResolutionText
+ * #6328 [@Bond-009] Improve episode parser
+ * #6327 [@nyanmisaka] Add support for cuda tonemap and overlay
+ * #6326 [@crobibero] Update to dotnet 5.0.8
+ * #6308 [@nielsvanvelzen] Add OpenAPI workflow
+ * #6304 [@Bond-009] Add h265 to CleanStrings
+ * #6303 [@Artiume] update bug report to ask for hwaccel
+ * #6300 [@thornbill] Update stalebot configuration
+ * #6298 [@crobibero] Remove /MusicGenres/{id}/InstantMix endpoint
+ * #6297 [@Bond-009] Fix episode parser
+ * #6296 [@Bond-009] Improve platform checks
+ * #6290 [@Bond-009] Remove old "has update available" code
+ * #6289 [@Bond-009] Fix some warnings
+ * #6283 [@natedawg] Fix spelling of artist K/DA in splitting whitelist
+ * #6281 [@crobibero] Reduce warnings in MediaBrowser.Controller
+ * #6280 [@MrTimscampi] Add more artist names to the splitting whitelist
+ * #6279 [@Bond-009] Add tests for Playback/BitrateTest endpoint
+ * #6276 [@crobibero] BitrateTest: Use ASP validation, increase maximum size.
+ * #6268 [@Bond-009] Add test for RobotsRedirectionMiddleware
+ * #6267 [@Bond-009] Minor fixes
+ * #6262 [@MrTimscampi] Prefer original date when getting premiere date from ffprobe
+ * #6258 [@gnuyent] Add hardware encoding status to playback data
+ * #6257 [@MrTimscampi] Use artist backdrop for generated library image
+ * #6256 [@MrTimscampi] Refactor GetResolutionText
+ * #6240 [@Bond-009] Add tests for QuickConnectManager
+ * #6239 [@jvoisin] Add a LGTM.com badge
+ * #6236 [@Bond-009] Fix QuickConnect
+ * #6233 [@Bond-009] MediaBrowser.Providers: Remove some warnings
+ * #6222 [@orryverducci] Fix interlace check for H.264 MBAFF coded MP4 files
+ * #6210 [@bellegarde-c] debian: Add maxcpucount option to override_dh_auto_build. Fix #5234
+ * #6208 [@h1dden-da3m0n] disable project automation workflows in forks
+ * #6204 [@Bond-009] Move non-jellyfin extensions to separate project
+ * #6201 [@barronpm] Migrate Authentication DB to EF Core
+ * #6200 [@nielsvanvelzen] Refactor Quick Connect
+ * #6197 [@MrTimscampi] Document SubtitleDeliveryMethod
+ * #6191 [@crobibero] Update to dotnet 5.0.7
+ * #6183 [@stanionascu] Better detection of the ISO DVD/BD types
+ * #6180 [@crobibero] Ignore Test Controllers
+ * #6177 [@Bond-009] Use async FileStreams where it makes sense
+ * #6176 [@nielsvanvelzen] Require userId in getItems and getTrailers endpoints
+ * #6174 [@Bond-009] Remove our own RemoveDiacritcs string extension in favor of Diacritics.Net
+ * #6173 [@Bond-009] Add test for ReadOnlySpan.Count extension
+ * #6172 [@Bond-009] Remove useless nullable directives
+ * #6165 [@Bond-009] Fix duplicate keys causing an exception
+ * #6163 [@Bond-009] Fix index out of range and add reg tests
+ * #6162 [@crobibero] Redirect to default if root is requested
+ * #6156 [@Bond-009] Minor fixes
+ * #6150 [@Bond-009] Add property based testing
+ * #6137 [@ferferga] Refactor Github Actions
+ * #6133 [@ferferga] Pull request target
+ * #6121 [@Bond-009] Fix some warnings
+ * #6117 [@LinFor] Add OriginalTitle to ItemLookupInfo
+ * #6116 [@Maxr1998] Fix broken link in CONTRIBUTORS and add myself
+ * #6115 [@Maxr1998] Refactor ProbeResultNormalizer
+ * #6102 [@LinFor] Don't prefer OMDB rating over all other providers
+ * #6096 [@cvium] Remove some unnecessary allocations
+ * #6094 [@crobibero] Add sorting to /Artists/AlbumArtists
+ * #6090 [@cvium] Bump SQLitePCL.pretty.netstandard to 3.0.1
+ * #6089 [@BaronGreenback] Set UserRootFolder.IsRoot to true
+ * #6086 [@Bond-009] Remove dead code
+ * #6084 [@Bond-009] Enable nullable reference types for MediaBrowser.MediaEncoding
+ * #6083 [@Bond-009] Enable nullable reference types for Emby.Server.Implementations
+ * #6075 [@MrTimscampi] Properly detect Dolby Vision files derived from AV1, AVC and HEVC
+ * #6074 [@Bond-009] Enable nullable for InternalItemsQuery
+ * #6072 [@crobibero] Update to Dotnet 5.0.6 (Fixed)
+ * #6071 [@BaronGreenback] Make DLNA folders to work as expected.
+ * #6058 [@ferferga] Add FullNowPlayingQueue property to sessions endpoint
+ * #6054 [@cvium] Reduce some allocations
+ * #6051 [@Bond-009] Add tests for Recordinghelper
+ * #6050 [@Bond-009] Fully disable stupid rules
+ * #6047 [@crobibero] Update to Dotnet 5.0.6
+ * #6042 [@crobibero] Reduce warnings in MediaBrowser.Controller (Part 2)
+ * #6037 [@ferferga] Replace GH_TOKEN with JF_BOT_TOKEN
+ * #6033 [@daullmer] Call TMDb Person API with metadata language
+ * #6031 [@ferferga] Run SQLite query planner optimization at shutdown/restart
+ * #6027 [@fredriklindberg] Improve series matching
+ * #6026 [@daullmer] Use TMDb parental rating building from movies for shows
+ * #6025 [@daullmer] Test LocalizationManager
+ * #6013 [@Bond-009] Minor improvements
+ * #6010 [@crobibero] Mooooove the label commenter config
+ * #6009 [@nielsvanvelzen] Disable automation CI on issues
+ * #6005 [@Bond-009] Enable nullable reference types for Emby.Dlna
+ * #6000 [@Bond-009] Enable nullable reference types for MediaBrowser.Controller
+ * #5999 [@Bond-009] Add support for legacy HDhomerun DUAl
+ * #5997 [@JKI12] Fixes for Book Progress
+ * #5995 [@tuky] Respect configured JELLYFIN_USER in Debian's postinst
+ * #5990 [@BaronGreenback] Enable querystring to be encoded
+ * #5988 [@Bond-009] Add fuzzing infrastructure
+ * #5985 [@Bond-009] Minor improvements
+ * #5984 [@Bond-009] Add regression test for ContainerProfile.ContainsContainer
+ * #5982 [@Bond-009] Enable nullable reference types for MediaBrowser.Common
+ * #5980 [@Maxr1998] Fix direct play for DirectPlayProfiles without any codecs set
+ * #5979 [@daullmer] Add support for fanart aspect in thumb tag
+ * #5975 [@thornbill] Fix web build in dockerfiles
+ * #5973 [@crobibero] Kill the CI
+ * #5956 [@BaronGreenback] Minor optimization.
+ * #5955 [@Bond-009] Don't run integration tests in parallel
+ * #5954 [@Bond-009] Add tests for SqliteItemRepository.(De)SerializeProviderIds
+ * #5952 [@Bond-009] Add tests for SqliteItemRepository.(De)SerializeImages
+ * #5946 [@Bond-009] TmdbUtils: Use ordinal string compare
+ * #5945 [@Bond-009] Fix scanning
+ * #5944 [@shortspider] Add ResumeBook Section
+ * #5941 [@Maxr1998] Improve documentation for DeviceProfile
+ * #5938 [@cvium] Reduce some allocations with the magic of spans etc.
+ * #5934 [@Bond-009] SqliteItemRepository: Parse ChannelId directly from utf-8 data
+ * #5929 [@crobibero] Add ability to sort on Genre, MusicGenre, Artist
+ * #5918 [@crobibero] Add endpoint to log client events
+ * #5905 [@BaronGreenback] Fix for Livetv and DLNA when bind interfaces specified.
+ * #5894 [@brianjmurrell] Allow to bind to priveleged ports (i.e. 80/443)
+ * #5893 [@Bond-009] SqliteItemRepository: remove redundant operations
+ * #5892 [@crobibero] Mark password property as obsolete
+ * #5891 [@Bond-009] ManagedFileSystem: Rewrite GetValidFilename and more improvements
+ * #5890 [@Bond-009] Reduce string allocations/fs lookups in resolve code
+ * #5889 [@Bond-009] Remove unused/duplicate services
+ * #5887 [@Bond-009] Improve perf of db save and query
+ * #5886 [@Artiume] Request all the logs
+ * #5877 [@Bond-009] EncodingHelper: Fix circular dependency
+ * #5876 [@Bond-009] DeepCopy: Throw ArgumentNullException if one of the args is null
+ * #5867 [@Bond-009] ProviderManager: fix discard and 2 warnings
+ * #5866 [@Bond-009] Switch from HttpClientHandler to SocketsHttpHandler
+ * #5864 [@DeeJayBro] Fix ArgumentOutOfRangeException when getting PostedPlaybackInfo
+ * #5843 [@BaronGreenback] Code Clean up: Remove unused using directives
+ * #5842 [@BaronGreenback] Code Clean up: Group Methods
+ * #5836 [@BaronGreenback] Code Clean up: "value assigned is not used in any execution path"
+ * #5828 [@jackrvan] Add NextUpCutoffDate to NextUpQuery
+ * #5807 [@Bond-009] Remove throttle in refresh code
+ * #5806 [@Bond-009] Fix possible ArgumentNullException
+ * #5803 [@crobibero] Properly redirect healthcheck endpoint if using BaseUrl
+ * #5794 [@richlander] Remove coupling to distro
+ * #5792 [@Bond-009] Fix possible ArgumentNullException
+ * #5784 [@Bond-009] Fix random failing of tests
+ * #5779 [@joshuaboniface] Add label commenter workflow
+ * #5768 [@Bond-009] Add test for handling dangling symlinks
+ * #5767 [@cvium] Do not touch "old" local artwork unless saving locally
+ * #5766 [@cvium] Use sync Serialize when writing scheduled tasks to disk
+ * #5763 [@Bond-009] Minor improvements to IPObjects
+ * #5762 [@BaronGreenback] Fix network test on dns failure
+ * #5759 [@Bond-009] Fix LogUnmatchedProfile formatting
+ * #5755 [@BaronGreenback] Auth: Network Access Policy
+ * #5744 [@mohd-akram] Add support for TMDB series absolute and DVD order
+ * #5738 [@cvium] Resolve name from episode folder
+ * #5731 [@Bond-009] Add tests for UserController
+ * #5730 [@thornbill] Disable HEVC encoding by default
+ * #5729 [@crobibero] Update to dotnet 5.0.5
+ * #5721 [@Bond-009] Add code to test authenticated endpoints
+ * #5713 [@Bond-009] Add tests for unauthenticated websocket access
+ * #5708 [@Bond-009] Enable NetAnalyzers for more projects
+ * #5707 [@ferferga] (jellyfin-web): Switch to npm
+ * #5699 [@Bond-009] Add test for ProbeResultNormalizer.GetMediaInfo
+ * #5697 [@Bond-009] Simplify the way we choose our ffmpeg
+ * #5696 [@Maxr1998] Improve metadata probing to better support music videos
+ * #5691 [@Bond-009] Fix possible nullref
+ * #5685 [@Bond-009] Remove useless null check
+ * #5681 [@BaronGreenback] Various DLNA Optimizations
+ * #5676 [@Bond-009] Remove useless code
+ * #5675 [@Bond-009] Add tests for CopyToExtensions
+ * #5659 [@ssenart] [DLNA] [NextTrack] [Gapless] Fix 5644 and 5294
+ * #5648 [@OancaAndrei] Fix session references in SyncPlay
+ * #5637 [@dmitrylyzo] Check appropriate profile type
+ * #5623 [@barronpm] EF Core Cleanup 2
+ * #5614 [@Bond-009] Fix possible null ref exception
+ * #5612 [@Bond-009] Rewrite PasswordHash.Parse to work with ReadOnlySpans
+ * #5606 [@lmnotran] Delay starting service until after network is online
+ * #5602 [@daullmer] Don't convert from IPAddress to string to IPAddress
+ * #5598 [@cvium] change HLS endpoint defaults to false
+ * #5586 [@nyanmisaka] Disable auto rotation for some HWA methods
+ * #5580 [@Bond-009] Add StartupControllerTests
+ * #5579 [@cocool97] Add 'group-title' channel parsing
+ * #5561 [@barronpm] Fix duplicate permissions
+ * #5522 [@Bond-009] Fix integration test project
+ * #5520 [@Bond-009] Rewrite Rewrite HdHomerunManager.ParseReturnMessage and add tests
+ * #5490 [@thornbill] Remove forum badge
+ * #5467 [@daullmer] Nfo id parsing fixes
+ * #5422 [@Bond-009] FxCop -> Net Analyzers (part 2)
+ * #5417 [@Bond-009] Add code analysis attributes where appropriate
+ * #5395 [@barronpm] Jellyfin.Data Cleanup Part 1
+ * #5384 [@Larvitar] Do not apply search results on seasons
+ * #5382 [@crobibero] Add JsonVersionConverter and tests
+ * #5380 [@Bond-009] 100% branch coverage for DashboardController
+ * #5362 [@crobibero] Fix case-sensitive json parsing
+ * #5359 [@cvium] Do nothing in timer callback when device locator is disposed
+ * #5354 [@shortspider] Update README to include ffmpeg
+ * #5338 [@Bond-009] Remove tests that are upstreamed
+ * #5336 [@Bond-009] Split integration tests from unit tests
+ * #5321 [@daullmer] Add nfo thumb tag support
+ * #5317 [@Bond-009] MaybeNullWhen(false) -> NotNullWhen(true)
+ * #5314 [@barronpm] Remove unused entity
+ * #5307 [@barronpm] Switch to Using Declarations in MediaBrowser.Providers
+ * #5299 [@Bond-009] Improve branch coverage
+ * #5291 [@Bond-009] Add tests for DashboardController
+ * #5285 [@Bond-009] Update deps Jellyfin.Model.Tests
+ * #5277 [@Bond-009] Add Jellyfin.Model.Tests project to the solution
+ * #5276 [@Bond-009] Minor improvements
+ * #5273 [@Bond-009] Enable TreatWarningsAsErrors for MediaBrowser.Model
+ * #5253 [@Bond-009] Fix broken test
+ * #5243 [@crobibero] Bump Swashbuckle.AspNetCore to 6.0.5
+ * #5242 [@Bond-009] Properly forward cancellationTokens
+ * #5235 [@daullmer] Add more nfo tests
+ * #5228 [@lbenini] Fix BaseItemKind conversion for PlaylistsFolder
+ * #5226 [@Bond-009] 100% branch coverage for Emby.Naming
+ * #5223 [@Bond-009] Minor improvements
+ * #5222 [@Bond-009] Don't enable case-insensitivity for json by default
+ * #5220 [@Bond-009] Rewrite packet writing code for HdHomerun
+ * #5218 [@dkanada] rename the solution file
+ * #5213 [@Bond-009] Add tests for RequestHelpers.GetItemTypeStrings
+ * #5209 [@crobibero] Create BaseItemKind enum
+ * #5194 [@daullmer] Add nfo parsing for watched, playcount and lastplayed
+ * #5193 [@daullmer] Add test for generic nfo provider id parsing
+ * #5190 [@Bond-009] Add regression test for PluginManager.SaveManifest
+ * #5189 [@Bond-009] Remove last usage of \d
+ * #5174 [@barronpm] Clean up UserManager.AuthenticateUser
+ * #5166 [@netpok] Get episode range end from XBMC compatible nfo
+ * #5159 [@daullmer] Remove unused files
+ * #5142 [@M0ssTee] Replaced /d with [0-9], see issue #2923
+ * #5112 [@Bond-009] Add test for ShuffleExtensions
+ * #5097 [@Bond-009] Remove useless abstraction and clean up formatting
+ * #5092 [@OancaAndrei] Clear playlist in SyncPlay group
+ * #5088 [@daullmer] Fix nfo saving during UserDataSaved event
+ * #5085 [@daullmer] Process actor type in nfo files
+ * #5084 [@daullmer] Don't write tagline in <outline> in nfo files
+ * #5074 [@Bond-009] 100% branch coverage for Jellyfin.Naming
+ * #5068 [@daullmer] Add additional tests for nfo parsing
+ * #5043 [@senritsu] adjust episode path expression to allow digits in series names
+ * #5012 [@Bond-009] Improve WebSocket Message Deserialization
+ * #5010 [@BaronGreenback] Removal of IPluginConfigurationPage
+ * #5009 [@MrTimscampi] Move studios image providers to plugin
+ * #5007 [@Bond-009] Open FileStream with FileMode.Create instead of FileMode.OpenOrCreate
+ * #5006 [@Bond-009] Use JsonSerializer.SerializeToUtf8Bytes when doing a round trip
+ * #5005 [@Bond-009] JsonSerializer deserialize from bytes where possible
+ * #4994 [@Bond-009] Add tests for artist nfo
+ * #4992 [@Bond-009] Add tests for series nfo
+ * #4989 [@Bond-009] Add tests for NFO parsers
+ * #4988 [@Bond-009] Remove CropWhitespace function
+ * #4986 [@Bond-009] Use new ReadAllLines extensions
+ * #4984 [@Bond-009] Use SubtitleEdit to parse subtitles
+ * #4981 [@daullmer] Add .nfo ratings tag
+ * #4945 [@obradovichv] Fix string culture specificity
+ * #4943 [@crobibero] Fix OMDb converter
+ * #4899 [@Bond-009] Cover all branches in JsonNullableGuidConverter
+ * #4878 [@Bond-009] Add tests for srt parser
+ * #4877 [@Bond-009] Add tests for ass parser
+ * #4857 [@crobibero] Fix dependencies
+ * #4853 [@daullmer] Use System.Text.Json instead of ServiceStack.Text
+ * #4849 [@crobibero] Remove unused dependencies 
+ * #4799 [@tommasodotNET] Authorization header parsing
+ * #4775 [@barronpm] Enable Nullable for Jellyfin.Server.Implementations
+ * #4766 [@barronpm] Convert DeleteUser to async
+ * #4754 [@Bond-009] Migrate from FxCop analyzers to .NET analyzers
+ * #4731 [@Sylk] Modified ReadMe with updated command line command
+ * #4720 [@MrTimscampi] Add overloaded constructor for ActivityLog levels
+ * #4665 [@anthonylavado] Fix the NPM publish scope to public
+ * #4664 [@joshuaboniface] Make me codeowner of the .ci dir
+ * #4663 [@joshuaboniface] Bump version to 10.8.0 for next release
+ * #4615 [@strugee] Improve restart.sh
+ * #4005 [@cromefire] Add additional opts for systemd / upstart
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [326
+
+Note: Dependabot automatic PRs are excluded from this 
+
+ * jellyfin/jellyfin-web#3668 [@dmitrylyzo] Show ettings button even if transcoding isn't supported
+ * jellyfin/jellyfin-web#3667 [@dmitrylyzo] Enable Lint job on release branches
+ * jellyfin/jellyfin-web#3664 [@dmitrylyzo] Bump @jellyfin/libass-wasm from 4.1.0 to 4.1.1
+ * jellyfin/jellyfin-web#3662 [@1337joe] Support searching for tv programs
+ * jellyfin/jellyfin-web#3658 [@thornbill] Add workaround for channel card images
+ * jellyfin/jellyfin-web#3657 [@dmitrylyzo] Remove play button highlighting
+ * jellyfin/jellyfin-web#3647 [@1337joe] Disable "Automatically add to collection" by default
+ * jellyfin/jellyfin-web#3644 [@dmitrylyzo] Migrate to @jellyfin/libass-wasm@4.1.0
+ * jellyfin/jellyfin-web#3643 [@dmitrylyzo] Resolve worker URLs
+ * jellyfin/jellyfin-web#3642 [@taku0] Change CSS font-family by language preference
+ * jellyfin/jellyfin-web#3639 [@rhld16] Add missing languages
+ * jellyfin/jellyfin-web#3637 [@MinecraftPlaye] Add WebP to the page detection list for comics
+ * jellyfin/jellyfin-web#3635 [@dmitrylyzo] Fix SSA/ASS missing font
+ * jellyfin/jellyfin-web#3628 [@thornbill] Fix artists album lists
+ * jellyfin/jellyfin-web#3622 [@thornbill] Restore external links on mobile
+ * jellyfin/jellyfin-web#3618 [@thornbill] Fix backdrop being used on large screens in mobile layout
+ * jellyfin/jellyfin-web#3617 [@thornbill] Fix iPadOS icon
+ * jellyfin/jellyfin-web#3616 [@thornbill] Revert some poor translations
+ * jellyfin/jellyfin-web#3614 [@dmitrylyzo] Check undefined streamInfo.url
+ * jellyfin/jellyfin-web#3604 [@thornbill] Fix custom element creation
+ * jellyfin/jellyfin-web#3601 [@thornbill] Fix XSS in repositories list
+ * jellyfin/jellyfin-web#3597 [@nielsvanvelzen] Use text input in Quick Connect page
+ * jellyfin/jellyfin-web#3577 [@thornbill] Fix SD filter state
+ * jellyfin/jellyfin-web#3547 [@thornbill] Fix touch events in epub player
+ * jellyfin/jellyfin-web#3543 [@Shadowghost] Restore sort order and fix strm usecase
+ * jellyfin/jellyfin-web#3535 [@dmitrylyzo] Fix 'resume' when clicking on item details poster
+ * jellyfin/jellyfin-web#3527 [@thornbill] Fix rewatching next up status
+ * jellyfin/jellyfin-web#3525 [@whiteowl3] Correct Typo
+ * jellyfin/jellyfin-web#3519 [@dmitrylyzo] Escape HTML
+ * jellyfin/jellyfin-web#3505 [@dmitrylyzo] Fix HTML escaping
+ * jellyfin/jellyfin-web#3503 [@felixoswald] Fix birth location link
+ * jellyfin/jellyfin-web#3502 [@dmitrylyzo] Fix webOS OPUS support
+ * jellyfin/jellyfin-web#3501 [@dmitrylyzo] Fix old streamInfo on stream change
+ * jellyfin/jellyfin-web#3500 [@dmitrylyzo] Some fixes for theme song/video
+ * jellyfin/jellyfin-web#3498 [@thornbill] Restore missing MessageUnauthorizedUser error message
+ * jellyfin/jellyfin-web#3496 [@renovate[bot]] Update development dependencies
+ * jellyfin/jellyfin-web#3495 [@thornbill] Fix any type warning
+ * jellyfin/jellyfin-web#3493 [@thornbill] Add default-case-last rule and fix issues
+ * jellyfin/jellyfin-web#3492 [@renovate[bot]] Update dependency @types/react to v17.0.40
+ * jellyfin/jellyfin-web#3490 [@h1dden-da3m0n] add dev-deps label to renovate dev-deps PRs
+ * jellyfin/jellyfin-web#3489 [@thornbill] Add headings to display settings screen
+ * jellyfin/jellyfin-web#3488 [@renovate[bot]] Update dependency cssnano to v5.1.1
+ * jellyfin/jellyfin-web#3482 [@nyanmisaka] Remove the deprecated OMX HWA
+ * jellyfin/jellyfin-web#3481 [@Maxr1998] Sort album tracks by (Parent)IndexNumber, then SortName
+ * jellyfin/jellyfin-web#3480 [@thornbill] Fix more accessibility issues
+ * jellyfin/jellyfin-web#3478 [@thornbill] Fix click on item details poster playing wrong item
+ * jellyfin/jellyfin-web#3477 [@renovate[bot]] Update development dependencies
+ * jellyfin/jellyfin-web#3476 [@renovate[bot]] Update development dependencies
+ * jellyfin/jellyfin-web#3475 [@renovate[bot]] Update dependency cssnano to v5.1.0
+ * jellyfin/jellyfin-web#3474 [@renovate[bot]] Update CI dependencies (major)
+ * jellyfin/jellyfin-web#3473 [@thornbill] Move rewatching in next up to display option and remove home section
+ * jellyfin/jellyfin-web#3472 [@thornbill] Add google cast unsupported message and update translations
+ * jellyfin/jellyfin-web#3471 [@thornbill] Fix remaining any type warnings
+ * jellyfin/jellyfin-web#3467 [@dmitrylyzo] Return Promise from SyncPlay playRequest
+ * jellyfin/jellyfin-web#3466 [@dmitrylyzo] Fix HTMLMediaElement.play no Promise
+ * jellyfin/jellyfin-web#3465 [@dmitrylyzo] Show slideshow OSD on click
+ * jellyfin/jellyfin-web#3464 [@thornbill] Fix minor issues with card padder icons
+ * jellyfin/jellyfin-web#3463 [@dmitrylyzo] Add more accessibility
+ * jellyfin/jellyfin-web#3461 [@dmitrylyzo] Fix page reload on return
+ * jellyfin/jellyfin-web#3460 [@thornbill] Fix remote control translation
+ * jellyfin/jellyfin-web#3459 [@dmitrylyzo] Add aria-hidden to button icons
+ * jellyfin/jellyfin-web#3458 [@dmitrylyzo] Alter the title of the state buttons
+ * jellyfin/jellyfin-web#3457 [@renovate[bot]] Update actions/setup-node action to v3
+ * jellyfin/jellyfin-web#3456 [@dmitrylyzo] Few refactors of remotecontrol
+ * jellyfin/jellyfin-web#3453 [@dmitrylyzo] Add copy buttons to Media Info
+ * jellyfin/jellyfin-web#3452 [@thornbill] Update mixed library label
+ * jellyfin/jellyfin-web#3451 [@thornbill] Move rewatching to separate home screen section
+ * jellyfin/jellyfin-web#3449 [@dmitrylyzo] Unhide some options on TVs
+ * jellyfin/jellyfin-web#3448 [@dmitrylyzo] Add card padder icon for items with an image
+ * jellyfin/jellyfin-web#3445 [@dmitrylyzo] Fix nowplayingbar not displaying when restoring the view
+ * jellyfin/jellyfin-web#3444 [@dmitrylyzo] Fix playing theme song when using parent links
+ * jellyfin/jellyfin-web#3443 [@dmitrylyzo] Fix Play/Resume focus jump
+ * jellyfin/jellyfin-web#3438 [@thornbill] Update renovate configuration
+ * jellyfin/jellyfin-web#3435 [@renovate[bot]] Update development dependencies
+ * jellyfin/jellyfin-web#3434 [@renovate[bot]] Update dependency postcss-preset-env to v7.4.1
+ * jellyfin/jellyfin-web#3433 [@dmitrylyzo] [TypeScript] Disable implicit any
+ * jellyfin/jellyfin-web#3432 [@1337joe] Fix show sort by date played
+ * jellyfin/jellyfin-web#3431 [@dmitrylyzo] Check OPUS support on webOS
+ * jellyfin/jellyfin-web#3427 [@dmitrylyzo] Reload backdrop on restore
+ * jellyfin/jellyfin-web#3426 [@thornbill] Fix new lint errors
+ * jellyfin/jellyfin-web#3424 [@renovate[bot]] Update dependency follow-redirects to 1.14.8 [SECURITY]
+ * jellyfin/jellyfin-web#3420 [@dmitrylyzo] Display physical dimensions of player
+ * jellyfin/jellyfin-web#3415 [@dmitrylyzo] Fix focus on Home tab
+ * jellyfin/jellyfin-web#3412 [@dmitrylyzo] Reduce the size of the icon in the ListView
+ * jellyfin/jellyfin-web#3411 [@dmitrylyzo] Allow navigation to the parent show/season/album
+ * jellyfin/jellyfin-web#3409 [@thornbill] Fix pagination on live tv pages
+ * jellyfin/jellyfin-web#3408 [@renovate[bot]] Update development dependencies
+ * jellyfin/jellyfin-web#3406 [@renovate[bot]] Update dependency postcss [SECURITY]
+ * jellyfin/jellyfin-web#3405 [@renovate[bot]] Update development dependencies (major)
+ * jellyfin/jellyfin-web#3403 [@renovate[bot]] Update actions/checkout action to v2.4.0
+ * jellyfin/jellyfin-web#3402 [@renovate[bot]] Pin dependencies
+ * jellyfin/jellyfin-web#3399 [@renovate[bot]] Update dependency nanoid to 3.1.31 [SECURITY]
+ * jellyfin/jellyfin-web#3398 [@renovate[bot]] Update dependency marked to 4.0.10 [SECURITY]
+ * jellyfin/jellyfin-web#3395 [@renovate[bot]] Update dependency follow-redirects to 1.14.7 [SECURITY]
+ * jellyfin/jellyfin-web#3394 [@renovate[bot]] Update dependency browserslist to 4.16.5 [SECURITY]
+ * jellyfin/jellyfin-web#3385 [@dmitrylyzo] Fix themes
+ * jellyfin/jellyfin-web#3380 [@dmitrylyzo] Enable AV1 codec on webOS 5+ FHD
+ * jellyfin/jellyfin-web#3379 [@Shadowghost] Add external, forced and default attributes to subtitle and audio mediainfo
+ * jellyfin/jellyfin-web#3377 [@thornbill] Fix issue where wrong plugin could be disabled
+ * jellyfin/jellyfin-web#3376 [@SenorSmartyPants] Add option to season image downloader to pick from series images
+ * jellyfin/jellyfin-web#3374 [@dmitrylyzo] Handle resolved play promise
+ * jellyfin/jellyfin-web#3373 [@dmitrylyzo] Fix theme song playback when switching items with different themes
+ * jellyfin/jellyfin-web#3369 [@dmitrylyzo] Escape HTML
+ * jellyfin/jellyfin-web#3367 [@SenorSmartyPants] Display rewatching list in Next up section on home page
+ * jellyfin/jellyfin-web#3364 [@h1dden-da3m0n] add stale issue check workflow
+ * jellyfin/jellyfin-web#3361 [@MinecraftPlaye] Only use comic pages for internal calculations and ignore metadata files
+ * jellyfin/jellyfin-web#3360 [@dmitrylyzo] Show AlphaPicker if there is SortName
+ * jellyfin/jellyfin-web#3359 [@dmitrylyzo] Fix page layouts for webOS
+ * jellyfin/jellyfin-web#3357 [@SenorSmartyPants] Display MediaSourceCount for all media Types
+ * jellyfin/jellyfin-web#3356 [@SenorSmartyPants] Special Features: Display extraType as secondaryText on card
+ * jellyfin/jellyfin-web#3355 [@dmitrylyzo] Add Markdown to Login Disclaimer
+ * jellyfin/jellyfin-web#3354 [@dmitrylyzo] Fix Light theme text color
+ * jellyfin/jellyfin-web#3353 [@dmitrylyzo] Cleanup
+ * jellyfin/jellyfin-web#3351 [@dmitrylyzo] Fix starting of book player with a blank page
+ * jellyfin/jellyfin-web#3350 [@MinecraftPlaye]  Update the resume button after stopping
+ * jellyfin/jellyfin-web#3349 [@MinecraftPlaye] Save reading progress for pdfs for each page
+ * jellyfin/jellyfin-web#3348 [@thornbill] Fix unstyled emby-select field when rendered with React
+ * jellyfin/jellyfin-web#3347 [@dmitrylyzo] Stack toasts
+ * jellyfin/jellyfin-web#3344 [@knackebrot] Try to determine the number of speakers before falling back to hardcoded values
+ * jellyfin/jellyfin-web#3343 [@dmitrylyzo] Limit transcoding profiles with maximum resolution
+ * jellyfin/jellyfin-web#3342 [@dmitrylyzo] Fix LiveTV Channels paging and autofocus
+ * jellyfin/jellyfin-web#3341 [@dmitrylyzo] Add paging to listview
+ * jellyfin/jellyfin-web#3340 [@dmitrylyzo] Fix auto focus on Play/Resume
+ * jellyfin/jellyfin-web#3336 [@SenorSmartyPants] Display series level extras on tv series page.
+ * jellyfin/jellyfin-web#3335 [@dmitrylyzo] Fix Blurhash worker on webOS 1.2
+ * jellyfin/jellyfin-web#3334 [@dmitrylyzo] Fix trailer playback when no local trailers are available
+ * jellyfin/jellyfin-web#3324 [@thornbill] Add plugin repository help link
+ * jellyfin/jellyfin-web#3323 [@thornbill] Fix image urls
+ * jellyfin/jellyfin-web#3322 [@thornbill] Add channels link to home page section
+ * jellyfin/jellyfin-web#3319 [@SenorSmartyPants] Add episode details to live TV DVR schedule
+ * jellyfin/jellyfin-web#3318 [@iainsaxonhome] Added Quit App to main menu
+ * jellyfin/jellyfin-web#3317 [@SenorSmartyPants] Make Live TV Guide scrollbar visible.
+ * jellyfin/jellyfin-web#3315 [@1337joe] Expose collection generation options for mixed libraries
+ * jellyfin/jellyfin-web#3313 [@thornbill] Fix eslint polyfills for typescript files
+ * jellyfin/jellyfin-web#3302 [@marius-luca-87] Avoid requesting mjpeg attachements during ass subtitle playback
+ * jellyfin/jellyfin-web#3297 [@thornbill] Update babel packages
+ * jellyfin/jellyfin-web#3296 [@marius-luca-87] Add "Select All" action to multiSelect
+ * jellyfin/jellyfin-web#3281 [@joshuaboniface] Remove bump-version junk
+ * jellyfin/jellyfin-web#3271 [@thornbill] Fix number option in alphapicker
+ * jellyfin/jellyfin-web#3270 [@thornbill] Add Apple device icon
+ * jellyfin/jellyfin-web#3269 [@thornbill] Bump jellyfin-apiclient to v1.10.0
+ * jellyfin/jellyfin-web#3251 [@thornbill] Allow for unlimited photos in playbackmanager
+ * jellyfin/jellyfin-web#3250 [@thornbill] Make movies and shows in genre list random
+ * jellyfin/jellyfin-web#3247 [@thornbill] Remove network device option from add library dialog
+ * jellyfin/jellyfin-web#3246 [@thornbill] Fix Fedora and CentOS builds
+ * jellyfin/jellyfin-web#3244 [@thornbill] Add eslint rule for empty functions
+ * jellyfin/jellyfin-web#3242 [@crobibero] Add missing strings for TranscodeReason
+ * jellyfin/jellyfin-web#3241 [@matthew-jones-uk] Add DisableEmbeddedSubtitles support in editor
+ * jellyfin/jellyfin-web#3237 [@Piccar] Added hovereffect on listItems for all themes
+ * jellyfin/jellyfin-web#3231 [@emilrowland] fix: Oculus browser is no longer marked as TV
+ * jellyfin/jellyfin-web#3230 [@SenorSmartyPants] Fix #369 : Episode Details Premiere date
+ * jellyfin/jellyfin-web#3226 [@brianjmurrell] Run bump_version in make srpm
+ * jellyfin/jellyfin-web#3209 [@dmitrylyzo] Handle command 'Back'
+ * jellyfin/jellyfin-web#3208 [@nyanmisaka] Remove unused server check for cinema mode option
+ * jellyfin/jellyfin-web#3206 [@nyanmisaka] Update HWA settings to adapt the server code changes
+ * jellyfin/jellyfin-web#3197 [@ianjazz246] Sort genres by SortName instead of Random
+ * jellyfin/jellyfin-web#3184 [@WWWesten] Add missing font option for subtitles
+ * jellyfin/jellyfin-web#3181 [@PetrusZ] Add AutoCollection option to libraryoptionseditor
+ * jellyfin/jellyfin-web#3180 [@brianjmurrell] Remove chown -R root:root from specfile
+ * jellyfin/jellyfin-web#3172 [@joshuaboniface] Send SourceBranch to collect-server.azure.sh
+ * jellyfin/jellyfin-web#3171 [@WWWesten] Update displaySettings.template.html
+ * jellyfin/jellyfin-web#3161 [@thornbill] Rollback hls.js to 0.14
+ * jellyfin/jellyfin-web#3160 [@thornbill] Fix list view item encoding
+ * jellyfin/jellyfin-web#3149 [@grafixeyehero] Fix live tv default tab
+ * jellyfin/jellyfin-web#3147 [@dmitrylyzo] Fix re-emptying image
+ * jellyfin/jellyfin-web#3146 [@dmitrylyzo] Fix plugin image URL
+ * jellyfin/jellyfin-web#3144 [@ferferga] Decode blurhash in a WebWorker
+ * jellyfin/jellyfin-web#3143 [@WWWesten] Update Library Settings
+ * jellyfin/jellyfin-web#3142 [@WWWesten] Update en-us.json for subtitlesettings component
+ * jellyfin/jellyfin-web#3128 [@WWWesten] Add missing localization key for Media Info
+ * jellyfin/jellyfin-web#3116 [@jomp16] Save playback speed rate, and restore when playing a video again
+ * jellyfin/jellyfin-web#3115 [@dmitrylyzo] Fix regression after PR #3046
+ * jellyfin/jellyfin-web#3114 [@dmitrylyzo] Remove language normalization - use original language
+ * jellyfin/jellyfin-web#3113 [@Jellifi007] Fix H264 52 Level available but not detected Fixes #3090
+ * jellyfin/jellyfin-web#3092 [@thornbill] Use single color for loading indicator
+ * jellyfin/jellyfin-web#3091 [@thornbill] Fix dialog style conflict
+ * jellyfin/jellyfin-web#3073 [@grafixeyehero] Convert userPasswordPage & UserImagePage to react
+ * jellyfin/jellyfin-web#3072 [@grafixeyehero] Convert userParentalControlPage to react
+ * jellyfin/jellyfin-web#3071 [@grafixeyehero] Convert userLibraryAccessPage to react
+ * jellyfin/jellyfin-web#3070 [@grafixeyehero] Convert edit user page to react
+ * jellyfin/jellyfin-web#3069 [@dmitrylyzo] Make dialog buttons smaller on TV
+ * jellyfin/jellyfin-web#3049 [@cvium] Set 'Scan for new and updated files' as the default refresh option
+ * jellyfin/jellyfin-web#3046 [@dmitrylyzo] Fix playback error stop
+ * jellyfin/jellyfin-web#3044 [@thornbill] Fix repository url link not opening as external
+ * jellyfin/jellyfin-web#3042 [@cvium] set sane defaults for the hidden SSDP and UDP config values
+ * jellyfin/jellyfin-web#3034 [@MinecraftPlaye] Save the progress when reading a Comic Book Archive
+ * jellyfin/jellyfin-web#3033 [@daullmer] Check permission in multiselect for refresh option in menu
+ * jellyfin/jellyfin-web#3031 [@dmitrylyzo] Use custom modals on webOS and Tizen 2.x
+ * jellyfin/jellyfin-web#3028 [@dmitrylyzo] Resolve show promise
+ * jellyfin/jellyfin-web#3027 [@dmitrylyzo] Use "web" target in the serve mode only
+ * jellyfin/jellyfin-web#3026 [@grafixeyehero] convert NewUserPage to react
+ * jellyfin/jellyfin-web#3025 [@grafixeyehero] convert UserProfilesPage to react
+ * jellyfin/jellyfin-web#3024 [@dmitrylyzo] Fix JavascriptSubtitlesOctopus dispose
+ * jellyfin/jellyfin-web#3022 [@dmitrylyzo] Update JavascriptSubtitlesOctopus
+ * jellyfin/jellyfin-web#3021 [@thornbill] Move the selected player name next to cast icon
+ * jellyfin/jellyfin-web#3020 [@thornbill] Fix remote fullscreen event handler
+ * jellyfin/jellyfin-web#3019 [@thornbill] Enable multiserver in development environments
+ * jellyfin/jellyfin-web#3018 [@thornbill] Fix audio player overlapping on small screens
+ * jellyfin/jellyfin-web#3017 [@thornbill] Fix header centering on large mobile devices
+ * jellyfin/jellyfin-web#3016 [@thornbill] Remove unused sass mixins
+ * jellyfin/jellyfin-web#3004 [@4censord] build.sh: Allow docker build on non debian systems
+ * jellyfin/jellyfin-web#3002 [@thornbill] Add theme color support
+ * jellyfin/jellyfin-web#3001 [@thornbill] Update apiclient
+ * jellyfin/jellyfin-web#2975 [@dmitrylyzo] Fix server candidates on apps
+ * jellyfin/jellyfin-web#2971 [@dmitrylyzo] Fix webOS DTS audio support
+ * jellyfin/jellyfin-web#2952 [@dmitrylyzo] Fix video UI for LiveTV
+ * jellyfin/jellyfin-web#2950 [@dmitrylyzo] Use the same duration format
+ * jellyfin/jellyfin-web#2948 [@thornbill] Restore missing placeholder error message
+ * jellyfin/jellyfin-web#2947 [@SegiH] Move "Remove" option in card menu item in Dashboard->Library to the last item
+ * jellyfin/jellyfin-web#2946 [@thornbill] Disable sync correction by default on mobile
+ * jellyfin/jellyfin-web#2945 [@thornbill] Fix media indicator color
+ * jellyfin/jellyfin-web#2944 [@SegiH] Show playlist item count
+ * jellyfin/jellyfin-web#2943 [@thornbill] Fix play all and shuffle buttons
+ * jellyfin/jellyfin-web#2941 [@dmitrylyzo] Slideshow autoplay
+ * jellyfin/jellyfin-web#2940 [@thornbill] Fix direct play logic when direct stream is disabled
+ * jellyfin/jellyfin-web#2939 [@thornbill] Log warning instead of error when dictionary has not loaded
+ * jellyfin/jellyfin-web#2937 [@oledfish] Add "Production" and "TV" episode orders to the metadata editor.
+ * jellyfin/jellyfin-web#2936 [@OancaAndrei] Update ApiClient instance used by SyncPlay
+ * jellyfin/jellyfin-web#2934 [@joshuaboniface] Update bump_version to new NPM method
+ * jellyfin/jellyfin-web#2917 [@dmitrylyzo] Dialog history and actionSheet resolving
+ * jellyfin/jellyfin-web#2914 [@dmitrylyzo] Show error if player not found
+ * jellyfin/jellyfin-web#2913 [@thornbill] Reorder item details sections
+ * jellyfin/jellyfin-web#2912 [@thornbill] Disable warnings in webpack dev server overlay
+ * jellyfin/jellyfin-web#2910 [@crobibero] Fix QuickConnect for 10.8
+ * jellyfin/jellyfin-web#2908 [@dmitrylyzo] Fix theme song player
+ * jellyfin/jellyfin-web#2907 [@ferferga] Add rebase command
+ * jellyfin/jellyfin-web#2889 [@dmitrylyzo] Fix dialog history
+ * jellyfin/jellyfin-web#2887 [@dmitrylyzo] Babel blurhash
+ * jellyfin/jellyfin-web#2872 [@GodTamIt] Send vp8 and vp9 over vpx as transcode profiles
+ * jellyfin/jellyfin-web#2860 [@Pfuenzle] Removed Tag filter limit of 50
+ * jellyfin/jellyfin-web#2859 [@thornbill] Redesign item details screen for mobile
+ * jellyfin/jellyfin-web#2858 [@thornbill] Fix build warnings
+ * jellyfin/jellyfin-web#2857 [@njsmith] Allow web player to buffer ahead a reasonable amount of data
+ * jellyfin/jellyfin-web#2853 [@thornbill] Update workbox
+ * jellyfin/jellyfin-web#2837 [@keegandahm] Made volume slider exponential rather than linear
+ * jellyfin/jellyfin-web#2835 [@nielsvanvelzen] Add "jellyfin" to output file names
+ * jellyfin/jellyfin-web#2829 [@thornbill] Fix continue watching card shapes
+ * jellyfin/jellyfin-web#2821 [@thornbill] Update merge conflict action trigger
+ * jellyfin/jellyfin-web#2801 [@MrTimscampi] Person types and translations
+ * jellyfin/jellyfin-web#2799 [@daullmer] Fix TV item details UX
+ * jellyfin/jellyfin-web#2794 [@nyanmisaka] Add BT.2390 EETF to tonemap algorithms
+ * jellyfin/jellyfin-web#2790 [@thornbill] Fix webpack config for bundle caching
+ * jellyfin/jellyfin-web#2789 [@thornbill] Update stalebot configuration
+ * jellyfin/jellyfin-web#2786 [@MrTimscampi] Improve people pages and metadata editor
+ * jellyfin/jellyfin-web#2785 [@MrTimscampi] Allow markdown for plugin changelogs
+ * jellyfin/jellyfin-web#2784 [@thornbill] Fix ATV 0.11 using wrong icon
+ * jellyfin/jellyfin-web#2781 [@imchasingshadows] bugfix/web0s-fullscreen
+ * jellyfin/jellyfin-web#2778 [@HazilMohamed] fix endsAt time when playback speed changes
+ * jellyfin/jellyfin-web#2777 [@MrTimscampi] Translate the transcode reasons
+ * jellyfin/jellyfin-web#2776 [@gnuyent] Add hardware encoding status to playback data
+ * jellyfin/jellyfin-web#2758 [@thornbill] Use album artist for listing artist albums
+ * jellyfin/jellyfin-web#2753 [@jackrvan] Add setting for max days for a show to appear in next up list
+ * jellyfin/jellyfin-web#2749 [@nielsvanvelzen] Use new Quick Connect enabled endpoint
+ * jellyfin/jellyfin-web#2748 [@nielsvanvelzen] Remove activate feature from Quick Connect page
+ * jellyfin/jellyfin-web#2747 [@nielsvanvelzen] Move Quick Connect toggle to General page in dashboard
+ * jellyfin/jellyfin-web#2743 [@thornbill] Remove html from syncplay toast messages
+ * jellyfin/jellyfin-web#2742 [@thornbill] Update dependencies
+ * jellyfin/jellyfin-web#2740 [@MrTimscampi] Replace newlines in plugin changelogs with the proper HTML tag
+ * jellyfin/jellyfin-web#2736 [@thornbill] Fix invalid import path
+ * jellyfin/jellyfin-web#2722 [@MrTimscampi] Add TypeScript support for React components
+ * jellyfin/jellyfin-web#2707 [@grafixeyehero] Access module 
+ * jellyfin/jellyfin-web#2706 [@thornbill] Update icon used for syncplay
+ * jellyfin/jellyfin-web#2705 [@thornbill] Add support for custom menu links in config.json
+ * jellyfin/jellyfin-web#2704 [@thornbill] Fix continue reading card shape
+ * jellyfin/jellyfin-web#2703 [@thornbill] Add error logging for missing translation keys
+ * jellyfin/jellyfin-web#2698 [@thornbill] Fix live reload
+ * jellyfin/jellyfin-web#2683 [@thornbill] Add react support
+ * jellyfin/jellyfin-web#2681 [@thornbill] Cleanup toasts
+ * jellyfin/jellyfin-web#2680 [@anthonylavado] Update IRC Links to Libera Chat
+ * jellyfin/jellyfin-web#2670 [@viggy96] Add next/previous chapter buttons to video player
+ * jellyfin/jellyfin-web#2668 [@dmitrylyzo] Fix back on load [Tizen 2.x]
+ * jellyfin/jellyfin-web#2664 [@dmitrylyzo] Remove trying app URL as server URL
+ * jellyfin/jellyfin-web#2663 [@JKI12] Fixes resuming of books
+ * jellyfin/jellyfin-web#2660 [@grafixeyehero] Fix browser history for dialog
+ * jellyfin/jellyfin-web#2646 [@shortspider] Prevent Buttons from Sitting Over Text
+ * jellyfin/jellyfin-web#2630 [@dmitrylyzo] Fix home screen settings
+ * jellyfin/jellyfin-web#2627 [@BrianCArnold] Added ability to burn in all subtitles, including SRT.
+ * jellyfin/jellyfin-web#2626 [@shortspider] Add Fullscreen Ability to Books
+ * jellyfin/jellyfin-web#2625 [@dmitrylyzo] Cleanup: maintabsmanager
+ * jellyfin/jellyfin-web#2622 [@dmitrylyzo] Fix tabs scrolling in Tizen
+ * jellyfin/jellyfin-web#2621 [@iwalton3] Add subtitle/audio auto-set feature.
+ * jellyfin/jellyfin-web#2618 [@iwalton3] Allow client custom css and disabling global server custom css.
+ * jellyfin/jellyfin-web#2613 [@dmitrylyzo] ScrollManager: fix parent search
+ * jellyfin/jellyfin-web#2612 [@dmitrylyzo] Fix navigation in paging block
+ * jellyfin/jellyfin-web#2610 [@shortspider] Add a Continue Reading Section
+ * jellyfin/jellyfin-web#2599 [@omeryagmurlu] Use episode images in the "Next Up" section
+ * jellyfin/jellyfin-web#2594 [@ferferga] chore(ci): replace with actions-label-merge-conflict
+ * jellyfin/jellyfin-web#2583 [@daullmer] Add configuration for slow response logging
+ * jellyfin/jellyfin-web#2581 [@dmitrylyzo] Add LogIn/LogOut event handlers to NativeShell
+ * jellyfin/jellyfin-web#2569 [@ferferga] chore(npm): fix CI after switch to npm
+ * jellyfin/jellyfin-web#2559 [@thornbill] Remove commented code
+ * jellyfin/jellyfin-web#2557 [@iwalton3] NativeShell enhancements for Jellyfin Media Player
+ * jellyfin/jellyfin-web#2539 [@BrianCArnold] Changed calculation for media info run time to render hours
+ * jellyfin/jellyfin-web#2534 [@jackrvan] Improve behaviour of space bar pausing/playing video
+ * jellyfin/jellyfin-web#2533 [@dmitrylyzo] Make play button bigger
+ * jellyfin/jellyfin-web#2532 [@dmitrylyzo] Add controls page to the user settings
+ * jellyfin/jellyfin-web#2523 [@ferferga] Run merge conflict check on PR rebase/commit
+ * jellyfin/jellyfin-web#2518 [@dkanada] pull fedora changes into master branch
+ * jellyfin/jellyfin-web#2516 [@tonyfinn] Show current group members in syncplay group dialog
+ * jellyfin/jellyfin-web#2506 [@thornbill] Remove forum badge
+ * jellyfin/jellyfin-web#2499 [@thornbill] Fix dialog helper not resolving
+ * jellyfin/jellyfin-web#2497 [@PrplHaz4] KnownProxies now supports hostnames too
+ * jellyfin/jellyfin-web#2491 [@dkanada] use better icon for manage library button
+ * jellyfin/jellyfin-web#2485 [@dmitrylyzo] Fix webpack globbing in hidden folder
+ * jellyfin/jellyfin-web#2476 [@ferferga] Switch to npm
+ * jellyfin/jellyfin-web#2472 [@dkanada] add border radius to several card elements
+ * jellyfin/jellyfin-web#2467 [@albeeeert] Add padding to prevent music controls from clipping
+ * jellyfin/jellyfin-web#2466 [@eudes] Use absolute path in CopyPlugin config
+ * jellyfin/jellyfin-web#2464 [@dmitrylyzo] Tune some styles on now playing page
+ * jellyfin/jellyfin-web#2456 [@dmitrylyzo] Add Webpack publicPath
+ * jellyfin/jellyfin-web#2445 [@dkanada] reduce dependabot update frequency
+ * jellyfin/jellyfin-web#2428 [@acvigue] Fix: prevent some backdrops from showing on homepage
+ * jellyfin/jellyfin-web#2379 [@dkanada] fix some unhandled promises and refactor some code
+ * jellyfin/jellyfin-web#2355 [@thornbill] Fix warnings
+ * jellyfin/jellyfin-web#2354 [@thornbill] Move to sass everywhere
+ * jellyfin/jellyfin-web#2352 [@JKI12] Change to expose keyboard shortcuts for chapter navigation
+ * jellyfin/jellyfin-web#2342 [@OancaAndrei] Clear playlist in SyncPlay group
+ * jellyfin/jellyfin-web#2310 [@nielsvanvelzen] Use OpenStreetMap instead of Google Maps
+ * jellyfin/jellyfin-web#2281 [@Camc314] Update fontsource to 4.0.1
+ * jellyfin/jellyfin-web#2266 [@dkanada] remove touch controls from video player
+ * jellyfin/jellyfin-web#2264 [@Artiume] Remove games references
+ * jellyfin/jellyfin-web#2261 [@Artiume] Dependencies update
+ * jellyfin/jellyfin-web#2221 [@thornbill] Add lint rule for array callback returns
+ * jellyfin/jellyfin-web#2212 [@thornbill] Use package version
+ * jellyfin/jellyfin-web#2204 [@OancaAndrei] Add basic SyncPlay settings
+ * jellyfin/jellyfin-web#2176 [@joshuaboniface] Bump version to 10.8.0 for next release
+

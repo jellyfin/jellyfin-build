@@ -1,0 +1,46 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [20]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * #7749 [@cvium] fix: disable "Automatically add to collection" by default
+ * #7741 [@LewkyB] Fix to allow for episode numbering over 999 in certain scenarios
+ * #7736 [@nyanmisaka] Fix the mismatched resolution in sw PGS burn-in
+ * #7724 [@jtcasper] Don't let permission denied kill library scans
+ * #7723 [@crobibero] Update TMDbLib to 1.9.2
+ * #7718 [@nyanmisaka] Fix the disordered color in Dolby Vision remuxing on Safari
+ * #7716 [@Shadowghost] Respect limited opus sampling rates when building trancoding command
+ * #7712 [@nyanmisaka] Fix the issue that HEVC transcoding can't be disabled
+ * #7699 [@Shadowghost] Fix streambuilder reasons for direct playback checks
+ * #7693 [@crobibero] Don't migrate auth token if user doesn't exist
+ * #7654 [@Shadowghost] Prefer MetadataProvider enum as provider id key over arbitrary strings
+ * #7648 [@nyanmisaka] Add libssl3 as an alternative dependency for Ubuntu 22.04 LTS
+ * #7643 [@nyanmisaka] Fix H264 level on safari fmp4
+ * #7638 [@1337joe] Fix quick connect tests
+ * #7634 [@neilsb] Correct LocalTrailerCount in API
+ * #7625 [@crobibero] Only delete xmltv cache file if exist
+ * #7624 [@nielsvanvelzen] Enable Quick Connect by default
+ * #7604 [@Jellifi007] Fixes diacritics regression #7484 #7450 #7560
+ * #7544 [@jaantaponen] Fix DVR error: too long filename
+ * #7529 [@Shadowghost] Properly handle stream addition and removal for strm use cases
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [16]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * jellyfin/jellyfin-web#3643 [@dmitrylyzo] Resolve worker URLs
+ * jellyfin/jellyfin-web#3642 [@taku0] Change CSS font-family by language preference
+ * jellyfin/jellyfin-web#3639 [@rhld16] Add missing languages
+ * jellyfin/jellyfin-web#3637 [@MinecraftPlaye] Add WebP to the page detection list for comics
+ * jellyfin/jellyfin-web#3635 [@dmitrylyzo] Fix SSA/ASS missing font
+ * jellyfin/jellyfin-web#3628 [@thornbill] Fix artists album lists
+ * jellyfin/jellyfin-web#3622 [@thornbill] Restore external links on mobile
+ * jellyfin/jellyfin-web#3618 [@thornbill] Fix backdrop being used on large screens in mobile layout
+ * jellyfin/jellyfin-web#3617 [@thornbill] Fix iPadOS icon
+ * jellyfin/jellyfin-web#3616 [@thornbill] Revert some poor translations
+ * jellyfin/jellyfin-web#3614 [@dmitrylyzo] Check undefined streamInfo.url
+ * jellyfin/jellyfin-web#3604 [@thornbill] Fix custom element creation
+ * jellyfin/jellyfin-web#3601 [@thornbill] Fix XSS in repositories list
+ * jellyfin/jellyfin-web#3597 [@nielsvanvelzen] Use text input in Quick Connect page
+ * jellyfin/jellyfin-web#3577 [@thornbill] Fix SD filter state
+ * jellyfin/jellyfin-web#3543 [@Shadowghost] Restore sort order and fix strm usecase
+
