@@ -82,8 +82,10 @@ git checkout master
 for pr in ${backport_pr_list}; do
     merge_commit="$( hub pr show -f '%sm' ${pr} 2>/dev/null )"
     merge_title="$( hub pr show -f '%t' ${pr} 2>/dev/null )"
+    merge_author="$( git show -s --format='%an <%ae>' ${merge_commit}^2 )"
+    merge_committer="$( git show -s --format='%an <%ae>' ${merge_commit} )"
     echo "Parsing ${merge_commit} for ${pr}..."
-    git merge -m "Backport pull request #${pr} from jellyfin/${release_branch}" -m "${merge_title}" --signoff ${merge_commit}
+    git merge -m "Backport pull request #${pr} from jellyfin/${release_branch}" -m "${merge_title}" -m "Authored-by: ${merge_author}" -m "Merged-by: ${merge_committer}" ${merge_commit}
     if [[ $? -ne 0 ]]; then
         echo "Issue with merge! Review the changes in another terminal, run 'git add', then press <Enter>."
         read
