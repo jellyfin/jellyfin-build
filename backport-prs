@@ -90,7 +90,7 @@ for pr in ${backport_pr_list}; do
         echo "Issue with merge! Review the changes in another terminal, run 'git add', then press <Enter>."
         read
     fi
-    git commit -m "Backport pull request #${pr} from jellyfin/${release_branch}" -m "${merge_title}" -m "Original-merge: ${merge_commit}" -m "Authored-by: ${merge_author}" -m "Merged-by: ${merge_committer}"
+    git commit -m "Backport pull request #${pr} from jellyfin/${release_branch}" -m "${merge_title}" -m "Authored-by: ${merge_author}" -m "Merged-by: ${merge_committer}" -m "Original-merge: ${merge_commit}" 
 done
 
 echo
