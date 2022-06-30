@@ -77,21 +77,18 @@ echo -n "Press <Enter> to continue. "
 read
 echo
 
-for pr in ${backport_pr_list}; do
-    merge_commit="$( hub pr show -f '%sm' ${pr} 2>/dev/null )"
-    backport_merges+=( "${merge_commit}" )
-done
-
 git checkout master
 
-for merge in ${backport_merges[@]}; do
-    echo "Parsing ${merge}..."
-    git cherry-pick -sx -m1 ${merge}
+for pr in ${backport_pr_list}; do
+    merge_commit="$( hub pr show -f '%sm' ${pr} 2>/dev/null )"
+    merge_title="$( hub pr show -f '%t' ${pr} 2>/dev/null )"
+    echo "Parsing ${merge_commit} for ${pr}..."
+    git merge -m "Backport pull request #${pr} from jellyfin/${release_branch}" -m "${merge_title}" --signoff ${merge_commit}
     if [[ $? -ne 0 ]]; then
-        echo "Issue with cherry-pick! Review the changes in another terminal, run 'git add', then press <Enter>."
+        echo "Issue with merge! Review the changes in another terminal, run 'git add', then press <Enter>."
         read
 
-        git cherry-pick --continue
+        git merge --continue
     fi
 done
 
