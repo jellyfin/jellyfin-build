@@ -7,6 +7,10 @@ jellyfin-manifest:
     type: server
     url: "github.com/jellyfin/jellyfin-web.git"
 
+  - name: jellyfin-vue
+    type: server
+    url: "github.com/jellyfin/jellyfin-vue.git"
+
   - name: jellyfin-metapackages
     type: server
     url: "github.com/jellyfin/jellyfin-metapackages.git"
