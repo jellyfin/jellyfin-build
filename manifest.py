@@ -8,7 +8,7 @@ def load_manifest(manifest_file_name):
     """
     with open(manifest_file_name, 'r') as manifest_file:
         try:
-            cfg = yaml.load(manifest_file)
+            cfg = yaml.load(manifest_file, Loader=yaml.BaseLoader)
         except yaml.YAMLError as e:
             print("ERROR: Failed to load YAML manifest {}: {{".format(manifest_file_name, e))
             return None
