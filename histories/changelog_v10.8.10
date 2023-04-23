@@ -1,0 +1,31 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [12]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * GHSA-9p5f-5x8v-x65m [@daullmer] Throw exception on path traversal in WriteDocumentAsync
+ * #9671 [@nyanmisaka] Fix the canvas size for DVBSUB and DVDSUB subtitles
+ * #9642 [@nyanmisaka] Fix the brightness of VPP tonemap and add the tonemap mode
+ * #9538 [@TheTyrius] Fix nvenc preset order
+ * #9430 [@nyanmisaka] Fix Live TV hardware decoding
+ * #9422 [@nyanmisaka] Fix stream map when using filter_complex with unlabeled output
+ * #9411 [@nyanmisaka] Fix codec checking in CodecProfiles conditions
+ * #9409 [@Shadowghost] Multiple HLS codec and bitrate fixes (10.8.z)
+ * #9391 [@nyanmisaka] Fix H.264 baseline hwaccel and enable enhanced Nvdec by default
+ * #9355 [@nyanmisaka] Some VAAPI VPP and OpenCL fixes
+ * #9351 [@Shadowghost] Fix EqualsAny condition check for int and double
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [11]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * GHSA-89hp-h43h-r5pq [@iwalton3] Escape device id in raw HTML
+ * jellyfin/jellyfin-web#4492 [@nyanmisaka] Add the tonemap mode options
+ * jellyfin/jellyfin-web#4487 [@thornbill] Fix dead documentation link
+ * jellyfin/jellyfin-web#4395 [@thornbill] Fix installed plugin version html
+ * jellyfin/jellyfin-web#4385 [@nyanmisaka] Drop progressive transcoding in web client
+ * jellyfin/jellyfin-web#4362 [@dmitrylyzo] Fix subtitle offset reset when seeking progressive stream
+ * jellyfin/jellyfin-web#4356 [@dmitrylyzo] Babelify @jellyfin/libass-wasm
+ * jellyfin/jellyfin-web#4330 [@dmitrylyzo] Fix navigation for some types of INPUT
+ * jellyfin/jellyfin-web#4312 [@dmitrylyzo] Backport PR #4150 to 10.8.z branch
+ * jellyfin/jellyfin-web#4310 [@jsayol] Backport PR #4147 to 10.8.z branch
+
