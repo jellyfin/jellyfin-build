@@ -3,7 +3,6 @@
 # Backport JF PRs to release branch
 
 set -o errexit
-set -o xtrace
 
 org="jellyfin"
 
@@ -123,6 +122,8 @@ for pr in ${backport_pr_list}; do
     echo "Removing backport label for PR ${pr}..."
     gh api -XDELETE "repos/${org}/${repo}/issues/${pr}/labels/stable%20backport" 2>/dev/null
 done
+
+sudo chown -R build:build .
 
 popd
 
