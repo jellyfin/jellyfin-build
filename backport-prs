@@ -2,8 +2,6 @@
 
 # Backport JF PRs to release branch
 
-set -o errexit
-
 org="jellyfin"
 
 if [[ ! -f ~/.config/gh/hosts.yml || ! -f ~/.config/hub ]]; then
