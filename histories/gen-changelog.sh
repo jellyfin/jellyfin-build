@@ -26,12 +26,12 @@ else
     target="HEAD"
 fi
 
-all_merges=( $( git log --grep 'Merge pull request' --oneline --single-worktree --first-parent ${prev_minor}..${target} | grep -v 'dependabot' | awk '{ print $1 }' ) )
+all_merges=( $( git log --grep 'Merge pull request' --oneline --single-worktree --first-parent ${prev_minor}..${target} | grep -v 'dependabot\|renovate' | awk '{ print $1 }' ) )
 echo "${all_merges[@]}" 1>&2
 
 echo "### [${repo}](https://github.com/jellyfin/${repo}) [${#all_merges[@]}]"
 echo
-echo "Note: Dependabot automatic PRs are excluded from this list."
+echo "Note: Dependabot & Renovate automatic PRs are excluded from this list."
 echo
 
 for merge in ${all_merges[@]}; do
