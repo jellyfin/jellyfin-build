@@ -2,7 +2,18 @@
 
 # Backport JF PRs to release branch
 
+set -o errexit
+set -o xtrace
+
 org="jellyfin"
+
+if [[ ! -f ~/.config/gh/hosts.yml || ! -f ~/.config/hub ]]; then
+    # Remove any existing gh configs
+    rm -r ~/.config/gh
+    # Copy the gh/hub configs from Joshua (which uses Jellyfin Bot acct)
+    sudo cp -a /var/home/joshua/.config/{hub,gh} ~/.config/
+    sudo chown -R $USER ~/.config/
+fi
 
 echo "Please select the repo you want to work on:"
 echo -e "  jellyfin"
