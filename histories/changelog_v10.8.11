@@ -1,0 +1,30 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [6]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * #9952 [@Bond-009] Backport fix for #9503
+ * #9928 [@nyanmisaka] Disable global_header on AMD VA-API encoder
+ * #9916 [@Bond-009] Don't ignore parentId for playlists (backport #9909)
+ * #9723 [@dmitrylyzo] Fix multiple codec checking in CodecProfiles conditions
+ * #10265 [@Shadowghost] Backport #10173
+ * #10151 [@nyanmisaka] Fix performance loss of QSV HDR tone-mapping on Windows
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [14]
+
+Note: Dependabot automatic PRs are excluded from this list.
+
+ * jellyfin/jellyfin-web#4758 [@dmitrylyzo] Fix slider step
+ * jellyfin/jellyfin-web#4757 [@dmitrylyzo] Remove Dolby Vision support on Samsung TV (Tizen)
+ * jellyfin/jellyfin-web#4709 [@thornbill] Fix scheduled task time limit key
+ * jellyfin/jellyfin-web#4688 [@dmitrylyzo] Disable ALAC on MacOS in non-Safari browsers
+ * jellyfin/jellyfin-web#4685 [@hurani] Backport pull request #4171 to release 10.8.z
+ * jellyfin/jellyfin-web#4657 [@thornbill] Fix xss in custom subtitles element
+ * jellyfin/jellyfin-web#4654 [@joshuaboniface] Add confirmation for 3rd party repos
+ * jellyfin/jellyfin-web#4632 [@dmitrylyzo] Improve keyboard control
+ * jellyfin/jellyfin-web#4628 [@dmitrylyzo] Fix initial state of volume slider
+ * jellyfin/jellyfin-web#4627 [@dmitrylyzo] Fix overlap of slider bubble
+ * jellyfin/jellyfin-web#4591 [@thornbill] Fix QuickConnect code not displaying in Spanish
+ * jellyfin/jellyfin-web#4589 [@thornbill] Fix xss in api key page
+ * jellyfin/jellyfin-web#4561 [@dmitrylyzo] Fix bottom video controls don't auto-hide
+ * jellyfin/jellyfin-web#4553 [@dmitrylyzo] Unhide PlayNextEpisodeAutomatically on TV
+
