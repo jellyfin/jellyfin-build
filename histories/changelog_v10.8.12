@@ -1,0 +1,21 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [5]
+
+Note: Dependabot & Renovate automatic PRs are excluded from this list.
+
+ * #10528 [@nyanmisaka] Fix mismatched intel VAAPI UMD/KMD - Backport #10451
+ * #10514 [@Bond-009] Update SkiaSharp (v2.88.6) and BlurHashSharp (v1.3.1)
+ * #10487 [@thornbill] Fix scaleFactor limit - Backport #9738
+ * #10454 [@Shadowghost]  Add MALLOC_TRIM_THRESHOLD_ to default ENV
+ * #10406 [@thornbill] Fix playlist listings
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [6]
+
+Note: Dependabot & Renovate automatic PRs are excluded from this list.
+
+ * jellyfin/jellyfin-web#4912 [@dmitrylyzo] Fix imports
+ * jellyfin/jellyfin-web#4893 [@thornbill] Change Subtitle Sync slider to go from -300 to 300 - Backport #4754
+ * jellyfin/jellyfin-web#4892 [@thornbill] Fix language/subtitle switcher when using gamepad - Backport #4860
+ * jellyfin/jellyfin-web#4837 [@dmitrylyzo] Fix playing empty item set
+ * jellyfin/jellyfin-web#4813 [@dmitrylyzo] Handle pressing Enter to finish keyboard dragging of slider (Backport #4805)
+ * jellyfin/jellyfin-web#4797 [@Mauroq] Remove H264 10bit support on Samsung TV (Tizen)
+
