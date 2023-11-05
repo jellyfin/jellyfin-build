@@ -3,7 +3,7 @@
 Note: Dependabot & Renovate automatic PRs are excluded from this list.
 
  * #10528 [@nyanmisaka] Fix mismatched intel VAAPI UMD/KMD - Backport #10451
- * #10514 [@Bond-009] Update SkiaSharp (v2.88.6) and BlurHashSharp (v1.3.1)
+ * ~~#10514 [@Bond-009] Update SkiaSharp (v2.88.6) and BlurHashSharp (v1.3.1)~~ Reverted due to SEGV on access
  * #10487 [@thornbill] Fix scaleFactor limit - Backport #9738
  * #10454 [@Shadowghost]  Add MALLOC_TRIM_THRESHOLD_ to default ENV
  * #10406 [@thornbill] Fix playlist listings
