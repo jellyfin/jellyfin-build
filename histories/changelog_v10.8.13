@@ -1,0 +1,16 @@
+### [jellyfin](https://github.com/jellyfin/jellyfin) [3]
+
+Note: Dependabot & Renovate automatic PRs are excluded from this list.
+
+ * #10625 [@ilovepilav] Fix: Plugin Installed Alerts missing from Admin Dashboard #10620
+ * GHSA-rr9h-w522-cvmr [@joshuaboniface] Remove the functionality of /System/MediaEncoder/Path
+ * GHSA-866x-wj5j-2vf4 [@crobibero] Validate codec and container
+
+### [jellyfin-web](https://github.com/jellyfin/jellyfin-web) [3]
+
+Note: Dependabot & Renovate automatic PRs are excluded from this list.
+
+ * jellyfin/jellyfin-web#5019 [@joshuaboniface] Set FFmpeg path disabled
+ * jellyfin/jellyfin-web#4993 [@rafma0] Remove FLAC Audio in Video Support for Tizen (Backport #4938)
+ * jellyfin/jellyfin-web#4992 [@rafma0] Fix jittering in emby-checkbox (Backport #4929)
+
